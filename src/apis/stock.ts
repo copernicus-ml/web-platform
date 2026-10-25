@@ -16,11 +16,15 @@ const getStockFeaturesResponseSchema = <G extends FeatureGroupOpt>(group: G) => 
 const getStockPrices = async (
   ticker: string,
   window: DataWindowOpt,
+  authToken: string,
   signal?: AbortSignal,
 ) => {
   const url = new URL(`data/stock/${ticker}?window=${dataWindowParam[window]}`, DATA_URL);
   const response = await fetch(url, {
     method: "GET",
+    headers: {
+      Authorization: `Bearer ${authToken}`,
+    },
     signal,
   });
   if (!response.ok) {
@@ -42,6 +46,7 @@ const getStockFeatures = async (
   ticker: string,
   window: DataWindowOpt,
   featureGroup: FeatureGroupOpt = "pricemomentum",
+  authToken: string,
   signal?: AbortSignal,
 ) => {
   const url = new URL(
@@ -50,6 +55,9 @@ const getStockFeatures = async (
   );
   const response = await fetch(url, {
     method: "GET",
+    headers: {
+      Authorization: `Bearer ${authToken}`,
+    },
     signal,
   });
   if (!response.ok) {

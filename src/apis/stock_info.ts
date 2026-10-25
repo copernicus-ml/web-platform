@@ -19,10 +19,13 @@ const StockInfoSchema = z
     founded: input.founded,
   }));
 
-const getStockInfo = async (ticker: string, signal?: AbortSignal) => {
+const getStockInfo = async (ticker: string, authToken: string, signal?: AbortSignal) => {
   const url = new URL(`data/stock/info/${ticker}`, DATA_URL);
   const response = await fetch(url, {
     method: "GET",
+    headers: {
+      Authorization: `Bearer ${authToken}`,
+    },
     signal,
   });
   if (!response.ok) {
