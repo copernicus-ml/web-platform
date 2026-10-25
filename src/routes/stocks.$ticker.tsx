@@ -25,7 +25,7 @@ export const Route = createFileRoute("/stocks/$ticker")({
     window: search.window,
     group: search.group,
   }),
-  loader: async ({ context, params, deps }) => {
+  loader: async ({ context, params, deps, location }) => {
     const token = await context.auth.getToken();
     if (!token) {
       throw redirect({
