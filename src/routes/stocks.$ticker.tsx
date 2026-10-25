@@ -6,7 +6,7 @@ import {
   stockListQuery,
   stockPriceQuery,
 } from "@/queries/stock";
-import { createFileRoute, getRouteApi } from "@tanstack/react-router";
+import { createFileRoute, getRouteApi, redirect } from "@tanstack/react-router";
 import { z } from "zod";
 import PriceSection from "@/components/stocks/PriceSection";
 import FeaturesSection from "@/components/stocks/FeaturesSection";
@@ -26,12 +26,20 @@ export const Route = createFileRoute("/stocks/$ticker")({
     group: search.group,
   }),
   loader: async ({ context, params, deps }) => {
+    const token = await context.auth.getToken();
+    if (!token) {
+      throw redirect({
+        to: "/signin",
+        search: { redirect: location.href },
+        replace: true,
+      });
+    }
     const [info, list, prices, features] = await Promise.all([
-      context.queryClient.query(stockInfoQuery(params.ticker)),
-      context.queryClient.query(stockListQuery()),
-      context.queryClient.query(stockPriceQuery(params.ticker, deps.window)),
+      context.queryClient.query(stockInfoQuery(params.ticker, token)),
+      context.queryClient.query(stockListQuery(token)),
+      context.queryClient.query(stockPriceQuery(params.ticker, deps.window, token)),
       context.queryClient.query(
-        stockFeatureQuery(params.ticker, deps.window, deps.group),
+        stockFeatureQuery(params.ticker, deps.window, deps.group, token),
       ),
     ]);
     return { info, list, prices, features };
