@@ -36,7 +36,7 @@ const readLastSearch = () => {
   const localData = localStorage.getItem(localStorageKey);
   const storage = localData ? JSON.parse(localData) : undefined;
   if (!storage || !storage.records || storage.records.length === 0) return undefined;
-  return storage.records.at(-1) as SearchRecord;
+  return storage.records.pop() as SearchRecord;
 };
 
 export { addSearchHistory, readLastSearch };
