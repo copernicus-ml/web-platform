@@ -11,6 +11,7 @@ import { z } from "zod";
 import PriceSection from "@/components/stocks/PriceSection";
 import FeaturesSection from "@/components/stocks/FeaturesSection";
 import FeatureGroupSidebar from "@/components/stocks/FeatureGroupSidebar";
+import { addSearchHistory } from "@/lib/storage";
 
 const searchSchema = z.object({
   window: z.enum(dataWindows).catch("60D"),
@@ -34,15 +35,21 @@ export const Route = createFileRoute("/stocks/$ticker")({
         replace: true,
       });
     }
-    const [info, list, prices, features] = await Promise.all([
-      context.queryClient.query(stockInfoQuery(params.ticker, token)),
-      context.queryClient.query(stockListQuery(token)),
-      context.queryClient.query(stockPriceQuery(params.ticker, deps.window, token)),
-      context.queryClient.query(
-        stockFeatureQuery(params.ticker, deps.window, deps.group, token),
-      ),
-    ]);
-    return { info, list, prices, features };
+    try {
+      const [info, list, prices, features] = await Promise.all([
+        context.queryClient.query(stockInfoQuery(params.ticker, token)),
+        context.queryClient.query(stockListQuery(token)),
+        context.queryClient.query(stockPriceQuery(params.ticker, deps.window, token)),
+        context.queryClient.query(
+          stockFeatureQuery(params.ticker, deps.window, deps.group, token),
+        ),
+      ]);
+      addSearchHistory(params.ticker, deps.window, deps.group);
+      return { info, list, prices, features };
+    } catch (error) {
+      window.alert(error); // replace with a warning toast
+      throw redirect({ to: "/stocks" });
+    }
   },
   component: StocksDashboard,
 });
