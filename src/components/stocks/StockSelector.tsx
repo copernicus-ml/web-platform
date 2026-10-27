@@ -33,13 +33,12 @@ export default function StockSelector({
   const updateStockPrefix = (
     event: React.ChangeEvent<HTMLInputElement, HTMLInputElement>,
   ) => {
-    setStockPrefix(event.target.value.toUpperCase());
+    setStockPrefix(event.target.value.trim().toUpperCase());
   };
-
   const filteredList =
     stockPrefix === ""
-      ? stockList?.filter((stock) => stock[0].startsWith(stockPrefix))
-      : stockList;
+      ? stockList
+      : stockList?.filter((stock) => stock[0].startsWith(stockPrefix));
 
   return (
     <Root onOpenChange={setOpen} open={open}>
@@ -50,8 +49,9 @@ export default function StockSelector({
             <SearchIcon className="w-4 min-w-4" stroke="gray" />
             <input
               name={"stock search"}
+              value={stockPrefix}
               onChange={updateStockPrefix}
-              className="py-1 px-2 focus-visible:outline-0"
+              className="py-1 px-2 focus-visible:outline-0 text-sm"
               autoComplete="off"
             />
           </div>
