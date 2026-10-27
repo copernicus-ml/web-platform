@@ -22,4 +22,7 @@ export default defineConfig({
   css: {
     devSourcemap: true,
   },
+  server: {
+    port: 4173,
+  },
 });

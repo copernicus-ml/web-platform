@@ -5,7 +5,7 @@ import { stockRouteAPI } from "@/routes/stocks.$ticker";
 
 const styles = {
   container: clsx(
-    "box-border w-full h-18 grid grid-cols-5 items-center border border-gray-300 rounded-md overflow-hidden bg-white",
+    "box-border w-full h-18 grid grid-cols-4 items-center border border-gray-300 rounded-md overflow-hidden bg-white",
   ),
   columnBasic: clsx(
     "w-full h-full px-5 border-r border-gray-300 flex flex-col justify-center transition duration-100 text-sm",
@@ -27,12 +27,17 @@ export default function StockInfo() {
         {data && (
           <>
             <StockSelector>
-              <div className={cn(styles.columnBasic, "cursor-pointer hover:bg-gray-200")}>
+              <div
+                className={cn(
+                  styles.columnBasic,
+                  "cursor-pointer hover:bg-gray-200 col-span-1",
+                )}
+              >
                 <h2 className="font-semibold text-lg">{data.ticker}</h2>
                 <p>{data.companyName}</p>
               </div>
             </StockSelector>
-            <div className={cn(styles.columnBasic, "col-span-2")}>
+            <div className={cn(styles.columnBasic, "col-span-1")}>
               <p>{data.sector}</p>
               <p>{data.subIndustry}</p>
             </div>
