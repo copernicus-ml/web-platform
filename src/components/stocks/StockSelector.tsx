@@ -3,10 +3,11 @@ import SearchIcon from "@/components/icons/SearchIcon";
 import { useState } from "react";
 import clsx from "clsx";
 import { stockRouteAPI, type StockSearchSchema } from "@/routes/stocks.$ticker";
+import { cn } from "@/lib/utils";
 
 const styles = {
   content: clsx(
-    "origin-top flex flex-col gap-3 mt-1 h-96 rounded-md bg-white shadow-[0_2px_8px] border-gray-300 border shadow-gray-300 px-4 py-3 data-[state=open]:animate-[slideUp_200ms_ease-out] w-(--radix-popper-anchor-width)",
+    "origin-top flex flex-col gap-3 mt-1 h-96 rounded-md bg-white shadow-[0_2px_8px] border-gray-300 border shadow-gray-300 px-3 py-3 data-[state=open]:animate-[slideUp_200ms_ease-out] w-(--radix-popper-anchor-width)",
   ),
 };
 
@@ -16,6 +17,7 @@ export default function StockSelector({
   const [stockPrefix, setStockPrefix] = useState<string>("");
   const [open, setOpen] = useState<boolean>(false);
   const navigate = stockRouteAPI.useNavigate();
+  const { ticker: currTicker } = stockRouteAPI.useParams();
   const stockList = stockRouteAPI.useLoaderData({
     select: (loaderData) => loaderData.list,
   });
@@ -34,7 +36,10 @@ export default function StockSelector({
     setStockPrefix(event.target.value.toUpperCase());
   };
 
-  const filteredList = stockList?.filter((stock) => stock[0].startsWith(stockPrefix));
+  const filteredList =
+    stockPrefix === ""
+      ? stockList?.filter((stock) => stock[0].startsWith(stockPrefix))
+      : stockList;
 
   return (
     <Root onOpenChange={setOpen} open={open}>
@@ -47,6 +52,7 @@ export default function StockSelector({
               name={"stock search"}
               onChange={updateStockPrefix}
               className="py-1 px-2 focus-visible:outline-0"
+              autoComplete="off"
             />
           </div>
           <div className="flex-1 overflow-y-auto scrollbar-thumb-gray-300 scrollbar-thin">
@@ -54,13 +60,16 @@ export default function StockSelector({
               return (
                 <button
                   key={stock.join("-")}
-                  className="flex gap-2 items-center p-1 hover:cursor-pointer hover:bg-gray-100 w-full rounded-md"
+                  className={cn(
+                    "flex items-center p-1 px-1.5  hover:cursor-pointer hover:bg-gray-200 w-full rounded-sm",
+                    currTicker === stock[0] ? "bg-gray-200 font-bold" : "",
+                  )}
                   onClick={() => {
                     changeStock(stock[0]);
                     setOpen(false);
                   }}
                 >
-                  <p className="text-sm">{stock[0]}</p>
+                  <p className="text-sm w-12.5 min-w-12.5 text-left">{stock[0]}</p>
                   <p className="text-xs text-gray-400 text-left tracking-tight">
                     {stock[1]}
                   </p>

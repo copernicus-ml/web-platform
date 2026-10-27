@@ -46,7 +46,10 @@ export default function FeatureGroupSidebar() {
         <h2 className="text-sm">Feature Group</h2>
       </div>
       <div className="relative flex-1 overflow-hidden">
-        <div ref={sidebarRef} className="h-full overflow-y-auto scrollbar-none">
+        <div
+          ref={sidebarRef}
+          className="h-full overflow-y-auto scrollbar-none scroll-smooth"
+        >
           {FeatureGroups.map((group) => (
             <FeatureGroupCard
               key={`sidebar-${group}`}
