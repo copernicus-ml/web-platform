@@ -5,10 +5,10 @@ import { queryClient, router } from "./router.tsx";
 import { ClerkProvider, useAuth } from "@clerk/react";
 import "@/i18n/i18n";
 import "./index.css";
+import FlashToast from "./components/ui/FlashToast.tsx";
 
 function AppRouter() {
   const { isLoaded, isSignedIn, getToken } = useAuth();
-
   useEffect(() => {
     if (isLoaded && !isSignedIn) router.invalidate();
   }, [isSignedIn, isLoaded]);
@@ -30,7 +30,9 @@ function AppRouter() {
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
     <ClerkProvider>
-      <AppRouter />
+      <FlashToast>
+        <AppRouter />
+      </FlashToast>
     </ClerkProvider>
   </StrictMode>,
 );

@@ -1,7 +1,5 @@
 import { Outlet, createRootRouteWithContext, redirect } from "@tanstack/react-router";
 import type { QueryClient } from "@tanstack/react-query";
-import Header from "@/components/Header";
-import Footer from "@/components/Footer";
 
 export type AppRouterContext = {
   queryClient: QueryClient;
@@ -31,11 +29,5 @@ export const Route = createRootRouteWithContext<AppRouterContext>()({
 });
 
 function RootLayout() {
-  return (
-    <div className="w-full h-full flex flex-col items-center gap-3 min-h-200 [&_div]:min-h-0">
-      <Header />
-      <Outlet />
-      <Footer />
-    </div>
-  );
+  return <Outlet />;
 }
