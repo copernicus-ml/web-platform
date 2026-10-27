@@ -12,6 +12,7 @@ import PriceSection from "@/components/stocks/PriceSection";
 import FeaturesSection from "@/components/stocks/FeaturesSection";
 import FeatureGroupSidebar from "@/components/stocks/FeatureGroupSidebar";
 import { addSearchHistory } from "@/lib/storage";
+import { addFlashToast } from "@/components/ui/FlashToast";
 
 const searchSchema = z.object({
   window: z.enum(dataWindows).catch("60D"),
@@ -47,7 +48,12 @@ export const Route = createFileRoute("/stocks/$ticker")({
       addSearchHistory(params.ticker, deps.window, deps.group);
       return { info, list, prices, features };
     } catch (error) {
-      window.alert(error); // replace with a warning toast
+      addFlashToast({
+        title: "Failed to get data",
+        description: String(error),
+        type: "error",
+        timeout: 3000,
+      });
       throw redirect({ to: "/stocks" });
     }
   },
