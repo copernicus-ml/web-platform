@@ -19,6 +19,8 @@ jobs:
       group: cloudflare-pages-production
       cancel-in-progress: true
 
+    environment: production
+
     steps:
       - name: Check out the CI commit
         uses: actions/checkout@v4

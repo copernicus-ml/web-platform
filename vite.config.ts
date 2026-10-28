@@ -18,6 +18,7 @@ export default defineConfig({
   test: {
     globals: true,
     environment: "jsdom",
+    pool: "vmThreads",
     setupFiles: ["./src/lib/test-utils.tsx"],
     coverage: {
       provider: "v8",
