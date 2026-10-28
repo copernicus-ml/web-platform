@@ -1,3 +1,5 @@
+/// <reference types="vitest/config" />
+
 import path from "path";
 import react from "@vitejs/plugin-react";
 import { defineConfig } from "vite";
@@ -13,6 +15,15 @@ export default defineConfig({
     tailwindcss(),
     analyzer({ analyzerMode: "static" }),
   ],
+  test: {
+    globals: true,
+    environment: "jsdom",
+    setupFiles: ["./src/lib/test-utils.tsx"],
+    coverage: {
+      provider: "v8",
+      exclude: ["./src/apis/**"],
+    },
+  },
   resolve: {
     alias: {
       "@stocks/plot": path.resolve(import.meta.dirname, "./src/components/stocks/plot"),

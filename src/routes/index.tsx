@@ -1,4 +1,5 @@
 import type { DataWindowOpt, FeatureGroupOpt } from "@/apis";
+import { readLastSearch } from "@/lib/storage";
 import { createFileRoute, redirect } from "@tanstack/react-router";
 
 export const defaultStock: {
@@ -13,7 +14,13 @@ export const defaultStock: {
 
 export const Route = createFileRoute("/")({
   beforeLoad: () => {
-    const { ticker, window, group } = defaultStock;
+    let { ticker, window, group } = defaultStock;
+    const lastVisited = readLastSearch();
+    if (lastVisited !== undefined) {
+      ticker = lastVisited.ticker;
+      window = lastVisited.window;
+      group = lastVisited.group;
+    }
     throw redirect({
       to: "/stocks/$ticker",
       params: { ticker },

@@ -1,7 +1,7 @@
 import type { DataWindowOpt, FeatureGroupOpt } from "@/apis";
 
 const localStorageKey = "copernicus";
-const maxRecords = 20;
+const maxRecords = 10;
 type SearchRecord = {
   ticker: string;
   window: DataWindowOpt;
@@ -20,7 +20,7 @@ const addSearchHistory = (
     localStorage.setItem(localStorageKey, JSON.stringify({ records: [newRecord] }));
     return;
   }
-  let currRecords = (storage.records ?? []) as SearchRecord[];
+  let currRecords = storage.records as SearchRecord[];
   currRecords = currRecords.filter((record) => record.ticker !== ticker);
   currRecords.push(newRecord);
   if (currRecords.length > maxRecords) {
@@ -36,7 +36,10 @@ const readLastSearch = () => {
   const localData = localStorage.getItem(localStorageKey);
   const storage = localData ? JSON.parse(localData) : undefined;
   if (!storage || !storage.records || storage.records.length === 0) return undefined;
-  return storage.records.pop() as SearchRecord;
+  const record = storage.records.pop() as SearchRecord;
+  localStorage.setItem(localStorageKey, JSON.stringify({ ...storage }));
+  return record;
 };
 
-export { addSearchHistory, readLastSearch };
+export type { SearchRecord };
+export { maxRecords, addSearchHistory, readLastSearch };
