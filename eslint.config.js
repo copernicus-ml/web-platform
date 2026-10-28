@@ -7,7 +7,7 @@ import { defineConfig, globalIgnores } from "eslint/config";
 import pluginRouter from "@tanstack/eslint-plugin-router";
 
 export default defineConfig([
-  globalIgnores(["dist"]),
+  globalIgnores(["dist", "coverage"]),
   {
     plugins: {
       "@tanstack/router": pluginRouter,
