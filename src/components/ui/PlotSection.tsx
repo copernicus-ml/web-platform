@@ -21,7 +21,7 @@ function Header({ title, children, className, ...props }: HeaderProps) {
       {...props}
     >
       <h2 className="font-medium">{title}</h2>
-      <div className="flex items-center gap-6">{children}</div>
+      <div className="flex items-center gap-4">{children}</div>
     </div>
   );
 }

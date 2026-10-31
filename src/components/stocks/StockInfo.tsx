@@ -5,16 +5,11 @@ import { stockRouteAPI } from "@/routes/stocks.$ticker";
 
 const styles = {
   container: clsx(
-    "box-border w-full h-18 grid grid-cols-4 items-center border border-gray-300 rounded-md overflow-hidden bg-white",
+    "box-border w-full h-16 grid grid-cols-3 items-center border border-gray-300 rounded-md overflow-hidden bg-white",
+    "divide-x divide-gray-300",
   ),
   columnBasic: clsx(
-    "w-full h-full px-5 border-r border-gray-300 flex flex-col justify-center transition duration-100 text-sm",
-  ),
-  columnButton: clsx(
-    "flex-1 hover:cursor-pointer px-4 hover:underline h-full hover:bg-gray-200 transition duration-150",
-  ),
-  columnDownload: clsx(
-    "absolute w-full h-full transition-all duration-150 text-sm flex items-center justify-center",
+    "w-full h-full px-5 flex flex-col justify-center transition duration-100 text-sm",
   ),
   columnDownloadSeparator: clsx("border-r h-full border-gray-300"),
 };
@@ -44,31 +39,6 @@ export default function StockInfo() {
             <div className={cn(styles.columnBasic, "col-span-1")}>
               <p>founded in {data.founded}</p>
               <p>{data.headquarters}</p>
-            </div>
-            <div
-              className={cn(
-                styles.columnBasic,
-                "relative group items-center border-none",
-              )}
-            >
-              <div
-                className={cn(
-                  styles.columnDownload,
-                  "group-hover:-translate-y-full group-hover:opacity-0 opacity-100",
-                )}
-              >
-                <p>Download Data</p>
-              </div>
-              <div
-                className={cn(
-                  styles.columnDownload,
-                  "translate-y-full opacity-0 group-hover:translate-y-0 group-hover:opacity-100",
-                )}
-              >
-                <button className={styles.columnButton}>Stock</button>
-                <span className={styles.columnDownloadSeparator}></span>
-                <button className={styles.columnButton}>Features</button>
-              </div>
             </div>
           </>
         )}
