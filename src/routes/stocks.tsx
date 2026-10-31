@@ -8,7 +8,6 @@ import {
 import { defaultStock } from ".";
 import { cn } from "@/lib/utils";
 import Header from "@/components/Header";
-import Footer from "@/components/Footer";
 
 export const Route = createFileRoute("/stocks")({
   beforeLoad: ({ location }) => {
@@ -33,7 +32,7 @@ export const Route = createFileRoute("/stocks")({
 function StocksLayout() {
   const isLoading = useRouterState({ select: (state) => state.isLoading });
   return (
-    <div className="w-full h-full flex flex-col items-center gap-3 min-h-200 [&_div]:min-h-0">
+    <div className="w-full h-full flex flex-col items-center gap-3 min-h-200 [&_div]:min-h-0 pb-3">
       <Header />
       <div
         className={cn(
@@ -43,7 +42,6 @@ function StocksLayout() {
       >
         <Outlet />
       </div>
-      <Footer />
     </div>
   );
 }
