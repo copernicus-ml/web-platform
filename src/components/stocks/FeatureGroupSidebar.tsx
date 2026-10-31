@@ -48,7 +48,7 @@ export default function FeatureGroupSidebar() {
       <div className="relative flex-1 overflow-hidden">
         <div
           ref={sidebarRef}
-          className="h-full overflow-y-auto scrollbar-none scroll-smooth"
+          className="h-full overflow-y-auto scrollbar-none scroll-smooth divide-y divide-gray-300 last:rounded-b-md"
         >
           {FeatureGroups.map((group) => (
             <FeatureGroupCard

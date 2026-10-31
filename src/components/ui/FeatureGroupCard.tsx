@@ -17,8 +17,9 @@ export default function FeatureGroupCard({
   return (
     <div
       className={cn(
-        "hover:cursor-pointer border-b hover:bg-gray-200 px-4 transition-all duration-100 border-gray-300 flex flex-col gap-1",
-        active ? "min-h-46! bg-gray-200" : "min-h-28!",
+        "hover:cursor-pointer hover:bg-gray-200 px-4 transition-all duration-100 flex flex-col gap-1",
+        active ? "min-h-46 h-46 bg-gray-200" : "min-h-28 h-28",
+        "last:rounded-b-sm",
       )}
       onClick={onClick}
     >
