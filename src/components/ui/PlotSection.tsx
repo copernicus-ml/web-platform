@@ -20,7 +20,7 @@ function Header({ title, children, className, ...props }: HeaderProps) {
       className={cn("w-full flex justify-between items-center mb-2", className)}
       {...props}
     >
-      <h2 className="font-medium">{title}</h2>
+      <h2 className="font-medium pl-2">{title}</h2>
       <div className="flex items-center gap-4">{children}</div>
     </div>
   );
@@ -67,7 +67,7 @@ function Button({ active, children, className, ...props }: ButtonProps) {
   return (
     <button
       className={cn(
-        "flex justify-center items-center min-w-8 h-6 cursor-pointer border-gray-300 text-xs tracking-tight",
+        "flex justify-center items-center min-w-8 h-6 cursor-pointer border-gray-300 text-xs",
         active
           ? "text-white bg-black [&>svg]:stroke-white"
           : "bg-white [&>svg]:stroke-black",

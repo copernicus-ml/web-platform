@@ -5,6 +5,8 @@ import {
   getStockPrices,
   type DataWindowOpt,
   type FeatureGroupOpt,
+  getIndustryPctChange,
+  getStockPctChange,
 } from "@/apis";
 import { queryOptions } from "@tanstack/react-query";
 
@@ -50,4 +52,27 @@ const stockListQuery = (authToken: string) => {
   });
 };
 
-export { stockInfoQuery, stockListQuery, stockPriceQuery, stockFeatureQuery };
+const stockPctChangeQuery = (authToken: string) => {
+  return queryOptions({
+    queryKey: ["market", "stockpct"],
+    queryFn: ({ signal }) => getStockPctChange(authToken, signal),
+    staleTime: Infinity,
+  });
+};
+
+const industryPctChangeQuery = (authToken: string) => {
+  return queryOptions({
+    queryKey: ["market", "industrypct"],
+    queryFn: ({ signal }) => getIndustryPctChange(authToken, signal),
+    staleTime: Infinity,
+  });
+};
+
+export {
+  stockInfoQuery,
+  stockListQuery,
+  stockPriceQuery,
+  stockFeatureQuery,
+  stockPctChangeQuery,
+  industryPctChangeQuery,
+};

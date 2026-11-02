@@ -7,7 +7,7 @@ import {
 } from "@tanstack/react-router";
 import { defaultStock } from ".";
 import { cn } from "@/lib/utils";
-import Header from "@/components/Header";
+import MainLayout from "@/components/MainLayout";
 
 export const Route = createFileRoute("/stocks")({
   beforeLoad: ({ location }) => {
@@ -32,8 +32,7 @@ export const Route = createFileRoute("/stocks")({
 function StocksLayout() {
   const isLoading = useRouterState({ select: (state) => state.isLoading });
   return (
-    <div className="w-full h-full flex flex-col items-center gap-3 min-h-200 [&_div]:min-h-0 pb-3">
-      <Header />
+    <MainLayout>
       <div
         className={cn(
           "w-full flex-1 px-3 max-w-(--max-width) transition-opacity duration-100",
@@ -42,6 +41,6 @@ function StocksLayout() {
       >
         <Outlet />
       </div>
-    </div>
+    </MainLayout>
   );
 }

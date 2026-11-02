@@ -312,6 +312,46 @@ const FeatureSchemas = {
   cci: CCISchema,
 } satisfies Record<FeatureGroupOpt, z.ZodType>;
 
+const StockPctChangeSchema = z
+  .object({
+    ts_code: z.string(),
+    trade_date: z.string(),
+    sub_industry: z.string(),
+    pct_change_1d: z.float32(),
+    pct_change_5d: z.float32(),
+    pct_change_10d: z.float32(),
+    pct_change_20d: z.float32(),
+    pct_change_60d: z.float32(),
+  })
+  .transform((input) => ({
+    ticker: input.ts_code,
+    tradeDate: input.ts_code,
+    subIndustry: input.sub_industry,
+    pct1d: input.pct_change_1d,
+    pct5d: input.pct_change_5d,
+    pct10d: input.pct_change_10d,
+    pct20d: input.pct_change_20d,
+    pct60d: input.pct_change_60d,
+  }));
+
+const IndustryPctChangeSchema = z
+  .object({
+    sub_industry: z.string(),
+    pct_change_1d: z.float32(),
+    pct_change_5d: z.float32(),
+    pct_change_10d: z.float32(),
+    pct_change_20d: z.float32(),
+    pct_change_60d: z.float32(),
+  })
+  .transform((input) => ({
+    subIndustry: input.sub_industry,
+    pct1d: input.pct_change_1d,
+    pct5d: input.pct_change_5d,
+    pct10d: input.pct_change_10d,
+    pct20d: input.pct_change_20d,
+    pct60d: input.pct_change_60d,
+  }));
+
 type StockPrice = z.infer<typeof StockPriceSchema>;
 type PriceMomentumFeature = z.infer<typeof PriceMomentumFeaturesSchema>;
 type VolumeMomentumFeature = z.infer<typeof VolumeMomentumFeatureSchema>;
@@ -337,6 +377,8 @@ type FeatureByGroup = {
   kdj: KDJFeature;
   cci: CCIFeature;
 };
+type StockPctChange = z.infer<typeof StockPctChangeSchema>;
+type IndustryPctChange = z.infer<typeof IndustryPctChangeSchema>;
 
 export {
   dataWindows,
@@ -354,6 +396,8 @@ export {
   KDJSchema,
   CCISchema,
   FeatureSchemas,
+  StockPctChangeSchema,
+  IndustryPctChangeSchema,
   DEMAPeriods,
   FeatureSubplots,
 };
@@ -374,4 +418,6 @@ export type {
   CCIFeature,
   MarketActivityFeature,
   BollingerBandsFeature,
+  StockPctChange,
+  IndustryPctChange,
 };
