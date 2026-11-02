@@ -325,7 +325,7 @@ const StockPctChangeSchema = z
   })
   .transform((input) => ({
     ticker: input.ts_code,
-    tradeDate: input.ts_code,
+    tradeDate: input.trade_date,
     subIndustry: input.sub_industry,
     pct1d: input.pct_change_1d,
     pct5d: input.pct_change_5d,
