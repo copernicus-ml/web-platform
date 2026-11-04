@@ -23,7 +23,7 @@ export default function VolMARatio({
   height,
   x,
 }: SubplotProps<"volumemomentum">) {
-  const { t } = useTranslation();
+  const { t } = useTranslation("stocks");
   const { marginBottom, marginTop, marginLeft, marginRight } = plotSizeConfig;
   const { strokeWidth, markStrokeDasharray, markStrokeWidth } = svgConfig;
   const values = getFeatureValues<"volumemomentum">(features, volMARatioFeatures);

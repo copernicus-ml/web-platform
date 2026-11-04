@@ -26,7 +26,7 @@ function MarketLayout() {
     <MainLayout>
       <div
         className={cn(
-          "w-full flex-1 px-3 max-w-(--max-width) transition-opacity duration-100",
+          "w-full h-full flex-1 px-3 max-w-(--max-width) transition-opacity duration-100",
           isLoading ? "opacity-50" : "opacity-100",
         )}
       >

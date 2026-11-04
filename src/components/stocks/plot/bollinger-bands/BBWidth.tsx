@@ -22,7 +22,7 @@ export default function BBWidth({
   height,
   x,
 }: SubplotProps<"bollingerbands">) {
-  const { t } = useTranslation();
+  const { t } = useTranslation("stocks");
   let yMax = 0;
   const { marginLeft, marginRight, marginTop, marginBottom } = plotSizeConfig;
   const { strokeDasharray, strokeWidth, markStrokeDasharray, markStrokeWidth } =

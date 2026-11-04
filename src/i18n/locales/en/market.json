@@ -1,0 +1,11 @@
+{
+  "table": {
+    "ticker": "Ticker",
+    "subIndustry": "Sub Industry",
+    "pct1d": "1 Day",
+    "pct5d": "5 Days",
+    "pct10d": "10 Days",
+    "pct20d": "20 Days",
+    "pct60d": "60 Days"
+  }
+}

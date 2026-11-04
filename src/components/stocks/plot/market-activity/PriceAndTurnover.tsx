@@ -16,7 +16,7 @@ export default function PriceAndTurnover({
 }: SubplotProps<"marketactivity">) {
   const { shadeOpacity } = svgConfig;
   const { marginLeft, marginRight, marginTop, marginBottom } = plotSizeConfig;
-  const { t } = useTranslation();
+  const { t } = useTranslation("stocks");
   const y = d3.scaleLinear([-0.05, 1.05], [height - marginBottom, marginTop]);
   return (
     <>

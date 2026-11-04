@@ -17,7 +17,7 @@ import { plotSizeConfig, priceColors } from "@/lib/theme";
 import { useTranslation } from "react-i18next";
 
 export default function OBVMomentum({ features, width, height, x }: SubplotProps<"obv">) {
-  const { t } = useTranslation();
+  const { t } = useTranslation("stocks");
   const { marginTop, marginRight, marginBottom, marginLeft } = plotSizeConfig;
   const values = getFeatureValues<"obv">(features, obvMomentumFeatures);
   const y = getYScale(values, height - marginBottom, marginTop);

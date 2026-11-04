@@ -64,13 +64,15 @@ describe("FeatureSection", () => {
     const user = userEvent.setup();
     render(<FeaturesSection />);
     defaultSubPlots.forEach((subplotName) => {
-      const displayName = i18n.t(`subPlotName.${subplotName}`);
+      const displayName = i18n.t(`subPlotName.${subplotName}`, { ns: "stocks" });
       expect(screen.getByRole("button", { name: displayName })).toBeInTheDocument();
     });
     expect(screen.getByText(`groupName: ${defaultGroup}`)).toBeInTheDocument();
     expect(screen.getByText(`subplotName: ${defaultSubPlots[0]}`)).toBeInTheDocument();
     await user.click(
-      screen.getByRole("button", { name: i18n.t(`subPlotName.${defaultSubPlots[1]}`) }),
+      screen.getByRole("button", {
+        name: i18n.t(`subPlotName.${defaultSubPlots[1]}`, { ns: "stocks" }),
+      }),
     );
     expect(screen.getByText(`subplotName: ${defaultSubPlots[1]}`)).toBeInTheDocument();
   });

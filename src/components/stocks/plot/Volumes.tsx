@@ -13,7 +13,7 @@ type VolumesProps = {
 };
 
 export default function Volumes({ prices, x, y }: VolumesProps) {
-  const { t } = useTranslation();
+  const { t } = useTranslation("stocks");
   const volVals = prices.map((values) => values.adjVol);
   const yRange = y.range();
   const yVol = getYScale(volVals, yRange[0], yRange[0] + (yRange[1] - yRange[0]) / 2);

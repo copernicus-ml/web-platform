@@ -26,7 +26,7 @@ type KDJLowHighProps = {
 };
 
 export default function KDJLowHigh({ features, chartType, x, y }: KDJLowHighProps) {
-  const { t } = useTranslation();
+  const { t } = useTranslation("stocks");
   const { strokeWidth, strokeDasharray, circleR, circleStroke } = svgConfig;
   const paths = getPaths<"kdj">(features, kdjLowHighFeatures, x, y);
   const lastFeature = features.at(-1)!;

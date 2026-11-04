@@ -23,7 +23,7 @@ type DEMAIndicatorsProps = {
 };
 
 export default function DEMAIndicators({ features, chartType }: DEMAIndicatorsProps) {
-  const { t } = useTranslation();
+  const { t } = useTranslation("stocks");
   const demaPeriod = useAtomValue(demaPeriodAtom);
   const featureNames = getDEMAFeatureNamesByPeriod(demaPeriod);
   const slowFastFeatureNames = featureNames.filter(

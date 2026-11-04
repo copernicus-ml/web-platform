@@ -19,7 +19,7 @@ import { useTranslation } from "react-i18next";
 import ShadeRegion from "@/components/ui/ShadeRegion";
 
 export default function KDJCorePlot({ features, width, height, x }: SubplotProps<"kdj">) {
-  const { t } = useTranslation();
+  const { t } = useTranslation("stocks");
   const { marginTop, marginBottom, marginLeft, marginRight } = plotSizeConfig;
   const { strokeWidth } = svgConfig;
   const values = getFeatureValues<"kdj">(features, kdjCoreFeatures);

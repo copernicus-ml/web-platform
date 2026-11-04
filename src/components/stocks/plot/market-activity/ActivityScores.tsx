@@ -16,7 +16,7 @@ export default function ActivityScores({
   width,
   height,
 }: SubplotProps<"marketactivity">) {
-  const { t } = useTranslation();
+  const { t } = useTranslation("stocks");
   const { marginLeft, marginRight, marginTop, marginBottom } = plotSizeConfig;
   const values = features.reduce((acc, feature) => {
     activityScoreFeatures.forEach((featureName) => acc.push(feature[featureName]));
