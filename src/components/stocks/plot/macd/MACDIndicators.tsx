@@ -20,7 +20,7 @@ type MACDIndicatorsProps = {
 };
 
 export default function MACDIndicators({ features, chartType }: MACDIndicatorsProps) {
-  const { t } = useTranslation();
+  const { t } = useTranslation("stocks");
   const { featureWidthTighter, featureGap } = legendConfig;
   return (
     <>

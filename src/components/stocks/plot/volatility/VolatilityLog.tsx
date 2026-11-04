@@ -22,7 +22,7 @@ export default function VolatilityLog({
   height,
   x,
 }: SubplotProps<"volatility">) {
-  const { t } = useTranslation();
+  const { t } = useTranslation("stocks");
   const { strokeWidth } = svgConfig;
   const { marginLeft, marginRight, marginBottom, marginTop } = plotSizeConfig;
   const values = features.map((feature) => feature[volatilityLogFeature]);

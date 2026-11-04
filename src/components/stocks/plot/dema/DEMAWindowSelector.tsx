@@ -6,7 +6,7 @@ import { useTranslation } from "react-i18next";
 
 export default function DEMAPeriodSelector() {
   const [demaPeriod, setDemaPeriod] = useAtom(demaPeriodAtom);
-  const { t } = useTranslation();
+  const { t } = useTranslation("stocks");
   return (
     <Selections>
       {DEMAPeriods.map((period) => (

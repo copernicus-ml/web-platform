@@ -315,7 +315,6 @@ const FeatureSchemas = {
 const StockPctChangeSchema = z
   .object({
     ts_code: z.string(),
-    trade_date: z.string(),
     sub_industry: z.string(),
     pct_change_1d: z.float32(),
     pct_change_5d: z.float32(),
@@ -325,7 +324,6 @@ const StockPctChangeSchema = z
   })
   .transform((input) => ({
     ticker: input.ts_code,
-    tradeDate: input.trade_date,
     subIndustry: input.sub_industry,
     pct1d: input.pct_change_1d,
     pct5d: input.pct_change_5d,

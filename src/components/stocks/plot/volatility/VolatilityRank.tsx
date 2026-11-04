@@ -22,7 +22,7 @@ export default function VolatilityRank({
   height,
   x,
 }: SubplotProps<"volatility">) {
-  const { t } = useTranslation();
+  const { t } = useTranslation("stocks");
   const { marginLeft, marginRight, marginBottom, marginTop } = plotSizeConfig;
   const values = features.map((feature) => feature[volatilityRankFeature]);
   const y = getYScale(values, height - marginBottom, marginTop);

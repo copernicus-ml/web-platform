@@ -22,7 +22,7 @@ export default function Amplitude({
   width,
   height,
 }: SubplotProps<"marketactivity">) {
-  const { t } = useTranslation();
+  const { t } = useTranslation("stocks");
   const { marginLeft, marginRight, marginTop, marginBottom } = plotSizeConfig;
   const values = getFeatureValues<"marketactivity">(features, amplitudeFeatures);
   const y = getYScale(values, height - marginBottom, marginTop);

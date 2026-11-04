@@ -23,7 +23,7 @@ export default function Acceleration({
   height,
   x,
 }: SubplotProps<"macd">) {
-  const { t } = useTranslation();
+  const { t } = useTranslation("stocks");
   const { marginLeft, marginRight, marginTop, marginBottom } = plotSizeConfig;
   const values = getFeatureValues<"macd">(features, [...accelerationFeatures, "hist"]);
   const y = getYScale(values, height - marginBottom, marginTop);

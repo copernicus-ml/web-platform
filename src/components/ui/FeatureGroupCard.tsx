@@ -13,7 +13,7 @@ export default function FeatureGroupCard({
   onClick,
   active = false,
 }: FeatureGroupCardProps) {
-  const { t } = useTranslation();
+  const { t } = useTranslation("stocks");
   return (
     <div
       className={cn(

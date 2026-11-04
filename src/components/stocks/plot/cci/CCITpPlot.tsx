@@ -26,7 +26,7 @@ type CCITpPlot = {
 };
 
 export default function CCITpPlot({ features, chartType, x, y }: CCITpPlot) {
-  const { t } = useTranslation();
+  const { t } = useTranslation("stocks");
   const { strokeWidth, circleR, circleStroke } = svgConfig;
   const paths = getPaths<"cci">(features, cciTpFeatures, x, y);
   const lastFeature = features.at(-1)!;

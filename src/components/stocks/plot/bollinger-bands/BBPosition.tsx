@@ -23,7 +23,7 @@ export default function BBPosition({
   height,
   x,
 }: SubplotProps<"bollingerbands">) {
-  const { t } = useTranslation();
+  const { t } = useTranslation("stocks");
   const { strokeWidth } = svgConfig;
   const { marginLeft, marginRight, marginTop, marginBottom } = plotSizeConfig;
   const values = features.map((feature) => feature[positionFeature]);

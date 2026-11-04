@@ -16,7 +16,7 @@ import { useEffect, useState } from "react";
 type FeaturesSectionProps = {} & React.ComponentPropsWithoutRef<"div">;
 
 export default function FeaturesSection({ ...props }: FeaturesSectionProps) {
-  const { t } = useTranslation();
+  const { t } = useTranslation("stocks");
   const featureGroup = stockRouteAPI.useSearch({
     select: (search) => search.group,
   });

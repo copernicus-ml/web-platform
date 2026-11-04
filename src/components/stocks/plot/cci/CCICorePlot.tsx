@@ -19,7 +19,7 @@ import { useTranslation } from "react-i18next";
 import ShadeRegion from "@/components/ui/ShadeRegion";
 
 export default function CCICorePlot({ features, x, width, height }: SubplotProps<"cci">) {
-  const { t } = useTranslation();
+  const { t } = useTranslation("stocks");
   const { marginBottom, marginTop, marginLeft, marginRight } = plotSizeConfig;
   const { strokeWidth } = svgConfig;
   const values = getFeatureValues<"cci">(features, cciCoreFeatures);
