@@ -1,11 +1,5 @@
 import { FeatureSubplots } from "@/apis";
-import {
-  Section,
-  Header,
-  Selections,
-  Content,
-  Button,
-} from "@/components/ui/PlotSection";
+import { Section, Header, Selections, Content, Button } from "@/components/ui/Section";
 import StockFeaturePlot from "@stocks/plot/StockFeaturePlot";
 import { usePlotSize } from "@/hooks/usePlotSize";
 import { useTranslation } from "react-i18next";

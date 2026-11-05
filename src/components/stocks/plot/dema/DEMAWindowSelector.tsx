@@ -1,6 +1,6 @@
 import { DEMAPeriods } from "@/apis/schema";
 import { demaPeriodAtom } from "@/atoms/plot";
-import { Button, Selections } from "@/components/ui/PlotSection";
+import { Button, Selections } from "@/components/ui/Section";
 import { useAtom } from "jotai";
 import { useTranslation } from "react-i18next";
 

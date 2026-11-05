@@ -15,7 +15,7 @@ export default function Header() {
     <div className="w-full flex items-center justify-center h-11 border-b border-gray-300 border-dashed">
       <div className="max-w-(--max-width) flex justify-between w-full h-full px-5 gap-10">
         <div className="h-full flex items-center gap-2">
-          <img src="/favicon.svg" className="py-1 h-10" />
+          <img src="/favicon.svg" className="py-1 w-7 min-w-7" />
           <h2 className="font-bold text-lg">Copernicus</h2>
         </div>
         <div className="flex-1 flex h-full items-center gap-2 text-gray-500 text-sm">
