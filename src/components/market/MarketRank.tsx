@@ -12,7 +12,6 @@ export default function MarketRank() {
   });
   const navigate = marketrankRouteAPI.useNavigate();
 
-  const scope = marketrankRouteAPI.useSearch({ select: (search) => search.scope });
   const currScope = marketrankRouteAPI.useSearch({ select: (search) => search.scope });
   const switchRankScope = (scope: MarketRankScope) => {
     navigate({ to: ".", search: (previous) => ({ ...previous, scope }) });
@@ -21,7 +20,7 @@ export default function MarketRank() {
   let headers: string[] = [];
   // the rank filed does not come from db,
   // it is calculated based on the current conditions
-  if (scope === "stockpct") {
+  if (currScope === "stockpct") {
     headers = [
       "rank",
       "ticker",
@@ -32,17 +31,14 @@ export default function MarketRank() {
       "pct20d",
       "pct60d",
     ];
-  } else if (scope === "industrypct") {
+  }
+  if (currScope === "industrypct") {
     headers = ["rank", "subIndustry", "pct1d", "pct5d", "pct10d", "pct20d", "pct60d"];
   }
 
   if (rank === undefined) {
     return <></>;
   }
-
-  const sortedRank = rank
-    .sort((a, b) => b.pct1d - a.pct1d)
-    .map((data, i) => ({ rank: `${i + 1}`, ...data }));
 
   return (
     <Section className="w-full h-full flex flex-col">
@@ -63,7 +59,7 @@ export default function MarketRank() {
       <Content className="flex-1 w-full rounded-md border border-gray-300 overflow-y-auto scrollbar-thin p-0">
         <MarketTable
           headers={headers}
-          data={sortedRank}
+          rank={rank}
           widerColumns={["subIndustry"]}
           className="w-full flex-1 max-h-full"
         />

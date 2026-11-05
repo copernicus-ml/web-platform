@@ -2,7 +2,7 @@ import { marketRankScopes } from "@/apis";
 import { createFileRoute, Outlet, redirect } from "@tanstack/react-router";
 
 export const Route = createFileRoute("/market")({
-  beforeLoad: () => {
+  beforeLoad: ({ location }) => {
     if (location.pathname.replaceAll("/", "") === "market") {
       throw redirect({
         to: "/market/rank",

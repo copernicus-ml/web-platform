@@ -3,52 +3,114 @@ import { useTranslation } from "react-i18next";
 import { Table, TBody, THead, TRow } from "../ui/Table";
 import Triangle from "../icons/Triangle";
 import { priceColors } from "@/lib/theme";
-import type { IndustryPctChange, StockPctChange } from "@/apis";
+import {
+  sortableFields,
+  type IndustryPctChange,
+  type SortableField,
+  type StockPctChange,
+} from "@/apis";
+import { useMemo, useState } from "react";
+import Arrow from "../icons/Arrow";
+import { useNavigate } from "@tanstack/react-router";
 
+type SortOptions = {
+  field: SortableField;
+  priority: "highest" | "lowest";
+};
 type MarketTableProps = {
   headers: readonly string[];
-  data: (StockPctChange | IndustryPctChange)[];
+  rank: (StockPctChange | IndustryPctChange)[];
   widerColumns: string[];
 } & React.ComponentProps<"table">;
 
+const sortableFieldsSet = new Set(sortableFields.map((field) => field as string));
+
 export default function MarketTable({
   headers,
-  data,
+  rank,
   widerColumns,
   ...props
 }: MarketTableProps) {
   const { t } = useTranslation("market");
+  const navigate = useNavigate();
 
   const isNumber = (input: string | number | undefined) => {
     return typeof input === "number";
   };
 
-  if (data.length === 0) {
-    return <></>;
-  }
+  const [sortOptions, setSortOptions] = useState<SortOptions>({
+    field: "pct1d",
+    priority: "highest",
+  });
+
+  const updateSortOptions = (field: string) => {
+    if (!sortableFieldsSet.has(field)) return;
+    setSortOptions((prev) => {
+      const newOptions = { ...prev };
+      if (field === prev.field) {
+        newOptions.priority = prev.priority === "highest" ? "lowest" : "highest";
+      } else {
+        newOptions.field = field as SortableField;
+        newOptions.priority = "highest";
+      }
+      return newOptions;
+    });
+  };
+
+  const navigateToStock = (column: string, value: string | number) => {
+    if (column !== "ticker" || isNumber(value)) return;
+    navigate({ to: `/stocks/${value}` });
+  };
+
+  const sortedRank = useMemo(() => {
+    const { field, priority } = sortOptions;
+    const dataSize = rank.length;
+    return rank
+      .sort((a, b) => (b[field] - a[field]) * (priority === "highest" ? 1 : -1))
+      .map((data, i) => ({
+        rank: `${priority === "highest" ? i + 1 : dataSize - i}`,
+        ...data,
+      }));
+  }, [sortOptions, rank]);
+
   return (
     <Table {...props}>
-      <THead>
+      <THead className="**:transition-all **:duration-100">
         <TRow className="w-full h-full flex justify-between items-center divide-x">
           {headers.map((header) => (
             <th
               key={`thead-${header}`}
               className={cn(
-                "font-base text-sm h-full leading-9 border-b border-gray-300",
-                "first:flex-1",
+                "font-base text-sm h-full leading-9 border-b border-gray-300 first:flex-1",
                 header === "subIndustry" ? "flex-5" : "flex-2",
+                header === sortOptions.field && "bg-gray-300 text-black",
+                sortableFieldsSet.has(header) && "hover:cursor-pointer hover:bg-gray-300",
               )}
+              onClick={() => updateSortOptions(header)}
             >
-              {t(`table.${header}`)}
+              <div className="flex w-full justify-center items-center gap-1">
+                <p>{t(`table.${header}`)}</p>
+                {header === sortOptions.field && (
+                  <Arrow
+                    className={cn(
+                      "w-5 duration-100",
+                      sortOptions.priority === "highest" ? "rotate-180" : "rotate-0",
+                    )}
+                  />
+                )}
+              </div>
             </th>
           ))}
         </TRow>
       </THead>
       <TBody>
-        {data.map((item, i) => (
+        {sortedRank.map((item, i) => (
           <TRow
             key={`tbody-row-${i}`}
-            className="flex justify-between border-b last:border-none border-dashed border-gray-300 divide-x divide-gray-300 hover:bg-gray-100 transition-colors duration-100"
+            className={cn(
+              "flex justify-between",
+              "border-b last:border-none border-dashed border-gray-300 divide-x divide-gray-300 hover:bg-gray-100",
+            )}
           >
             {Object.entries(item).map(([key, value], j) => (
               <td
@@ -58,7 +120,10 @@ export default function MarketTable({
                   "first:flex-1",
                   widerColumns.includes(key) ? "flex-5" : "flex-2",
                   isNumber(value) && "text-center",
+                  key === "ticker" &&
+                    "hover:cursor-pointer hover:bg-gray-300 hover:font-bold hover:underline",
                 )}
+                onClick={() => navigateToStock(key, value)}
               >
                 <div
                   className={cn(

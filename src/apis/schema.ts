@@ -350,6 +350,9 @@ const IndustryPctChangeSchema = z
     pct60d: input.pct_change_60d,
   }));
 
+const sortableFields = ["pct1d", "pct5d", "pct10d", "pct20d", "pct60d"] as const;
+type SortableField = (typeof sortableFields)[number];
+
 type StockPrice = z.infer<typeof StockPriceSchema>;
 type PriceMomentumFeature = z.infer<typeof PriceMomentumFeaturesSchema>;
 type VolumeMomentumFeature = z.infer<typeof VolumeMomentumFeatureSchema>;
@@ -398,6 +401,7 @@ export {
   IndustryPctChangeSchema,
   DEMAPeriods,
   FeatureSubplots,
+  sortableFields,
 };
 export type {
   DataWindowOpt,
@@ -418,4 +422,5 @@ export type {
   BollingerBandsFeature,
   StockPctChange,
   IndustryPctChange,
+  SortableField,
 };

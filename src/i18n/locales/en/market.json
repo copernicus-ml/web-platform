@@ -1,7 +1,7 @@
 {
   "table": {
     "ticker": "Ticker",
-    "subIndustry": "Sub Industry",
+    "subIndustry": "Subindustry",
     "rank": "Rank",
     "pct1d": "1 Day",
     "pct5d": "5 Days",
