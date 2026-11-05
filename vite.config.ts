@@ -18,6 +18,7 @@ export default defineConfig({
   test: {
     globals: true,
     environment: "jsdom",
+    fileParallelism: true,
     pool: "vmThreads",
     setupFiles: ["./src/lib/test-utils.tsx"],
     coverage: {
