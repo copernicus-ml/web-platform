@@ -1,13 +1,6 @@
 import { readLastSearch } from "@/lib/storage";
-import {
-  createFileRoute,
-  Outlet,
-  redirect,
-  useRouterState,
-} from "@tanstack/react-router";
+import { createFileRoute, Outlet, redirect } from "@tanstack/react-router";
 import { defaultStock } from ".";
-import { cn } from "@/lib/utils";
-import MainLayout from "@/components/MainLayout";
 
 export const Route = createFileRoute("/stocks")({
   beforeLoad: ({ location }) => {
@@ -30,17 +23,5 @@ export const Route = createFileRoute("/stocks")({
 });
 
 function StocksLayout() {
-  const isLoading = useRouterState({ select: (state) => state.isLoading });
-  return (
-    <MainLayout>
-      <div
-        className={cn(
-          "w-full flex-1 px-3 max-w-(--max-width) transition-opacity duration-100",
-          isLoading ? "opacity-50" : "opacity-100",
-        )}
-      >
-        <Outlet />
-      </div>
-    </MainLayout>
-  );
+  return <Outlet />;
 }

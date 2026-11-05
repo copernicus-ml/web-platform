@@ -1,12 +1,5 @@
 import { marketRankScopes } from "@/apis";
-import MainLayout from "@/components/MainLayout";
-import { cn } from "@/lib/utils";
-import {
-  createFileRoute,
-  Outlet,
-  redirect,
-  useRouterState,
-} from "@tanstack/react-router";
+import { createFileRoute, Outlet, redirect } from "@tanstack/react-router";
 
 export const Route = createFileRoute("/market")({
   beforeLoad: () => {
@@ -21,17 +14,5 @@ export const Route = createFileRoute("/market")({
 });
 
 function MarketLayout() {
-  const isLoading = useRouterState({ select: (state) => state.isLoading });
-  return (
-    <MainLayout>
-      <div
-        className={cn(
-          "w-full h-full flex-1 px-3 max-w-(--max-width) transition-opacity duration-100",
-          isLoading ? "opacity-50" : "opacity-100",
-        )}
-      >
-        <Outlet />
-      </div>
-    </MainLayout>
-  );
+  return <Outlet />;
 }

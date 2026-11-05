@@ -3,13 +3,7 @@ import { useEffect, useState } from "react";
 import { dataWindowParam, type DataWindowOpt } from "@/apis";
 import { plotConfigAtom } from "@/atoms/plot";
 import { usePlotSize } from "@/hooks/usePlotSize";
-import {
-  Section,
-  Content,
-  Header,
-  Selections,
-  Button,
-} from "@/components/ui/PlotSection";
+import { Section, Content, Header, Selections, Button } from "@/components/ui/Section";
 import StockDataPlot from "@stocks/plot/StockDataPlot";
 import CandleIcon from "@/components/icons/CandleIcon";
 import LineIcon from "@/components/icons/LineIcon";
