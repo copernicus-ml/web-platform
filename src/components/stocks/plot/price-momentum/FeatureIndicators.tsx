@@ -2,6 +2,7 @@ import type { PriceMomentumFeature } from "@/apis";
 import { getLegendID, getLegendValueID } from "@stocks/plot/interactions/d3-utils";
 import { pmIDPrefix } from "@stocks/plot/interactions/price-momentum";
 import Legend from "@/components/ui/Legend";
+import { useTranslation } from "react-i18next";
 
 type NumericFeatureName = {
   [K in keyof PriceMomentumFeature]: PriceMomentumFeature[K] extends number ? K : never;
@@ -26,6 +27,7 @@ export default function FeatureIndicators({
   valueFormatFn,
   toggleFn,
 }: FeatureIndicatorsProps) {
+  const { t } = useTranslation("stocks");
   return (
     <g>
       {features.at(-1) &&
@@ -36,7 +38,7 @@ export default function FeatureIndicators({
               legendId={getLegendID(pmIDPrefix, featureName)}
               valueId={getLegendValueID(pmIDPrefix, featureName)}
               index={i}
-              label={labels ? labels[i] : featureName}
+              label={t(`featureName.${labels ? labels[i] : featureName}`)}
               value={
                 valueFormatFn
                   ? valueFormatFn(features.at(-1)![featureName])

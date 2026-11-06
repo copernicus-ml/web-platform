@@ -17,8 +17,10 @@ import type { SubplotProps } from "@/components/stocks/shared";
 import { colorPalette, plotSizeConfig, priceColors, svgConfig } from "@/lib/theme";
 import Legend from "@/components/ui/Legend";
 import ShadeRegion from "@/components/ui/ShadeRegion";
+import { useTranslation } from "react-i18next";
 
 export default function OBVPressure({ features, width, height, x }: SubplotProps<"obv">) {
+  const { t } = useTranslation("stocks");
   const { marginTop, marginBottom, marginLeft, marginRight } = plotSizeConfig;
   const { strokeWidth, shadeOpacity } = svgConfig;
   const values = getFeatureValues<"obv">(features, obvPressureFeatures);
@@ -57,7 +59,7 @@ export default function OBVPressure({ features, width, height, x }: SubplotProps
             legendId={getLegendID(obvIDPrefix, featureName)}
             valueId={getLegendValueID(obvIDPrefix, featureName)}
             index={i}
-            label={labels[i]}
+            label={t(`featureName.${labels[i]}`)}
             value={digitToPercent(lastFeature[featureName], 2)}
             onMouseDown={() => toggleOBVElements(featureName)}
           />

@@ -9,7 +9,7 @@ type THeadProps = {} & React.ComponentProps<"thead">;
 function THead({ children, className, ...props }: THeadProps) {
   return (
     <thead
-      className={cn("sticky top-0 w-full bg-gray-200 h-9 z-3", className)}
+      className={cn("sticky top-0 w-full bg-gray-200 h-9 z-1", className)}
       {...props}
     >
       {children}

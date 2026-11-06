@@ -6,5 +6,6 @@ import i18n from "@/i18n/i18n";
 await i18n.loadNamespaces(["stocks", "market"]);
 
 afterEach(() => {
+  localStorage.clear();
   cleanup();
 });

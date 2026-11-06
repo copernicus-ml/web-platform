@@ -9,6 +9,7 @@ import {
   getYScale,
 } from "@stocks/plot/interactions/d3-utils";
 import { marketIDPrefix, toggleFeature } from "@stocks/plot/interactions/market-activity";
+import { useTranslation } from "react-i18next";
 
 type TurnoverBarsProps = {
   prices: StockPrice[];
@@ -17,6 +18,7 @@ type TurnoverBarsProps = {
 };
 
 export default function TurnoverBars({ prices, x, y }: TurnoverBarsProps) {
+  const { t } = useTranslation("stocks");
   const values = prices.map((price) => price.turnover);
   const yRange = y.range();
   const [yEnd, yStart] = [yRange[0], yRange[0] + (yRange[1] - yRange[0]) / 2];
@@ -39,7 +41,7 @@ export default function TurnoverBars({ prices, x, y }: TurnoverBarsProps) {
       <Legend
         legendId={getLegendID(marketIDPrefix, "turnover")}
         valueId={getLegendValueID(marketIDPrefix, "turnover")}
-        label="Turnover"
+        label={t("featureName.turnover")}
         index={0}
         value={prices.at(-1)?.turnover.toFixed(2) || "0.0"}
         color={colorPalette[2]}

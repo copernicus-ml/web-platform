@@ -1,4 +1,16 @@
 {
+  "ui": {
+    "pricetrend": "price trend",
+    "features": "features",
+    "featuregroups": "Feature Groups"
+  },
+  "stocks": {
+    "60D": "60D",
+    "90D": "90D",
+    "180D": "180D",
+    "1Y": "1Y",
+    "3Y": "3Y"
+  },
   "featureGroupName": {
     "pricemomentum": "Price Momentum",
     "volumemomentum": "Volume Momentum",
@@ -76,6 +88,13 @@
   "featureName": {
 
     "adjVol": "Volume",
+    "turnover": "Turnover",
+
+    "gold": "Gold",
+    "dead": "Dead",
+
+    "bb": "BB",
+    "mid": "Mid",
 
     "tradingActivityScore": "Trading Activity",
     "lowLiquidityVolatilityScore": "Low Liquidity Volatility",
@@ -101,6 +120,7 @@
 
     "demaSlow": "Slow",
     "demaFast": "Fast",
+    "spread": "Spread",
 
    "volMARatio510": "5D vs 10D",
    "volMARatio1020": "10D vs 20D",
@@ -117,6 +137,13 @@
    "tp": "TP",
    "tpSma": "TP MA",
    "cci": "CCI",
-   "cciMa5": "CCI MA"
+   "cciMa5": "CCI MA",
+
+   "5D": "5D",
+   "6D": "6D",
+   "10D": "10D",
+   "14D": "14D",
+   "20D": "20D",
+   "60D": "60D"
   }
 }

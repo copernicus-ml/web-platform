@@ -13,13 +13,16 @@ export default function FeatureGroupCard({
   onClick,
   active = false,
 }: FeatureGroupCardProps) {
-  const { t } = useTranslation("stocks");
+  const { t, i18n } = useTranslation("stocks");
+  const currLang = i18n.resolvedLanguage;
   return (
     <div
       className={cn(
-        "hover:cursor-pointer hover:bg-gray-200 px-4 transition-all duration-100 flex flex-col gap-1",
-        active ? "min-h-46 h-46 bg-gray-200" : "min-h-28 h-28",
+        "hover:cursor-pointer hover:bg-gray-200 px-4 transition-all duration-100 flex flex-col gap-1 min-h-28 h-28",
         "last:rounded-b-sm",
+        currLang === "zh-Hans" && "min-h-26 h-26",
+        active && "min-h-46 h-46 bg-gray-200",
+        active && currLang === "zh-Hans" && "min-h-36 h-36",
       )}
       onClick={onClick}
     >

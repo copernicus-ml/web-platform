@@ -1,7 +1,10 @@
-import { cn, digitToPercent } from "@/lib/utils";
+import { useMemo, useState } from "react";
+import { useNavigate } from "@tanstack/react-router";
 import { useTranslation } from "react-i18next";
-import { Table, TBody, THead, TRow } from "../ui/Table";
-import Triangle from "../icons/Triangle";
+import { cn, digitToPercent } from "@/lib/utils";
+import { Table, TBody, THead, TRow } from "@/components/ui/Table";
+import Triangle from "@/components/icons/Triangle";
+import Arrow from "@/components/icons/Arrow";
 import { priceColors } from "@/lib/theme";
 import {
   sortableFields,
@@ -9,9 +12,6 @@ import {
   type SortableField,
   type StockPctChange,
 } from "@/apis";
-import { useMemo, useState } from "react";
-import Arrow from "../icons/Arrow";
-import { useNavigate } from "@tanstack/react-router";
 
 type SortOptions = {
   field: SortableField;

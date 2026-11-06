@@ -9,12 +9,14 @@ import CandleIcon from "@/components/icons/CandleIcon";
 import LineIcon from "@/components/icons/LineIcon";
 import { getRouteApi } from "@tanstack/react-router";
 import { priceChartTypes, type PriceChartType } from "@/components/stocks/shared";
+import { useTranslation } from "react-i18next";
 
 type PriceChartProps = {} & React.ComponentPropsWithoutRef<"div">;
 
 const stockRoute = getRouteApi("/stocks/$ticker");
 
 export default function PriceChart({ ...props }: PriceChartProps) {
+  const { t } = useTranslation("stocks");
   const [chartType, setChartType] = useState<PriceChartType>("candle");
   const navigate = stockRoute.useNavigate();
   const window = stockRoute.useSearch({
@@ -35,7 +37,7 @@ export default function PriceChart({ ...props }: PriceChartProps) {
 
   return (
     <Section {...props}>
-      <Header title={"price trend"}>
+      <Header title={t("ui.pricetrend")}>
         <Selections>
           {priceChartTypes.map((currType) => (
             <Button
@@ -56,7 +58,7 @@ export default function PriceChart({ ...props }: PriceChartProps) {
               className={"w-11"}
               onClick={() => updateDataWindow(key as DataWindowOpt)}
             >
-              {key}
+              {t(`stocks.${key}`)}
             </Button>
           ))}
         </Selections>

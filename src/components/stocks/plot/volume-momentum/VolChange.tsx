@@ -16,6 +16,7 @@ import {
 import type { SubplotProps } from "@/components/stocks/shared";
 import { colorPalette, plotSizeConfig, svgConfig } from "@/lib/theme";
 import Legend from "@/components/ui/Legend";
+import { useTranslation } from "react-i18next";
 
 export default function VolChange({
   features,
@@ -23,6 +24,7 @@ export default function VolChange({
   height,
   x,
 }: SubplotProps<"volumemomentum">) {
+  const { t } = useTranslation("stocks");
   const { marginLeft, marginRight, marginTop, marginBottom } = plotSizeConfig;
   const { strokeWidth, markStrokeWidth, markStrokeDasharray } = svgConfig;
   const values = getFeatureValues<"volumemomentum">(features, volChangesFeatures);
@@ -54,7 +56,7 @@ export default function VolChange({
             legendId={getLegendID(vmIDPrefix, featureName)}
             valueId={getLegendValueID(vmIDPrefix, featureName)}
             index={i}
-            label={legendLabels[i]}
+            label={t(`featureName.${legendLabels[i]}`)}
             value={digitToPercent(lastFeature![featureName])}
             onMouseDown={() => toggleVolumeFeature(featureName)}
           />

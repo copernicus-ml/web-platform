@@ -1,5 +1,11 @@
 import { beforeEach, describe, it, expect } from "vitest";
-import { addSearchHistory, maxRecords, readLastSearch } from "./storage";
+import {
+  addSearchHistory,
+  maxRecords,
+  readLastSearch,
+  readPreference,
+  setLanguagePreference,
+} from "./storage";
 
 describe("storage", () => {
   beforeEach(() => {
@@ -38,5 +44,18 @@ describe("storage", () => {
       readLastSearch();
     }
     expect(readLastSearch()).toBeUndefined();
+  });
+
+  it("stores and retrieves language preference", () => {
+    setLanguagePreference("en");
+    const preference = readPreference();
+    expect(preference?.language).toBe("en");
+  });
+
+  it("overwrites language preference", () => {
+    setLanguagePreference("en");
+    setLanguagePreference("zh-Hans");
+    const preference = readPreference();
+    expect(preference?.language).toBe("zh-Hans");
   });
 });

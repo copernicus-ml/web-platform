@@ -3,8 +3,10 @@ import FeatureGroupCard from "@/components/ui/FeatureGroupCard";
 import { cn } from "@/lib/utils";
 import { stockRouteAPI } from "@/routes/stocks.$ticker";
 import { useEffect, useRef } from "react";
+import { useTranslation } from "react-i18next";
 
 export default function FeatureGroupSidebar() {
+  const { t } = useTranslation("stocks");
   const sidebarRef = useRef<HTMLDivElement>(null);
   const overlayRef = useRef<HTMLDivElement>(null);
   const featureGroup = stockRouteAPI.useSearch({
@@ -43,7 +45,7 @@ export default function FeatureGroupSidebar() {
   return (
     <div className="w-full h-full bg-white rounded-md border-gray-300 border flex flex-col">
       <div className="h-10 flex justify-center items-center border-b border-gray-300">
-        <h2 className="text-sm">Feature Group</h2>
+        <h2 className="text-sm">{t("ui.featuregroups")}</h2>
       </div>
       <div className="relative flex-1 overflow-hidden">
         <div

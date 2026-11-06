@@ -1,6 +1,7 @@
 import { render, screen } from "@testing-library/react";
 import { vi, describe, beforeEach, it, expect } from "vitest";
 import Header from "./Header";
+import Languages from "./icons/Languages";
 
 const mocks = vi.hoisted(() => ({
   useLocation: vi.fn(),
@@ -29,6 +30,15 @@ vi.mock("@clerk/react", () => ({
   },
 }));
 
+vi.mock("@/components/LanguageSelector", () => ({
+  default: () => (
+    <div>
+      <p>language</p>
+      <Languages />
+    </div>
+  ),
+}));
+
 describe("Header", () => {
   beforeEach(() => {
     vi.clearAllMocks();
@@ -39,6 +49,7 @@ describe("Header", () => {
     expect(screen.getByText("Stocks")).toBeInTheDocument();
     expect(screen.getByText("Market")).toBeInTheDocument();
     expect(screen.getByText("signout")).toBeInTheDocument();
+    expect(screen.getByText("language")).toBeInTheDocument();
     expect(screen.getByText("/stocks")).toBeInTheDocument();
     expect(screen.getByText("/market")).toBeInTheDocument();
   });

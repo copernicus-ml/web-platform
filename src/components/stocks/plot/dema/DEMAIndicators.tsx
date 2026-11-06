@@ -53,7 +53,7 @@ export default function DEMAIndicators({ features, chartType }: DEMAIndicatorsPr
         valueId={getLegendValueID(demaIDPrefix, "gold")}
         index={0}
         value={""}
-        label={"Gold"}
+        label={t("featureName.gold")}
         color={priceColors.up}
         onMouseDown={() => toggleDEMAFeature("gold")}
         size="tighter"
@@ -63,7 +63,7 @@ export default function DEMAIndicators({ features, chartType }: DEMAIndicatorsPr
         valueId={getLegendValueID(demaIDPrefix, "dead")}
         index={1}
         value={""}
-        label={"Dead"}
+        label={t("featureName.dead")}
         color={priceColors.down}
         onMouseDown={() => toggleDEMAFeature("dead")}
         size="tighter"

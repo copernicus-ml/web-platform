@@ -32,7 +32,7 @@ export default function FeaturesSection({ ...props }: FeaturesSectionProps) {
 
   return (
     <Section {...props}>
-      <Header title={"features"}>
+      <Header title={t("ui.features")}>
         {featureGroup === "dema" && <DEMAPeriodSelector />}
         <Selections>
           {FeatureSubplots[featureGroup].map((subPlotName) => (

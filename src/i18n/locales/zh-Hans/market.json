@@ -1,0 +1,19 @@
+{
+  "ui": {
+    "marketPerformance": "市场表现"
+  },
+  "table": {
+    "ticker": "代码",
+    "subIndustry": "子行业",
+    "rank": "排名",
+    "pct1d": "1日",
+    "pct5d": "5日",
+    "pct10d": "10日",
+    "pct20d": "20日",
+    "pct60d": "60日"
+  },
+  "controls": {
+    "stockpct": "按股票",
+    "industrypct": "按子行业"
+  }
+}
