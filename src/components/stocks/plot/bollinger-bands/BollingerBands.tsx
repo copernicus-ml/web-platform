@@ -19,6 +19,7 @@ import {
   getLineID,
   getPaths,
 } from "@stocks/plot/interactions/d3-utils";
+import { useTranslation } from "react-i18next";
 
 type BollingerBandsProps = {
   features: BollingerBandsFeature[];
@@ -33,6 +34,7 @@ export default function BollingerBands({
   x,
   y,
 }: BollingerBandsProps) {
+  const { t } = useTranslation("stocks");
   const { featureWidthWidest, featureGap } = legendConfig;
 
   const area = d3
@@ -74,7 +76,7 @@ export default function BollingerBands({
         valueId={getLegendValueID(bbIDPrefix, "band")}
         value={`L ${lastFeature["bbLower"].toFixed(2)} U ${lastFeature["bbUpper"].toFixed(2)}`}
         index={0}
-        label="BB"
+        label={t("featureName.bb")}
         size="widest"
         color={colorPalette[2]}
         onMouseDown={toggleBand}
@@ -86,7 +88,7 @@ export default function BollingerBands({
           valueId={getLegendValueID(bbIDPrefix, "bbMid")}
           value={lastFeature["bbMid"].toFixed(2)}
           index={0}
-          label="Mid"
+          label={t("featureName.mid")}
           color={colorPalette[0]}
           onMouseDown={() => toggleBBFeature("bbMid")}
         />

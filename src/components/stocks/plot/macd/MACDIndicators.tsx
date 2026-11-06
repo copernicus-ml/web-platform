@@ -45,7 +45,7 @@ export default function MACDIndicators({ features, chartType }: MACDIndicatorsPr
         valueId={getLegendValueID(macdIDPrefix, "gold")}
         index={0}
         value={""}
-        label={"Gold"}
+        label={t("featureName.gold")}
         color={priceColors.up}
         onMouseDown={() => toggleMACDFeature("gold")}
         size="tighter"
@@ -55,7 +55,7 @@ export default function MACDIndicators({ features, chartType }: MACDIndicatorsPr
         valueId={getLegendValueID(macdIDPrefix, "dead")}
         index={1}
         value={""}
-        label={"Dead"}
+        label={t("featureName.dead")}
         color={priceColors.down}
         onMouseDown={() => toggleMACDFeature("dead")}
         size="tighter"

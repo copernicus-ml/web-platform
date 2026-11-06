@@ -16,8 +16,10 @@ import type { SubplotProps } from "@/components/stocks/shared";
 import { colorPalette, plotSizeConfig, priceColors, svgConfig } from "@/lib/theme";
 import Legend from "@/components/ui/Legend";
 import ShadeRegion from "@/components/ui/ShadeRegion";
+import { useTranslation } from "react-i18next";
 
 export default function RSIPlot({ features, x, width, height }: SubplotProps<"rsi">) {
+  const { t } = useTranslation("stocks");
   const { strokeWidth } = svgConfig;
   const { marginTop, marginBottom, marginLeft, marginRight } = plotSizeConfig;
 
@@ -54,7 +56,7 @@ export default function RSIPlot({ features, x, width, height }: SubplotProps<"rs
             legendId={getLegendID(rsiIDPrefix, featureName)}
             valueId={getLegendValueID(rsiIDPrefix, featureName)}
             index={i}
-            label={`${featureName.match(/\d+/)}D`}
+            label={t(`featureName.${featureName.match(/\d+/)}D`)}
             value={lastFeature![featureName].toFixed(2)}
             onMouseDown={() => toggleRSIFeature(featureName)}
           />

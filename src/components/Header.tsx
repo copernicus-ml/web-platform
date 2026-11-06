@@ -2,11 +2,20 @@ import { SignOutButton } from "@clerk/react";
 import ExitIcon from "./icons/ExitIcon";
 import { Link, useLocation } from "@tanstack/react-router";
 import { cn } from "@/lib/utils";
+import LanguageSelector from "@/components/LanguageSelector";
+import Languages from "@/components/icons/Languages";
+import clsx from "clsx";
 
 const routes = [
   { path: "stocks", label: "Stocks", target: "/stocks" },
   { path: "market", label: "Market", target: "/market" },
 ];
+
+const styles = {
+  headerIcon: clsx(
+    "my-auto w-6.5 h-6.5 p-1 stroke-gray-500 hover:stroke-black hover:cursor-pointer hover:bg-white rounded-sm transition-colors duration-100",
+  ),
+};
 
 export default function Header() {
   const location = useLocation();
@@ -33,12 +42,14 @@ export default function Header() {
             </Link>
           ))}
         </div>
-        <SignOutButton>
-          <ExitIcon
-            className="my-auto w-7 h-7 p-1 hover:cursor-pointer hover:bg-white rounded-sm transition-colors duration-100"
-            strokeWidth={1.8}
-          />
-        </SignOutButton>
+        <div className="h-full flex items-center justify-end gap-3">
+          <LanguageSelector>
+            <Languages strokeWidth={1.5} className={styles.headerIcon} />
+          </LanguageSelector>
+          <SignOutButton>
+            <ExitIcon className={styles.headerIcon} strokeWidth={1.8} />
+          </SignOutButton>
+        </div>
       </div>
     </div>
   );

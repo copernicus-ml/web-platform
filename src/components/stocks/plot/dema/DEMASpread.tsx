@@ -18,8 +18,10 @@ import {
   getPaths,
   getYScale,
 } from "@stocks/plot/interactions/d3-utils";
+import { useTranslation } from "react-i18next";
 
 export default function DEMASpread({ features, width, height, x }: SubplotProps<"dema">) {
+  const { t } = useTranslation("stocks");
   const { marginLeft, marginRight, marginTop, marginBottom } = plotSizeConfig;
   const { strokeWidth, markStrokeWidth, markStrokeDasharray } = svgConfig;
   const demaPeriod = useAtomValue(demaPeriodAtom);
@@ -62,7 +64,7 @@ export default function DEMASpread({ features, width, height, x }: SubplotProps<
         legendId={getLegendID(demaIDPrefix, spreadFeatureName)}
         valueId={getLegendValueID(demaIDPrefix, spreadFeatureName)}
         index={0}
-        label="Spread"
+        label={t(`featureName.spread`)}
         value={digitToPercent(features.at(-1)![spreadFeatureName])}
         onMouseDown={() => toggleDEMAFeature(spreadFeatureName)}
       />

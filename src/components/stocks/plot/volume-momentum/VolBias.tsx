@@ -16,6 +16,7 @@ import {
 } from "@stocks/plot/interactions/d3-utils";
 import Legend from "@/components/ui/Legend";
 import { digitToPercent } from "@/lib/utils";
+import { useTranslation } from "react-i18next";
 
 export default function VolBias({
   features,
@@ -23,6 +24,7 @@ export default function VolBias({
   height,
   x,
 }: SubplotProps<"volumemomentum">) {
+  const { t } = useTranslation("stocks");
   const { marginLeft, marginRight, marginTop, marginBottom } = plotSizeConfig;
   const { strokeWidth, markStrokeDasharray, markStrokeWidth } = svgConfig;
   const values = getFeatureValues<"volumemomentum">(features, volBiasFeatures);
@@ -54,7 +56,7 @@ export default function VolBias({
             legendId={getLegendID(vmIDPrefix, featureName)}
             valueId={getLegendValueID(vmIDPrefix, featureName)}
             index={i}
-            label={legendLabels[i]}
+            label={t(`featureName.${legendLabels[i]}`)}
             value={digitToPercent(lastFeature![featureName])}
             onMouseDown={() => toggleVolumeFeature(featureName)}
           />

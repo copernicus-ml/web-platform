@@ -5,13 +5,13 @@ type DataWindowOpt = (typeof dataWindows)[number];
 
 const FeatureGroups = [
   "pricemomentum",
-  "volumemomentum",
-  "volatility",
-  "obv",
-  "marketactivity",
-  "bollingerbands",
   "macd",
   "dema",
+  "volumemomentum",
+  "obv",
+  "marketactivity",
+  "volatility",
+  "bollingerbands",
   "rsi",
   "kdj",
   "cci",
