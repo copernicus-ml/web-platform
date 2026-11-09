@@ -56,7 +56,7 @@ export default function MarketRank() {
           ))}
         </Selections>
       </Header>
-      <Content className="flex-1 w-full rounded-md border border-gray-300 overflow-y-auto scrollbar-thin p-0">
+      <Content className="flex-1 w-full rounded-md border border-accent-300 overflow-y-auto scrollbar-thin p-0">
         <MarketTable
           headers={headers}
           rank={rank}

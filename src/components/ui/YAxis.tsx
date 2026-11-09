@@ -27,15 +27,15 @@ export default function YAxis({
             x2={plotWidth}
             y1={y(tick)}
             y2={y(tick)}
-            stroke="lightgray"
             strokeDasharray={markStrokeDasharray}
+            className="stroke-accent-300"
           />
           <text
             x={plotWidth + (labelXOffset ?? 0)}
             y={y(tick)}
             dy={"0.33em"}
             textAnchor="end"
-            fill="gray"
+            className="fill-accent-500"
           >
             {labelPrefix && labelPrefix}
             {labelFormatter ? labelFormatter(tick) : tick}

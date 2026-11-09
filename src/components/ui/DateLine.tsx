@@ -17,8 +17,8 @@ export default function DateLine({ height, dateGroupId, dayId, monthId }: DateLi
         x2={0}
         y1={marginTop}
         y2={height - marginBottom}
-        stroke="gray"
         strokeDasharray={"6 4"}
+        className="stroke-accent-500"
       />
       {/* Date indicators */}
       <g
@@ -32,7 +32,7 @@ export default function DateLine({ height, dateGroupId, dayId, monthId }: DateLi
           width={36}
           height={36}
           rx={legendConfig.rectCorner}
-          fill="black"
+          className="fill-primary"
           opacity={0.9}
         />
         <text id={dayId} x={0} y={16} textAnchor="middle" fill="white"></text>

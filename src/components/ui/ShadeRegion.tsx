@@ -78,7 +78,7 @@ export default function ShadeRegion({
           y2={y(center)}
           strokeWidth={markStrokeWidth}
           strokeDasharray={markStrokeDasharray}
-          stroke={"black"}
+          className="stroke-primary"
         />
       )}
     </>

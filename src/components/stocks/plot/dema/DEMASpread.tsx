@@ -49,9 +49,9 @@ export default function DEMASpread({ features, width, height, x }: SubplotProps<
         x2={width - marginRight - x.bandwidth() / 2}
         y1={y(0)}
         y2={y(0)}
-        stroke="black"
         strokeWidth={markStrokeWidth}
         strokeDasharray={markStrokeDasharray}
+        className="stroke-primary"
       />
       <path
         id={getLineID(demaIDPrefix, spreadFeatureName)}

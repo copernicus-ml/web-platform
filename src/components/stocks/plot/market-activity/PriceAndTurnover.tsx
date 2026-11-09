@@ -32,7 +32,7 @@ export default function PriceAndTurnover({
           x2={width - marginRight}
           y1={y(0.8)}
           y2={y(0.8)}
-          stroke="black"
+          className="stroke-primary"
           strokeWidth={svgConfig.markStrokeWidth}
           strokeDasharray={svgConfig.markStrokeDasharray}
         />
@@ -41,7 +41,7 @@ export default function PriceAndTurnover({
           x2={width - marginRight}
           y1={y(0.2)}
           y2={y(0.2)}
-          stroke="black"
+          className="stroke-primary"
           strokeWidth={svgConfig.markStrokeWidth}
           strokeDasharray={svgConfig.markStrokeDasharray}
         />

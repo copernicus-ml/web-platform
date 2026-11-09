@@ -31,7 +31,7 @@ function Content({ children, className, ref, ...props }: BodyProps) {
   return (
     <div
       className={cn(
-        "border border-gray-300 rounded-md w-full bg-white px-6 py-1.5",
+        "border border-accent-300 rounded-md w-full bg-background px-6 py-1.5",
         className,
       )}
       {...props}
@@ -49,7 +49,7 @@ function Selections({ children, className, ...props }: SelectionsProps) {
   return (
     <div
       className={cn(
-        "flex items-center border rounded-md text-sm border-gray-300 [&>button]:border-r [&>*:last-child]:border-0 overflow-hidden",
+        "flex items-center border rounded-md text-sm border-accent-300 [&>button]:border-r [&>*:last-child]:border-0 overflow-hidden",
         className,
       )}
       {...props}
@@ -67,10 +67,10 @@ function Button({ active, children, className, ...props }: ButtonProps) {
   return (
     <button
       className={cn(
-        "flex justify-center items-center min-w-8 h-6 cursor-pointer border-gray-300 text-xs",
+        "flex justify-center items-center min-w-8 h-6 cursor-pointer border-accent-300 text-xs",
         active
           ? "text-white bg-black [&>svg]:stroke-white"
-          : "bg-white [&>svg]:stroke-black",
+          : "bg-background [&>svg]:stroke-black",
         className,
       )}
       {...props}

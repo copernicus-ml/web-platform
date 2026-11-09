@@ -42,7 +42,7 @@ export default function VolMARatio({
         x2={x.range()[1]}
         y1={y(1.0)}
         y2={y(1.0)}
-        stroke={"black"}
+        className="stroke-primary"
         strokeWidth={markStrokeWidth}
         strokeDasharray={markStrokeDasharray}
       />

@@ -43,14 +43,14 @@ export default function FeatureGroupSidebar() {
   }, []);
 
   return (
-    <div className="w-full h-full bg-white rounded-md border-gray-300 border flex flex-col">
-      <div className="h-10 flex justify-center items-center border-b border-gray-300">
+    <div className="w-full h-full bg-background rounded-md border-accent-300 border flex flex-col">
+      <div className="h-10 flex justify-center items-center border-b border-accent-300">
         <h2 className="text-sm">{t("ui.featuregroups")}</h2>
       </div>
       <div className="relative flex-1 overflow-hidden">
         <div
           ref={sidebarRef}
-          className="h-full overflow-y-auto scrollbar-none scroll-smooth divide-y divide-gray-300 last:rounded-b-md"
+          className="h-full overflow-y-auto scrollbar-none scroll-smooth divide-y divide-accent-300 last:rounded-b-md"
         >
           {FeatureGroups.map((group) => (
             <FeatureGroupCard

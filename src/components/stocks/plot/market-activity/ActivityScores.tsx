@@ -58,9 +58,9 @@ export default function ActivityScores({
           x2={width - marginRight}
           y1={y(0.8)}
           y2={y(0.8)}
-          stroke="black"
           strokeWidth={1.4}
           strokeDasharray={"6 4"}
+          className="stroke-primary"
         />
       )}
     </>

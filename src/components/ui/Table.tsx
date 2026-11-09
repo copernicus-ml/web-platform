@@ -9,7 +9,7 @@ type THeadProps = {} & React.ComponentProps<"thead">;
 function THead({ children, className, ...props }: THeadProps) {
   return (
     <thead
-      className={cn("sticky top-0 w-full bg-gray-200 h-9 z-1", className)}
+      className={cn("sticky top-0 w-full bg-accent-200 h-9 z-1", className)}
       {...props}
     >
       {children}
@@ -20,7 +20,10 @@ function THead({ children, className, ...props }: THeadProps) {
 type TBodyProps = {} & React.ComponentProps<"tbody">;
 function TBody({ children, className, ...props }: TBodyProps) {
   return (
-    <tbody className={cn("bg-white w-full overflow-auto text-sm", className)} {...props}>
+    <tbody
+      className={cn("bg-background w-full overflow-auto text-sm", className)}
+      {...props}
+    >
       {children}
     </tbody>
   );

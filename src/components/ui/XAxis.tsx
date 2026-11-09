@@ -1,4 +1,4 @@
-import { parseDate, getMonthName } from "@/lib/utils";
+import { parseDate, getMonthName, cn } from "@/lib/utils";
 
 type XAxisProps = {
   labels: string[];
@@ -26,7 +26,7 @@ export default function XAxis({ labels, x, xPos, yPos }: XAxisProps) {
               x={(x(d) ?? 0) + x.bandwidth() / 2}
               y={LINE_HEIGHT}
               textAnchor="middle"
-              fill="gray"
+              className="fill-accent-500"
             >
               {day}
             </text>
@@ -35,8 +35,8 @@ export default function XAxis({ labels, x, xPos, yPos }: XAxisProps) {
                 x={(x(d) ?? 0) + x.bandwidth() / 2}
                 y={LINE_HEIGHT * 2}
                 textAnchor="middle"
-                fill={showYear ? "black" : "gray"}
                 fontWeight={showYear ? 600 : 400}
+                className={cn(showYear ? "fill-primary" : "fill-accent-500")}
               >
                 {showYear ? year : getMonthName(month)}
               </text>

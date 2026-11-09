@@ -5,13 +5,13 @@ import { stockRouteAPI } from "@/routes/stocks.$ticker";
 
 const styles = {
   container: clsx(
-    "box-border w-full h-16 grid grid-cols-3 items-center border border-gray-300 rounded-md overflow-hidden bg-white",
-    "divide-x divide-gray-300",
+    "box-border w-full h-16 grid grid-cols-3 items-center border border-accent-300 rounded-md overflow-hidden bg-background",
+    "divide-x divide-accent-300",
   ),
   columnBasic: clsx(
     "w-full h-full px-5 flex flex-col justify-center transition duration-100 text-sm",
   ),
-  columnDownloadSeparator: clsx("border-r h-full border-gray-300"),
+  columnDownloadSeparator: clsx("border-r h-full border-accent-300"),
 };
 
 export default function StockInfo() {
@@ -25,7 +25,7 @@ export default function StockInfo() {
               <div
                 className={cn(
                   styles.columnBasic,
-                  "cursor-pointer hover:bg-gray-200 col-span-1",
+                  "cursor-pointer hover:bg-accent-200 col-span-1",
                 )}
               >
                 <h2 className="font-semibold text-lg">{data.ticker}</h2>
