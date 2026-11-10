@@ -80,9 +80,9 @@ export default function BBWidth({
         x2={width - marginRight - x.bandwidth() / 2}
         y1={y(0.0)}
         y2={y(0.0)}
-        stroke={"black"}
         strokeWidth={markStrokeWidth}
         strokeDasharray={markStrokeDasharray}
+        className="stroke-primary"
       />
       {/* Legend */}
       <Legend

@@ -1,7 +1,6 @@
 import { Toast } from "@base-ui/react/toast";
 import toastStyles from "./FlashToast.module.css";
 import { cn } from "@/lib/utils";
-import { priceColors } from "@/lib/theme";
 
 const flashToastManager = Toast.createToastManager();
 export const addFlashToast = ({
@@ -45,14 +44,14 @@ function ToastList() {
       key={toast.id}
       toast={toast}
       swipeDirection="up"
-      className={cn(toastStyles.Toast, "border rounded-md shadow-xl border-gray-300")}
+      className={cn(toastStyles.Toast, "border rounded-md shadow-xl border-accent-300")}
     >
       <Toast.Content className={toastStyles.Content}>
         <div
-          className={toastStyles.Text}
-          style={{
-            color: toast.type === "error" ? priceColors.down : "black",
-          }}
+          className={cn(
+            toastStyles.Text,
+            toast.type === "error" ? `text-price-down` : "text-primary",
+          )}
         >
           <Toast.Title className="text-sm font-bold" />
           <Toast.Description className="text-sm" />

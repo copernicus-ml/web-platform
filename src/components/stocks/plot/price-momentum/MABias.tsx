@@ -59,7 +59,7 @@ export default function MABias({
         x2={width - marginRight}
         y1={y(0.0)}
         y2={y(0.0)}
-        stroke="black"
+        className="stroke-primary"
         strokeWidth={markStrokeWidth}
         strokeDasharray={markStrokeDasharray}
       />

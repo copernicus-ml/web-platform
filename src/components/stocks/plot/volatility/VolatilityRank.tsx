@@ -46,8 +46,8 @@ export default function VolatilityRank({
               cy={y(feature[volatilityRankFeature])}
               r={3}
               strokeWidth={2}
-              fill={"white"}
               stroke={colorPalette[0]}
+              className="fill-background"
             />
           ))}
         </g>

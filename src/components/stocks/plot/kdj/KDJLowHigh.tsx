@@ -63,9 +63,9 @@ export default function KDJLowHigh({ features, chartType, x, y }: KDJLowHighProp
             cy={y(lastFeature[featureName])}
             fill={colorPalette[i]}
             r={circleR}
-            stroke={"white"}
             strokeWidth={circleStroke}
             opacity={0}
+            className="stroke-background"
           />
         ))}
       </g>

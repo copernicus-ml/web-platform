@@ -40,7 +40,7 @@ export default function UpDayRatio({
         x2={width - marginRight}
         y1={y(0.5)}
         y2={y(0.5)}
-        stroke="black"
+        className="stroke-primary"
         strokeWidth={1.4}
         strokeDasharray={"6 4"}
       />

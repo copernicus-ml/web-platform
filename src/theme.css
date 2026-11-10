@@ -1,0 +1,28 @@
+@import "tailwindcss";
+
+@theme {
+  --color-background: oklch(100% 0 0);
+  --color-primary: oklch(0% 0 0);
+  --color-accent-100: oklch(96.7% 0.003 264.542);
+  --color-accent-200: oklch(92.8% 0.006 264.531);
+  --color-accent-300: oklch(87.2% 0.01 258.338);
+  --color-accent-400: oklch(70.7% 0.022 261.325);
+  --color-accent-500: oklch(55.1% 0.027 264.364);
+
+  /* --color-price-up: oklch(78.3% 0.079 191.6); */
+  /* --color-price-down: oklch(70.4% 0.174 29.9); */
+
+  /* --color-purple: oklch(79.2% 0.049 310.4);
+  --color-red: oklch(73% 0.14 21.1);
+  --color-teal: oklch(77.9% 0.052 222.2);
+  --color-yellow: oklch(80.1% 0.135 71.1); */
+
+  /* https://lospec.com/palette-list/elia36 */
+  --color-price-down: oklch(69.108% 0.17519 22.781);
+  --color-price-up: oklch(79.24% 0.07225 178.991);
+
+  --color-purple: oklch(56.3% 0.111 329.3);
+  --color-red: oklch(53.1% 0.188 10.9);
+  --color-blue: oklch(79.3% 0.056 235.2);
+  --color-yellow: oklch(81.5% 0.115 49.1);
+}

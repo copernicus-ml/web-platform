@@ -8,7 +8,7 @@ import { useTranslation } from "react-i18next";
 
 const styles = {
   content: clsx(
-    "origin-top flex flex-col gap-3 mt-1 rounded-md z-2 bg-white shadow-[0_2px_8px] border-gray-300 border shadow-gray-300 px-3 py-3 data-[state=open]:animate-[slideUp_200ms_ease-out]",
+    "origin-top flex flex-col gap-3 mt-1 rounded-md z-2 bg-background shadow-[0_2px_8px] border-accent-300 border shadow-accent-300 px-3 py-3 data-[state=open]:animate-[slideUp_200ms_ease-out]",
   ),
 };
 
@@ -42,7 +42,7 @@ export default function LanguageSelector({
                   "px-4 py-1.5 w-full rounded-sm text-center focus:outline-0",
                   activeLanguage === langCode
                     ? "font-bold"
-                    : "hover:cursor-pointer hover:bg-gray-200",
+                    : "hover:cursor-pointer hover:bg-accent-200",
                 )}
                 disabled={activeLanguage === langCode}
                 onClick={() => selectLanguage(langCode as AppLanguage)}
