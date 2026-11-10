@@ -35,8 +35,20 @@ export default function DateLine({ height, dateGroupId, dayId, monthId }: DateLi
           className="fill-primary"
           opacity={0.9}
         />
-        <text id={dayId} x={0} y={16} textAnchor="middle" fill="white"></text>
-        <text id={monthId} x={0} y={32} textAnchor="middle" fill="white"></text>
+        <text
+          id={dayId}
+          x={0}
+          y={16}
+          textAnchor="middle"
+          className="fill-background"
+        ></text>
+        <text
+          id={monthId}
+          x={0}
+          y={32}
+          textAnchor="middle"
+          className="fill-background"
+        ></text>
       </g>
     </>
   );

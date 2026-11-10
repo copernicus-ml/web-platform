@@ -61,9 +61,9 @@ export default function CCITpPlot({ features, chartType, x, y }: CCITpPlot) {
             cy={y(lastFeature[featureName])}
             fill={colorPalette[i]}
             r={circleR}
-            stroke={"white"}
             strokeWidth={circleStroke}
             opacity={0}
+            className="stroke-background"
           />
         ))}
       </g>

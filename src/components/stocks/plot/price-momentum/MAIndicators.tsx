@@ -30,9 +30,9 @@ export default function MAIndicators({ features, chartType }: MAIndicatorsProps)
             id={getCircleID(pmIDPrefix, featureName)}
             r={5}
             fill={colorPalette[i]}
-            stroke="white"
             strokeWidth={2}
             opacity={0}
+            className="stroke-background"
           />
         ))}
       </g>

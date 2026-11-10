@@ -1,9 +1,14 @@
 const priceColors = {
-  up: "#79C9C5",
-  down: "#F96E5B",
+  up: "var(--color-price-up)",
+  down: "var(--color-price-down)",
 };
 
-const colorPalette = ["#C5B3D3", "#F38181", "#93BFCF", "#F4AE52"];
+const colorPalette = [
+  "var(--color-purple)",
+  "var(--color-yellow)",
+  "var(--color-blue)",
+  "var(--color-red)",
+];
 
 const animationConfig = {
   duration: 50,

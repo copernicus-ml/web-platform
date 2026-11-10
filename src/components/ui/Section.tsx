@@ -69,8 +69,8 @@ function Button({ active, children, className, ...props }: ButtonProps) {
       className={cn(
         "flex justify-center items-center min-w-8 h-6 cursor-pointer border-accent-300 text-xs",
         active
-          ? "text-white bg-black [&>svg]:stroke-white"
-          : "bg-background [&>svg]:stroke-black",
+          ? "text-background bg-primary [&>svg]:stroke-background"
+          : "bg-background [&>svg]:stroke-primary",
         className,
       )}
       {...props}

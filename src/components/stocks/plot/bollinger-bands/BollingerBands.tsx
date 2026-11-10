@@ -100,9 +100,9 @@ export default function BollingerBands({
             cx={(x(lastFeature.tradeDate) ?? 0) + x.bandwidth() / 2}
             cy={y(lastFeature["bbMid"])}
             r={5}
-            stroke="white"
             fill={colorPalette[0]}
             strokeWidth={2}
+            className="stroke-background"
           />
         )}
       </g>

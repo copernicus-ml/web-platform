@@ -65,9 +65,9 @@ export default function FeatureGroupSidebar() {
           ref={overlayRef}
           className={cn(
             "absolute top-0 w-full h-full pointer-events-none opacity-70 rounded-md",
-            "data-[pos=top]:bg-[linear-gradient(transparent_0%,transparent_80%,white_100%)]",
-            "data-[pos=between]:bg-[linear-gradient(white_0%,transparent_20%,transparent_80%,white_100%)]",
-            "data-[pos=bottom]:bg-[linear-gradient(white_0%,transparent_20%,transparent_100%)]",
+            "data-[pos=top]:bg-[linear-gradient(transparent_0%,transparent_80%,background_100%)]",
+            "data-[pos=between]:bg-[linear-gradient(background_0%,transparent_20%,transparent_80%,background_100%)]",
+            "data-[pos=bottom]:bg-[linear-gradient(background_0%,transparent_20%,transparent_100%)]",
           )}
         />
       </div>

@@ -45,10 +45,10 @@ export default function StockDataIndicators({
             cx={0}
             cy={lastPrice ? y(lastPrice["adjClose"]) : 0}
             r={5}
-            stroke="white"
             strokeWidth={2}
             fill={isUp ? priceColors.up : priceColors.down}
             opacity={chartType === "line" ? 1 : 0}
+            className="stroke-background"
           />
         )}
       </g>
@@ -69,8 +69,8 @@ export default function StockDataIndicators({
             y={20}
             textAnchor="middle"
             fontSize={13.5}
-            fill="white"
             fontWeight={600}
+            className="fill-background"
           >
             <tspan>Pct.</tspan>
             <tspan dx={6} id={priceElementIds.valuesPctChange}>
@@ -129,8 +129,8 @@ export default function StockDataIndicators({
           y={0}
           dy={"0.33em"}
           textAnchor="middle"
-          fill="white"
           fontSize={12}
+          className="fill-background"
         >
           {prices.at(-1)?.adjClose}
         </text>

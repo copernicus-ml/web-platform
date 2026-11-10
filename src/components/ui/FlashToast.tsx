@@ -1,7 +1,6 @@
 import { Toast } from "@base-ui/react/toast";
 import toastStyles from "./FlashToast.module.css";
 import { cn } from "@/lib/utils";
-import { priceColors } from "@/lib/theme";
 
 const flashToastManager = Toast.createToastManager();
 export const addFlashToast = ({
@@ -40,7 +39,6 @@ export default function FlashToast({ children }: ToastProps) {
 
 function ToastList() {
   const { toasts } = Toast.useToastManager();
-  const alertColor = priceColors.down;
   return toasts.map((toast) => (
     <Toast.Root
       key={toast.id}
@@ -52,7 +50,7 @@ function ToastList() {
         <div
           className={cn(
             toastStyles.Text,
-            toast.type === "error" ? `text-[${alertColor}]` : "text-primary",
+            toast.type === "error" ? `text-price-down` : "text-primary",
           )}
         >
           <Toast.Title className="text-sm font-bold" />
