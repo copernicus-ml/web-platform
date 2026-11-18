@@ -23,7 +23,7 @@ export default function MarketRank() {
   if (currScope === "stockpct") {
     headers = [
       "rank",
-      "ticker",
+      "symbol",
       "subIndustry",
       "pct1d",
       "pct5d",

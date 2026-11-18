@@ -30,7 +30,7 @@ import OBVFeaturePlot from "@stocks/plot/obv/OBVFeaturePlot";
 import KDJCorePlot from "@stocks/plot/kdj/KDJCorePlot";
 import CCICorePlot from "@stocks/plot/cci/CCICorePlot";
 import VolatilityFeaturesPlot from "@stocks/plot/volatility/VolatilityFeaturesPlot";
-import { stockRouteAPI } from "@/routes/stocks.$ticker";
+import { stockRouteAPI } from "@/routes/stocks.$symbol";
 
 type StockFeaturePlotProps = {
   width: number;
@@ -54,14 +54,14 @@ export default function StockFeaturePlot({
 
   const x = d3
     .scaleBand(
-      features.map((d) => d.tradeDate),
+      features.map((d) => d.date),
       [marginLeft, width - marginRight],
     )
     .paddingInner(0.2);
   const xSteps = Math.floor(features.length / maxXTickNum);
   const xLabels = features
     .filter((_, i) => (features.length - 1 - i) % xSteps == 0)
-    .map((d) => d.tradeDate);
+    .map((d) => d.date);
 
   // controls hover-based indicators
   const onPointerMove = getHoverPlotFn({

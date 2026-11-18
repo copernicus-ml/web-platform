@@ -21,7 +21,7 @@ const searchSchema = z.object({
 
 export type StockSearchSchema = z.infer<typeof searchSchema>;
 
-export const Route = createFileRoute("/stocks/$ticker")({
+export const Route = createFileRoute("/stocks/$symbol")({
   validateSearch: searchSchema,
   loaderDeps: ({ search }) => ({
     window: search.window,
@@ -38,14 +38,14 @@ export const Route = createFileRoute("/stocks/$ticker")({
     }
     try {
       const [info, list, prices, features] = await Promise.all([
-        context.queryClient.query(stockInfoQuery(params.ticker, token)),
+        context.queryClient.query(stockInfoQuery(params.symbol, token)),
         context.queryClient.query(stockListQuery(token)),
-        context.queryClient.query(stockPriceQuery(params.ticker, deps.window, token)),
+        context.queryClient.query(stockPriceQuery(params.symbol, deps.window, token)),
         context.queryClient.query(
-          stockFeatureQuery(params.ticker, deps.window, deps.group, token),
+          stockFeatureQuery(params.symbol, deps.window, deps.group, token),
         ),
       ]);
-      addSearchHistory(params.ticker, deps.window, deps.group);
+      addSearchHistory(params.symbol, deps.window, deps.group);
       return { info, list, prices, features };
     } catch (error) {
       addFlashToast({
@@ -60,7 +60,7 @@ export const Route = createFileRoute("/stocks/$ticker")({
   component: StocksDashboard,
 });
 
-export const stockRouteAPI = getRouteApi("/stocks/$ticker");
+export const stockRouteAPI = getRouteApi("/stocks/$symbol");
 
 function StocksDashboard() {
   return (

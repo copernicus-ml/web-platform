@@ -10,7 +10,7 @@ const mocks = vi.hoisted(() => ({
   useSearch: vi.fn(),
 }));
 
-vi.mock("@/routes/stocks.$ticker", () => ({
+vi.mock("@/routes/stocks.$symbol", () => ({
   stockRouteAPI: {
     useSearch: mocks.useSearch,
   },

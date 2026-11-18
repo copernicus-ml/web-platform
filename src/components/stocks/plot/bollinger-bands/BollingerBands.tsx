@@ -39,7 +39,7 @@ export default function BollingerBands({
 
   const area = d3
     .area<BollingerBandsFeature>()
-    .x((feature) => (x(feature.tradeDate) ?? 0) + x.bandwidth() / 2)
+    .x((feature) => (x(feature.date) ?? 0) + x.bandwidth() / 2)
     .y0((feature) => Math.min(y(feature.bbLower), y.range()[0]))
     .y1((feature) => Math.max(y(feature.bbUpper), y.range()[1]))(features);
   const paths = getPaths<"bollingerbands">(features, bandFeatures, x, y);
@@ -97,7 +97,7 @@ export default function BollingerBands({
         {chartType === "line" && (
           <circle
             id={getCircleID(bbIDPrefix, "bbMid")}
-            cx={(x(lastFeature.tradeDate) ?? 0) + x.bandwidth() / 2}
+            cx={(x(lastFeature.date) ?? 0) + x.bandwidth() / 2}
             cy={y(lastFeature["bbMid"])}
             r={5}
             fill={colorPalette[0]}

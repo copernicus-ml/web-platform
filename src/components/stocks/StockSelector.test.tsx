@@ -10,7 +10,7 @@ const mocks = vi.hoisted(() => ({
   useParams: vi.fn(),
 }));
 
-vi.mock("@/routes/stocks.$ticker", () => ({
+vi.mock("@/routes/stocks.$symbol", () => ({
   stockRouteAPI: {
     useLoaderData: mocks.useLoaderData,
     useNavigate: mocks.useNavigate,
@@ -28,11 +28,11 @@ describe("StockSelector", () => {
   beforeEach(() => {
     vi.clearAllMocks();
     mocks.useNavigate.mockReturnValue(mocks.navigate);
-    mocks.useParams.mockReturnValue({ ticker: "AAPL" });
+    mocks.useParams.mockReturnValue({ symbol: "AAPL" });
     mocks.useLoaderData.mockImplementation(({ select }) => select({ list: stockList }));
   });
 
-  it("filters stocks by the entered ticker prefix", async () => {
+  it("filters stocks by the entered symbol prefix", async () => {
     const user = userEvent.setup();
     render(
       <StockSelector>
@@ -60,7 +60,7 @@ describe("StockSelector", () => {
     await user.click(screen.getByRole("button", { name: /MSFT Microsoft Corporation/ }));
     expect(mocks.navigate).toHaveBeenCalledWith({
       to: ".",
-      params: { ticker: "MSFT" },
+      params: { symbol: "MSFT" },
       search: expect.any(Function),
     });
 

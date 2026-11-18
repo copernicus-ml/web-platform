@@ -1,7 +1,7 @@
 import { FeatureGroups, type FeatureGroupOpt } from "@/apis";
 import FeatureGroupCard from "@/components/ui/FeatureGroupCard";
 import { cn } from "@/lib/utils";
-import { stockRouteAPI } from "@/routes/stocks.$ticker";
+import { stockRouteAPI } from "@/routes/stocks.$symbol";
 import { useEffect, useRef } from "react";
 import { useTranslation } from "react-i18next";
 

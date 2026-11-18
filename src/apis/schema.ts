@@ -54,31 +54,20 @@ const dataWindowParam: Record<DataWindowOpt, string> = {
   "3Y": "3years",
 };
 
-const StockPriceSchema = z
-  .object({
-    ts_code: z.string(),
-    trade_date: z.string(),
-    adj_open: z.float32(),
-    adj_close: z.float32(),
-    adj_high: z.float32(),
-    adj_low: z.float32(),
-    adj_vol: z.float32(),
-    turnover: z.float32(),
-  })
-  .transform((input) => ({
-    ticker: input.ts_code,
-    tradeDate: input.trade_date,
-    adjOpen: input.adj_open,
-    adjClose: input.adj_close,
-    adjHigh: input.adj_high,
-    adjLow: input.adj_low,
-    adjVol: input.adj_vol,
-    turnover: input.turnover,
-  }));
+const StockPriceSchema = z.object({
+  symbol: z.string(),
+  date: z.string(),
+  open: z.float32(),
+  close: z.float32(),
+  high: z.float32(),
+  low: z.float32(),
+  volume: z.float32(),
+  turnover: z.float32(),
+});
 
 const PriceMomentumFeaturesSchema = z
   .object({
-    trade_date: z.string(),
+    date: z.string(),
     ma_5: z.float32(),
     ma_20: z.float32(),
     ma_60: z.float32(),
@@ -92,7 +81,7 @@ const PriceMomentumFeaturesSchema = z
     up_ratio_20d: z.float32(),
   })
   .transform((input) => ({
-    tradeDate: input.trade_date,
+    date: input.date,
     ma5: input.ma_5,
     ma20: input.ma_20,
     ma60: input.ma_60,
@@ -108,7 +97,7 @@ const PriceMomentumFeaturesSchema = z
 
 const VolumeMomentumFeatureSchema = z
   .object({
-    trade_date: z.string(),
+    date: z.string(),
     vol_ma_5_bias: z.float32(),
     vol_change_5d: z.float32(),
     vol_ma_10_bias: z.float32(),
@@ -122,7 +111,7 @@ const VolumeMomentumFeatureSchema = z
     vol_ma_20_60_ratio: z.float32(),
   })
   .transform((input) => ({
-    tradeDate: input.trade_date,
+    date: input.date,
     vol5Bias: input.vol_ma_5_bias,
     vol5Change: input.vol_change_5d,
     vol10Bias: input.vol_ma_10_bias,
@@ -138,25 +127,25 @@ const VolumeMomentumFeatureSchema = z
 
 const VolatilitySchema = z
   .object({
-    trade_date: z.string(),
+    date: z.string(),
     volatility_log: z.float32(),
     volatility_rank: z.float32(),
   })
   .transform((input) => ({
-    tradeDate: input.trade_date,
+    date: input.date,
     volatilityLog: input.volatility_log,
     volatilityRank: input.volatility_rank,
   }));
 
 const OBVFeatureSchema = z
   .object({
-    trade_date: z.string(),
+    date: z.string(),
     obv_strength_5: z.float32(),
     obv_strength_20: z.float32(),
     obv_strength_accel_5_20: z.float32(),
   })
   .transform((input) => ({
-    tradeDate: input.trade_date,
+    date: input.date,
     obv5: input.obv_strength_5,
     obv20: input.obv_strength_20,
     obvAccel520: input.obv_strength_accel_5_20,
@@ -164,7 +153,7 @@ const OBVFeatureSchema = z
 
 const MarketActivityFeaturesSchema = z
   .object({
-    trade_date: z.string(),
+    date: z.string(),
     amplitude: z.float32(),
     amplitude_ma_5: z.float32(),
     amplitude_ma_20: z.float32(),
@@ -175,7 +164,7 @@ const MarketActivityFeaturesSchema = z
     turnover_quantile_60: z.float32(),
   })
   .transform((input) => ({
-    tradeDate: input.trade_date,
+    date: input.date,
     amplitude: input.amplitude,
     amplitudeMa5: input.amplitude_ma_5,
     amplitudeMa20: input.amplitude_ma_20,
@@ -188,7 +177,7 @@ const MarketActivityFeaturesSchema = z
 
 const MACDFeatureSchema = z
   .object({
-    trade_date: z.string(),
+    date: z.string(),
     macd_ema_slow: z.float32(),
     macd_ema_fast: z.float32(),
     macd_diff: z.float32(),
@@ -198,7 +187,7 @@ const MACDFeatureSchema = z
     macd_dead: z.int32(),
   })
   .transform((input) => ({
-    tradeDate: input.trade_date,
+    date: input.date,
     emaSlow: input.macd_ema_slow,
     emaFast: input.macd_ema_fast,
     diff: input.macd_diff,
@@ -210,7 +199,7 @@ const MACDFeatureSchema = z
 
 const BollingerBandsFeaturesSchema = z
   .object({
-    trade_date: z.string(),
+    date: z.string(),
     bb_upper: z.float32(),
     bb_lower: z.float32(),
     bb_mid: z.float32(),
@@ -218,7 +207,7 @@ const BollingerBandsFeaturesSchema = z
     bb_position: z.float32(),
   })
   .transform((input) => ({
-    tradeDate: input.trade_date,
+    date: input.date,
     bbUpper: input.bb_upper,
     bbLower: input.bb_lower,
     bbMid: input.bb_mid,
@@ -230,7 +219,7 @@ const DEMAPeriods = ["5_10", "10_20", "20_60"] as const;
 type DEMAPeriodOpt = (typeof DEMAPeriods)[number];
 const DEMAFeaturesSchema = z
   .object({
-    trade_date: z.string(),
+    date: z.string(),
     dema_5_10_fast: z.float32(),
     dema_10_20_fast: z.float32(),
     dema_20_60_fast: z.float32(),
@@ -247,26 +236,26 @@ const DEMAFeaturesSchema = z
     dema_10_20_dead: z.int(),
     dema_20_60_dead: z.int(),
   })
-  .transform(({ trade_date, ...input }) => ({
-    tradeDate: trade_date,
+  .transform(({ date, ...input }) => ({
+    date: date,
     ...input,
   }));
 
 const RSISchema = z
   .object({
-    trade_date: z.string(),
+    date: z.string(),
     rsi_6: z.float32(),
     rsi_14: z.float32(),
   })
   .transform((input) => ({
-    tradeDate: input.trade_date,
+    date: input.date,
     rsi6: input.rsi_6,
     rsi14: input.rsi_14,
   }));
 
 const KDJSchema = z
   .object({
-    trade_date: z.string(),
+    date: z.string(),
     kdj_low_9: z.float32(),
     kdj_high_9: z.float32(),
     kdj_k: z.float32(),
@@ -274,7 +263,7 @@ const KDJSchema = z
     kdj_j: z.float32(),
   })
   .transform((input) => ({
-    tradeDate: input.trade_date,
+    date: input.date,
     kdjHigh9: input.kdj_high_9,
     kdjLow9: input.kdj_low_9,
     kdjK: input.kdj_k,
@@ -284,14 +273,14 @@ const KDJSchema = z
 
 const CCISchema = z
   .object({
-    trade_date: z.string(),
+    date: z.string(),
     tp: z.float32(),
     tp_sma: z.float32(),
     cci: z.float32(),
     cci_ma_5: z.float32(),
   })
   .transform((input) => ({
-    tradeDate: input.trade_date,
+    date: input.date,
     tp: input.tp,
     tpSma: input.tp_sma,
     cci: input.cci,
@@ -314,7 +303,7 @@ const FeatureSchemas = {
 
 const StockPctChangeSchema = z
   .object({
-    ts_code: z.string(),
+    symbol: z.string(),
     sub_industry: z.string(),
     pct_change_1d: z.float32(),
     pct_change_5d: z.float32(),
@@ -323,7 +312,7 @@ const StockPctChangeSchema = z
     pct_change_60d: z.float32(),
   })
   .transform((input) => ({
-    ticker: input.ts_code,
+    symbol: input.symbol,
     subIndustry: input.sub_industry,
     pct1d: input.pct_change_1d,
     pct5d: input.pct_change_5d,

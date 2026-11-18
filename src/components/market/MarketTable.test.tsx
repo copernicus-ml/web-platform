@@ -14,7 +14,7 @@ vi.mock("@tanstack/react-router", () => ({
 
 const rank = [
   {
-    ticker: "AAPL",
+    symbol: "AAPL",
     subIndustry: "Consumer Electronics",
     pct1d: 0.01,
     pct5d: 0.04,
@@ -23,7 +23,7 @@ const rank = [
     pct60d: -0.05,
   },
   {
-    ticker: "MSFT",
+    symbol: "MSFT",
     subIndustry: "Systems Software",
     pct1d: 0.02,
     pct5d: 0.03,
@@ -33,7 +33,7 @@ const rank = [
   },
 ];
 
-const headers = ["rank", "ticker", "subIndustry", "pct1d", "pct5d"];
+const headers = ["rank", "symbol", "subIndustry", "pct1d", "pct5d"];
 
 describe("MarketTable", () => {
   beforeEach(() => {
@@ -67,7 +67,7 @@ describe("MarketTable", () => {
     expect(within(rows[1]).getByText("MSFT")).toBeInTheDocument();
   });
 
-  it("navigates to a stock when its ticker is clicked", async () => {
+  it("navigates to a stock when its symbol is clicked", async () => {
     const user = userEvent.setup();
     render(
       <MarketTable headers={headers} rank={[...rank]} widerColumns={["subIndustry"]} />,

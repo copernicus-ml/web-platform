@@ -58,8 +58,8 @@ export default function PriceAndTurnover({
         <g key={getCirclesGroupID(featureName)} id={getCirclesGroupID(featureName)}>
           {features.map((feature) => (
             <circle
-              key={`${getCirclesGroupID(featureName)}-${feature.tradeDate}`}
-              cx={(x(feature.tradeDate) ?? 0) + x.bandwidth() / 2}
+              key={`${getCirclesGroupID(featureName)}-${feature.date}`}
+              cx={(x(feature.date) ?? 0) + x.bandwidth() / 2}
               cy={y(feature[featureName])}
               r={3}
               fill={featureName === "amplitudeQuantile" ? "transparent" : colorPalette[i]}

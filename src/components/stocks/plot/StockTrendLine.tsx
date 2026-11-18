@@ -17,19 +17,19 @@ export default function StockTrendLine({
 }: StockTrendLineProps) {
   const path = d3
     .line<StockPrice>()
-    .x((price) => (x(price.tradeDate) ?? 0) + x.bandwidth() / 2)
-    .y((price) => y(price.adjClose))(prices);
+    .x((price) => (x(price.date) ?? 0) + x.bandwidth() / 2)
+    .y((price) => y(price.close))(prices);
 
   const strokeColor =
-    prices.at(-1)!.adjClose >= prices.at(0)!.adjClose ? priceColors.up : priceColors.down;
+    prices.at(-1)!.close >= prices.at(0)!.close ? priceColors.up : priceColors.down;
 
   const [chartBottom, chartTop] = y.range();
 
   const area = d3
     .area<StockPrice>()
-    .x((price) => (x(price.tradeDate) ?? 0) + x.bandwidth() / 2)
+    .x((price) => (x(price.date) ?? 0) + x.bandwidth() / 2)
     .y0(chartBottom)
-    .y1((price) => y(price.adjClose))(prices);
+    .y1((price) => y(price.close))(prices);
 
   if (!path || path.length === 0 || !area) {
     console.error("Failed to create price trend path");

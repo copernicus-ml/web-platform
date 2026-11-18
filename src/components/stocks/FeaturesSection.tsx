@@ -4,7 +4,7 @@ import StockFeaturePlot from "@stocks/plot/StockFeaturePlot";
 import { usePlotSize } from "@/hooks/usePlotSize";
 import { useTranslation } from "react-i18next";
 import DEMAPeriodSelector from "@stocks/plot/dema/DEMAWindowSelector";
-import { stockRouteAPI } from "@/routes/stocks.$ticker";
+import { stockRouteAPI } from "@/routes/stocks.$symbol";
 import { useEffect, useState } from "react";
 
 type FeaturesSectionProps = {} & React.ComponentPropsWithoutRef<"div">;

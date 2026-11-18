@@ -6,7 +6,7 @@ const mocks = vi.hoisted(() => ({
   useLoaderData: vi.fn(),
 }));
 
-vi.mock("@/routes/stocks.$ticker", () => ({
+vi.mock("@/routes/stocks.$symbol", () => ({
   stockRouteAPI: {
     useLoaderData: mocks.useLoaderData,
   },
@@ -17,7 +17,7 @@ vi.mock("@/components/stocks/StockSelector", () => ({
 }));
 
 const stockInfo = {
-  ticker: "AAPL",
+  symbol: "AAPL",
   companyName: "Apple Inc.",
   sector: "Technology",
   subIndustry: "Consumer Electronics",

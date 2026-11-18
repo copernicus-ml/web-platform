@@ -84,7 +84,7 @@ const updateIndicators = (
     );
     updateCircleOpacity(getCircleID(demaIDPrefix, featureName), hovering);
     if (x && y) {
-      const xPos = (x(feature.tradeDate) ?? 0) + x.bandwidth() / 2;
+      const xPos = (x(feature.date) ?? 0) + x.bandwidth() / 2;
       const yPos = y(feature[featureName]) ?? 0;
       // when the circle moves out of the plot boundary, hide it
       const circleOpacity = yPos <= y.range()[0] && yPos >= y.range()[1] ? 1 : 0;

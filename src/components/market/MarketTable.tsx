@@ -58,7 +58,7 @@ export default function MarketTable({
   };
 
   const navigateToStock = (column: string, value: string | number) => {
-    if (column !== "ticker" || isNumber(value)) return;
+    if (column !== "symbol" || isNumber(value)) return;
     navigate({ to: `/stocks/${value}` });
   };
 
@@ -121,7 +121,7 @@ export default function MarketTable({
                   "first:flex-1",
                   widerColumns.includes(key) ? "flex-5" : "flex-2",
                   isNumber(value) && "text-center",
-                  key === "ticker" &&
+                  key === "symbol" &&
                     "hover:cursor-pointer hover:bg-accent-300 hover:font-bold hover:underline",
                 )}
                 onClick={() => navigateToStock(key, value)}

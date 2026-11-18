@@ -29,7 +29,7 @@ import DEMASignals from "@stocks/plot/dema/DEMASignals";
 import DEMAIndicators from "./dema/DEMAIndicators";
 import KDJLowHigh from "@stocks/plot/kdj/KDJLowHigh";
 import CCITpPlot from "@stocks/plot/cci/CCITpPlot";
-import { stockRouteAPI } from "@/routes/stocks.$ticker";
+import { stockRouteAPI } from "@/routes/stocks.$symbol";
 import type { PriceChartType } from "@/components/stocks/shared";
 
 type StockDataPlotProps = {
@@ -58,17 +58,17 @@ export default function StockDataPlot({
   // x-axis mapper
   const x = d3
     .scaleBand(
-      prices.map((d) => d.tradeDate),
+      prices.map((d) => d.date),
       [marginLeft, width - marginRight],
     )
     .paddingInner(0.2);
   const xSteps = Math.floor(prices.length / maxXTickNum);
   const xLabels = prices
     .filter((_, i) => (prices.length - 1 - i) % xSteps == 0)
-    .map((d) => d.tradeDate);
+    .map((d) => d.date);
   // y-axis mapper
-  const yMax = d3.max(prices, (d) => d.adjHigh) ?? 1;
-  const yMin = d3.min(prices, (d) => d.adjLow) ?? 0;
+  const yMax = d3.max(prices, (d) => d.high) ?? 1;
+  const yMin = d3.min(prices, (d) => d.low) ?? 0;
   const yPadding = (yMax - yMin) * 0.05 || 1;
   const y = d3.scaleLinear(
     [yMin - yPadding, yMax + yPadding],

@@ -27,8 +27,8 @@ export default function DEMASignals({
   features.filter((feature) => {
     const goldCrossName = featureNames.filter((name) => name.endsWith("gold"))[0];
     const deadCrossName = featureNames.filter((name) => name.endsWith("dead"))[0];
-    if (feature[goldCrossName] === 1) goldDays.push(feature.tradeDate);
-    if (feature[deadCrossName] === 1) deadDays.push(feature.tradeDate);
+    if (feature[goldCrossName] === 1) goldDays.push(feature.date);
+    if (feature[deadCrossName] === 1) deadDays.push(feature.date);
   });
 
   const drawLine = (date: string, stroke: string) => {

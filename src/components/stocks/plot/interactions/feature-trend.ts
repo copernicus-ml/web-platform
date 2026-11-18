@@ -40,9 +40,9 @@ const updateFeatureTrendIndicators = ({
   x: d3.ScaleBand<string>;
 }) => {
   d3.select(`#${featureElementIds.indicatorGroup}`).attr("opacity", 1);
-  const { tradeDate } = prices[xIdx];
-  const xPos = (x(tradeDate) ?? 0) + x.bandwidth() / 2;
-  updateDateLine(true, tradeDate, xPos);
+  const { date } = prices[xIdx];
+  const xPos = (x(date) ?? 0) + x.bandwidth() / 2;
+  updateDateLine(true, date, xPos);
 };
 
 const resetFeatureTrendIndicators = () => {

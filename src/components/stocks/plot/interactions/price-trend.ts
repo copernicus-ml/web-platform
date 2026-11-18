@@ -53,8 +53,8 @@ const updateHoverValueTag = (
   width: number,
   marginRight: number,
 ) => {
-  const currClose = stock.at(xIdx)!["adjClose"];
-  const beginClose = stock.at(0)!["adjClose"];
+  const currClose = stock.at(xIdx)!["close"];
+  const beginClose = stock.at(0)!["close"];
   const currPriceGroup = d3
     .transition()
     .duration(50)
@@ -69,21 +69,21 @@ const updateHoverValueTag = (
 
 // update stock display values (V, L, H, C, O)
 const updateDisplayValues = (StockPrice: StockPrice, priceChangePct: string) => {
-  const { adjClose, adjOpen, adjHigh, adjLow, adjVol } = StockPrice;
-  updateTextValue(priceElementIds.valuesClose, adjClose.toFixed(2));
-  updateTextValue(priceElementIds.valuesOpen, adjOpen.toFixed(2));
-  updateTextValue(priceElementIds.valuesHigh, adjHigh.toFixed(2));
-  updateTextValue(priceElementIds.valuesLow, adjLow.toFixed(2));
-  updateTextValue(priceElementIds.valuesVol, parseVolume(adjVol));
+  const { close, open, high, low, volume } = StockPrice;
+  updateTextValue(priceElementIds.valuesClose, close.toFixed(2));
+  updateTextValue(priceElementIds.valuesOpen, open.toFixed(2));
+  updateTextValue(priceElementIds.valuesHigh, high.toFixed(2));
+  updateTextValue(priceElementIds.valuesLow, low.toFixed(2));
+  updateTextValue(priceElementIds.valuesVol, parseVolume(volume));
   updateTextValue(priceElementIds.valuesPctChange, priceChangePct);
 };
 
 // update volume legend
 const updateVolumeLegend = (StockPrice: StockPrice) => {
-  const { adjClose, adjOpen } = StockPrice;
+  const { close, open } = StockPrice;
   const volumeLegend = d3.select(`#${priceElementIds.volumeLegend}`);
   if (!volumeLegend.empty()) {
-    const volumeColor = adjClose >= adjOpen ? priceColors.up : priceColors.down;
+    const volumeColor = close >= open ? priceColors.up : priceColors.down;
     volumeLegend.select("rect").attr("stroke", volumeColor);
     volumeLegend.select("text").attr("fill", volumeColor);
   }
@@ -110,16 +110,16 @@ const updatePriceTrendIndicators = ({
   const indicatorGroup = d3.select(`#${priceElementIds.indicatorGroup}`);
   const { duration } = animationConfig;
   indicatorGroup.attr("opacity", 1);
-  const { tradeDate, adjClose } = prices[xIdx];
+  const { date, close } = prices[xIdx];
   d3.select(`#${priceElementIds.valuesPctRect}`).attr(
     "fill",
-    adjClose >= prices[0].adjClose ? priceColors.up : priceColors.down,
+    close >= prices[0].close ? priceColors.up : priceColors.down,
   );
-  const xPos = (x(tradeDate) ?? 0) + x.bandwidth() / 2;
-  const yPos = y(adjClose) ?? 0;
+  const xPos = (x(date) ?? 0) + x.bandwidth() / 2;
+  const yPos = y(close) ?? 0;
   updateCirclePos(priceElementIds.indicatorPoint, duration, 0, yPos);
-  updateDateLine(true, tradeDate, xPos);
-  updateDisplayValues(prices[xIdx], computePriceChange(prices.at(0)!.adjClose, adjClose));
+  updateDateLine(true, date, xPos);
+  updateDisplayValues(prices[xIdx], computePriceChange(prices.at(0)!.close, close));
   updateHoverValueTag(prices, xIdx, y, width, marginRight);
   updateVolumeLegend(prices[xIdx]);
 };
@@ -137,14 +137,14 @@ const resetPriceTrendIndicators = ({
 }) => {
   const lastestStock = prices.at(-1);
   if (!lastestStock) return;
-  const { adjClose } = lastestStock;
+  const { close } = lastestStock;
   d3.select(`#${priceElementIds.valuesPctRect}`).attr(
     "fill",
-    adjClose > prices[0].adjClose ? priceColors.up : priceColors.down,
+    close > prices[0].close ? priceColors.up : priceColors.down,
   );
   updateDateLine(false);
   updateHoverValueTag(prices, -1, y, width, marginRight);
-  updateDisplayValues(lastestStock, computePriceChange(prices.at(0)!.adjClose, adjClose));
+  updateDisplayValues(lastestStock, computePriceChange(prices.at(0)!.close, close));
   updateVolumeLegend(lastestStock);
 };
 

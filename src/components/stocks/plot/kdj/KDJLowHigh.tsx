@@ -59,7 +59,7 @@ export default function KDJLowHigh({ features, chartType, x, y }: KDJLowHighProp
           <circle
             key={getCircleID(kdjIDPrefix, featureName)}
             id={getCircleID(kdjIDPrefix, featureName)}
-            cx={(x(lastFeature?.tradeDate) ?? 0) + x.bandwidth() / 2}
+            cx={(x(lastFeature?.date) ?? 0) + x.bandwidth() / 2}
             cy={y(lastFeature[featureName])}
             fill={colorPalette[i]}
             r={circleR}

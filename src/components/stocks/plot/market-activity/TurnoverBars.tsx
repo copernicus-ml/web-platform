@@ -28,8 +28,8 @@ export default function TurnoverBars({ prices, x, y }: TurnoverBarsProps) {
       <g id={getBarGroupID(marketIDPrefix, "turnover")}>
         {prices.map((values) => (
           <rect
-            key={`market-turnover-${values.tradeDate}`}
-            x={x(values.tradeDate)}
+            key={`market-turnover-${values.date}`}
+            x={x(values.date)}
             y={subY(values.turnover)}
             width={x.bandwidth()}
             height={subY.range()[0] - subY(values.turnover)}

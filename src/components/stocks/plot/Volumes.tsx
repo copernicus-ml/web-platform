@@ -14,22 +14,22 @@ type VolumesProps = {
 
 export default function Volumes({ prices, x, y }: VolumesProps) {
   const { t } = useTranslation("stocks");
-  const volVals = prices.map((values) => values.adjVol);
+  const volVals = prices.map((values) => values.volume);
   const yRange = y.range();
   const yVol = getYScale(volVals, yRange[0], yRange[0] + (yRange[1] - yRange[0]) / 2);
   if (!prices) return <></>;
-  const isUp = prices.at(-1)!["adjClose"] >= prices.at(-1)!["adjOpen"];
+  const isUp = prices.at(-1)!["close"] >= prices.at(-1)!["open"];
   return (
     <>
       <g id={priceElementIds.volumeBarGroup}>
-        {prices.map(({ tradeDate, adjVol, adjClose, adjOpen }) => (
+        {prices.map(({ date, volume, close, open }) => (
           <rect
-            key={`volume-${tradeDate}`}
-            x={x(tradeDate) ?? 0}
-            y={yVol(adjVol)}
+            key={`volume-${date}`}
+            x={x(date) ?? 0}
+            y={yVol(volume)}
             width={x.bandwidth()}
-            height={yVol.range()[0] - yVol(adjVol)}
-            fill={adjClose >= adjOpen ? priceColors.up : priceColors.down}
+            height={yVol.range()[0] - yVol(volume)}
+            fill={close >= open ? priceColors.up : priceColors.down}
             opacity={0.4}
           />
         ))}
@@ -38,7 +38,7 @@ export default function Volumes({ prices, x, y }: VolumesProps) {
         legendId={priceElementIds.volumeLegend}
         valueId={priceElementIds.volumeLegendValue}
         index={0}
-        label={t(`featureName.adjVol`)}
+        label={t(`featureName.volume`)}
         color={isUp ? priceColors.up : priceColors.down}
         onMouseDown={() => toggleVolumeGroup()}
       />

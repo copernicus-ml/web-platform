@@ -36,8 +36,8 @@ export default function OBVMomentum({ features, width, height, x }: SubplotProps
               const positive = feature[featureName] >= 0;
               return (
                 <rect
-                  key={`obv-rect-${feature.tradeDate}`}
-                  x={x(feature.tradeDate)}
+                  key={`obv-rect-${feature.date}`}
+                  x={x(feature.date)}
                   y={positive ? y(feature[featureName]) : y(0)}
                   width={x.bandwidth()}
                   height={Math.abs(y(0) - y(feature[obvMomentumFeatures[0]]))}

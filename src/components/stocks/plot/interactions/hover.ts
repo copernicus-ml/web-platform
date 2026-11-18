@@ -69,13 +69,13 @@ const getHoverPlotFn = <G extends FeatureGroupOpt>({
   // x-axis mapper
   const x = d3
     .scaleBand(
-      prices.map((d) => d.tradeDate),
+      prices.map((d) => d.date),
       [marginLeft, width - marginRight],
     )
     .paddingInner(0.2);
   // y-axis mapper
-  const yMax = d3.max(prices, (d) => d.adjHigh) ?? 1;
-  const yMin = d3.min(prices, (d) => d.adjLow) ?? 0;
+  const yMax = d3.max(prices, (d) => d.high) ?? 1;
+  const yMin = d3.min(prices, (d) => d.low) ?? 0;
   const yPadding = (yMax - yMin) * 0.05 || 1;
   const y = d3.scaleLinear(
     [yMin - yPadding, yMax + yPadding],
@@ -171,8 +171,8 @@ const getLeavePlotFn = <G extends FeatureGroupOpt>({
   const { marginRight, marginBottom, marginTop } = plotSizeConfig;
   if (!prices) return;
   // y-axis mapper
-  const yMax = d3.max(prices, (d) => d.adjHigh) ?? 1;
-  const yMin = d3.min(prices, (d) => d.adjLow) ?? 0;
+  const yMax = d3.max(prices, (d) => d.high) ?? 1;
+  const yMin = d3.min(prices, (d) => d.low) ?? 0;
   const yPadding = (yMax - yMin) * 0.05 || 1;
   const y = d3.scaleLinear(
     [yMin - yPadding, yMax + yPadding],

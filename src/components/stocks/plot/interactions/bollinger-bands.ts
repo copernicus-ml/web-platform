@@ -53,7 +53,7 @@ const updateIndicators = (
     updateCirclePos(
       getCircleID(bbIDPrefix, "bbMid"),
       duration,
-      (x(feature.tradeDate) ?? 0) + x.bandwidth() / 2,
+      (x(feature.date) ?? 0) + x.bandwidth() / 2,
       y(feature.bbMid),
     );
   }

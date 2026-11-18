@@ -5,7 +5,7 @@ const localStorageKey = "copernicus";
 const maxRecords = 10;
 
 type SearchRecord = {
-  ticker: string;
+  symbol: string;
   window: DataWindowOpt;
   group: FeatureGroupOpt;
 };
@@ -21,18 +21,18 @@ const readLocalStorage = () => {
 };
 
 const addSearchHistory = (
-  ticker: string,
+  symbol: string,
   window: DataWindowOpt,
   group: FeatureGroupOpt,
 ) => {
-  const newRecord: SearchRecord = { ticker, window, group };
+  const newRecord: SearchRecord = { symbol, window, group };
   const storage = readLocalStorage();
   if (storage === undefined) {
     localStorage.setItem(localStorageKey, JSON.stringify({ records: [newRecord] }));
     return;
   }
   let currRecords = storage.records as SearchRecord[];
-  currRecords = currRecords.filter((record) => record.ticker !== ticker);
+  currRecords = currRecords.filter((record) => record.symbol !== symbol);
   currRecords.push(newRecord);
   if (currRecords.length > maxRecords) {
     currRecords = currRecords.slice(-maxRecords);
