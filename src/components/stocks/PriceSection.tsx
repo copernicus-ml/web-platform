@@ -13,7 +13,7 @@ import { useTranslation } from "react-i18next";
 
 type PriceChartProps = {} & React.ComponentPropsWithoutRef<"div">;
 
-const stockRoute = getRouteApi("/stocks/$ticker");
+const stockRoute = getRouteApi("/stocks/$symbol");
 
 export default function PriceChart({ ...props }: PriceChartProps) {
   const { t } = useTranslation("stocks");

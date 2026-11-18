@@ -20,7 +20,7 @@ describe("storage", () => {
     addSearchHistory("AAPL", "60D", "pricemomentum");
     const record = readLastSearch();
     expect(record).not.toBeUndefined();
-    expect([record?.ticker, record?.window, record?.group]).toEqual([
+    expect([record?.symbol, record?.window, record?.group]).toEqual([
       "AAPL",
       "60D",
       "pricemomentum",
@@ -28,7 +28,7 @@ describe("storage", () => {
     expect(readLastSearch()).toBeUndefined();
   });
 
-  it("keeps one record per ticker, and move a repeated one to the end", () => {
+  it("keeps one record per symbol, and move a repeated one to the end", () => {
     addSearchHistory("AAPL", "60D", "pricemomentum");
     addSearchHistory("MSFT", "1Y", "kdj");
     addSearchHistory("AAPL", "1Y", "pricemomentum");

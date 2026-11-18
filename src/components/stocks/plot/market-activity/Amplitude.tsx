@@ -42,8 +42,8 @@ export default function Amplitude({
       <g id={getBarGroupID(marketIDPrefix, "amplitude")}>
         {features.map((feature) => (
           <rect
-            key={`market-amplitude-${feature.tradeDate}`}
-            x={(x(feature.tradeDate) ?? 0) + x.bandwidth() * 0.1}
+            key={`market-amplitude-${feature.date}`}
+            x={(x(feature.date) ?? 0) + x.bandwidth() * 0.1}
             y={y(feature.amplitude)}
             width={x.bandwidth() * 0.8}
             height={y.range()[0] - y(feature.amplitude)}

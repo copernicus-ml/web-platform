@@ -5,16 +5,16 @@ import { defaultStock } from ".";
 export const Route = createFileRoute("/stocks")({
   beforeLoad: ({ location }) => {
     if (location.pathname.replaceAll("/", "") === "stocks") {
-      let { ticker, window, group } = defaultStock;
+      let { symbol, window, group } = defaultStock;
       const lastSearch = readLastSearch();
       if (lastSearch) {
-        ticker = lastSearch.ticker;
+        symbol = lastSearch.symbol;
         window = lastSearch.window;
         group = lastSearch.group;
       }
       throw redirect({
-        to: "/stocks/$ticker",
-        params: { ticker },
+        to: "/stocks/$symbol",
+        params: { symbol },
         search: { window, group },
       });
     }

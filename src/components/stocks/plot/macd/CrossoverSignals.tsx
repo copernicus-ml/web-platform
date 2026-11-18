@@ -22,8 +22,8 @@ export default function CrossoverSignals({
   const goldDays: string[] = [];
   const deadDays: string[] = [];
   features.forEach((feature) => {
-    if (feature.gold === 1) goldDays.push(feature.tradeDate);
-    if (feature.dead === 1) deadDays.push(feature.tradeDate);
+    if (feature.gold === 1) goldDays.push(feature.date);
+    if (feature.dead === 1) deadDays.push(feature.date);
   });
 
   const drawLine = (date: string, stroke: string) => {

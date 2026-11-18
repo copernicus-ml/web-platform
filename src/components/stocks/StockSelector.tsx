@@ -2,7 +2,7 @@ import { Content, Portal, Root, Trigger } from "@radix-ui/react-popover";
 import SearchIcon from "@/components/icons/SearchIcon";
 import { useState } from "react";
 import clsx from "clsx";
-import { stockRouteAPI, type StockSearchSchema } from "@/routes/stocks.$ticker";
+import { stockRouteAPI, type StockSearchSchema } from "@/routes/stocks.$symbol";
 import { cn } from "@/lib/utils";
 
 const styles = {
@@ -17,15 +17,15 @@ export default function StockSelector({
   const [stockPrefix, setStockPrefix] = useState<string>("");
   const [open, setOpen] = useState<boolean>(false);
   const navigate = stockRouteAPI.useNavigate();
-  const { ticker: currTicker } = stockRouteAPI.useParams();
+  const { symbol: currTicker } = stockRouteAPI.useParams();
   const stockList = stockRouteAPI.useLoaderData({
     select: (loaderData) => loaderData.list,
   });
 
-  const changeStock = (ticker: string) => {
+  const changeStock = (symbol: string) => {
     navigate({
       to: ".",
-      params: { ticker: ticker },
+      params: { symbol: symbol },
       search: (previous) => previous as StockSearchSchema,
     });
   };

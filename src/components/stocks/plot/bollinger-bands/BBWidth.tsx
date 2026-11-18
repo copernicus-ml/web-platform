@@ -37,16 +37,16 @@ export default function BBWidth({
   );
   const area = d3
     .area<BollingerBandsFeature>()
-    .x((feature) => (x(feature.tradeDate) ?? 0) + x.bandwidth() / 2)
+    .x((feature) => (x(feature.date) ?? 0) + x.bandwidth() / 2)
     .y0((feature) => y(feature[widthFeature] / 2))
     .y1((feature) => y(-feature[widthFeature] / 2))(features);
   const upperEdge = d3
     .line<BollingerBandsFeature>()
-    .x((feature) => (x(feature.tradeDate) ?? 0) + x.bandwidth() / 2)
+    .x((feature) => (x(feature.date) ?? 0) + x.bandwidth() / 2)
     .y((feature) => y(feature.bbWidth / 2))(features);
   const lowerEdge = d3
     .line<BollingerBandsFeature>()
-    .x((feature) => (x(feature.tradeDate) ?? 0) + x.bandwidth() / 2)
+    .x((feature) => (x(feature.date) ?? 0) + x.bandwidth() / 2)
     .y((feature) => y(-feature.bbWidth / 2))(features);
 
   if (!area) return <></>;

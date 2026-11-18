@@ -103,7 +103,7 @@ const getPaths = <G extends FeatureGroupOpt>(
           (feature[featureName] as number) >= y.domain()[0] &&
           (feature[featureName] as number) <= y.domain()[1],
       )
-      .x((feature) => (x(feature.tradeDate) ?? 0) + x.bandwidth() / 2)
+      .x((feature) => (x(feature.date) ?? 0) + x.bandwidth() / 2)
       .y((feature) => y(feature[featureName] as number))(features);
     if (path != null) paths[featureName as string] = path;
   });

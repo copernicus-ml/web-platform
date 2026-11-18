@@ -87,7 +87,7 @@
   },
   "featureName": {
 
-    "adjVol": "Volume",
+    "volume": "Volume",
     "turnover": "Turnover",
 
     "gold": "Gold",

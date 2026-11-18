@@ -76,7 +76,7 @@
     "cci": "CCI"
   },
   "featureName": {
-    "adjVol": "成交量",
+    "volume": "成交量",
     "turnover": "换手率",
 
     "gold": "金叉",

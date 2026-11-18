@@ -30,13 +30,13 @@ const toggleVolumeFeature = (featureName: string) => {
 
 const updateIndicator = (StockPrice: StockPrice, feature: VolumeMomentumFeature) => {
   const { duration } = animationConfig;
-  const { adjClose, adjOpen } = StockPrice;
+  const { close, open } = StockPrice;
   const currFeature = feature;
   const volumeLegend = d3
-    .select(`#${getLegendID(vmIDPrefix, "adjVol")}`)
+    .select(`#${getLegendID(vmIDPrefix, "volume")}`)
     .transition()
     .duration(duration);
-  const volumeColor = adjClose >= adjOpen ? priceColors.up : priceColors.down;
+  const volumeColor = close >= open ? priceColors.up : priceColors.down;
   volumeLegend.select("rect").attr("stroke", volumeColor);
   volumeLegend.select("text").attr("fill", volumeColor);
   [...volBiasFeatures, ...volChangesFeatures].forEach((featureName) => {

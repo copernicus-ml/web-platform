@@ -40,8 +40,8 @@ export default function Acceleration({
       <g id={getBarGroupID(macdIDPrefix, "hist")}>
         {features.map((feature) => (
           <rect
-            key={`macd-hist-${feature.tradeDate}`}
-            x={x(feature.tradeDate)}
+            key={`macd-hist-${feature.date}`}
+            x={x(feature.date)}
             y={feature.hist >= 0 ? y(feature.hist) : y(0)}
             width={x.bandwidth()}
             height={Math.abs(y(0) - y(feature.hist))}

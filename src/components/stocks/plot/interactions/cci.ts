@@ -38,7 +38,7 @@ const updateIndicators = (
       updateCirclePos(
         getCircleID(cciIDPrefix, featureName),
         duration,
-        (x(feature.tradeDate) ?? 0) + x.bandwidth() / 2,
+        (x(feature.date) ?? 0) + x.bandwidth() / 2,
         y(feature[featureName]),
       );
     }

@@ -27,7 +27,7 @@ export default function StockDataIndicators({
   y,
 }: StockDataIndicatorsProps) {
   const { marginRight } = plotSizeConfig;
-  const isUp = (prices.at(0)?.adjClose ?? 0) <= (prices.at(-1)?.adjClose ?? 0);
+  const isUp = (prices.at(0)?.close ?? 0) <= (prices.at(-1)?.close ?? 0);
   const lastPrice = prices.at(-1);
   return (
     <g>
@@ -43,7 +43,7 @@ export default function StockDataIndicators({
           <circle
             id={priceElementIds.indicatorPoint}
             cx={0}
-            cy={lastPrice ? y(lastPrice["adjClose"]) : 0}
+            cy={lastPrice ? y(lastPrice["close"]) : 0}
             r={5}
             strokeWidth={2}
             fill={isUp ? priceColors.up : priceColors.down}
@@ -74,7 +74,7 @@ export default function StockDataIndicators({
           >
             <tspan>Pct.</tspan>
             <tspan dx={6} id={priceElementIds.valuesPctChange}>
-              {computePriceChange(prices.at(0)?.adjClose, prices.at(-1)?.adjClose)}
+              {computePriceChange(prices.at(0)?.close, prices.at(-1)?.close)}
             </tspan>
           </text>
           <g
@@ -88,23 +88,23 @@ export default function StockDataIndicators({
             >
               <tspan>O</tspan>
               <tspan dx={4} id={priceElementIds.valuesOpen}>
-                {prices.at(-1)!.adjOpen.toFixed(2)}
+                {prices.at(-1)!.open.toFixed(2)}
               </tspan>
               <tspan x={-visConfig.width}>C</tspan>
               <tspan dx={4} id={priceElementIds.valuesClose}>
-                {prices.at(-1)!.adjClose.toFixed(2)}
+                {prices.at(-1)!.close.toFixed(2)}
               </tspan>
               <tspan x={-visConfig.width * 2}>H</tspan>
               <tspan dx={4} id={priceElementIds.valuesHigh}>
-                {prices.at(-1)!.adjHigh.toFixed(2)}
+                {prices.at(-1)!.high.toFixed(2)}
               </tspan>
               <tspan x={-visConfig.width * 3}>L</tspan>
               <tspan dx={4} id={priceElementIds.valuesLow}>
-                {prices.at(-1)!.adjLow.toFixed(2)}
+                {prices.at(-1)!.low.toFixed(2)}
               </tspan>
               <tspan x={-visConfig.width * 4}>V</tspan>
               <tspan dx={4} id={priceElementIds.valuesVol}>
-                {parseVolume(prices.at(-1)!.adjVol)}
+                {parseVolume(prices.at(-1)!.volume)}
               </tspan>
             </text>
           </g>
@@ -112,7 +112,7 @@ export default function StockDataIndicators({
       )}
       <g
         id={priceElementIds.valuesCurrGroup}
-        transform={`translate(${width - marginRight}, ${y(prices.at(-1)?.adjClose || 0)})`}
+        transform={`translate(${width - marginRight}, ${y(prices.at(-1)?.close || 0)})`}
       >
         <rect
           id={priceElementIds.valuesCurrRect}
@@ -132,7 +132,7 @@ export default function StockDataIndicators({
           fontSize={12}
           className="fill-background"
         >
-          {prices.at(-1)?.adjClose}
+          {prices.at(-1)?.close}
         </text>
       </g>
     </g>

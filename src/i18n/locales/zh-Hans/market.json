@@ -3,7 +3,7 @@
     "marketPerformance": "市场表现"
   },
   "table": {
-    "ticker": "代码",
+    "symbol": "代码",
     "subIndustry": "子行业",
     "rank": "排名",
     "pct1d": "1日",

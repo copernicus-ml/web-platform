@@ -10,36 +10,36 @@ import {
 } from "@/apis";
 import { queryOptions } from "@tanstack/react-query";
 
-const stockInfoQuery = (ticker: string, authToken: string) => {
+const stockInfoQuery = (symbol: string, authToken: string) => {
   return queryOptions({
-    queryKey: ["stock", ticker, "info"],
+    queryKey: ["stock", symbol, "info"],
     queryFn: async ({ signal }) => {
-      return getStockInfo(ticker, authToken, signal);
+      return getStockInfo(symbol, authToken, signal);
     },
     staleTime: Infinity,
   });
 };
 
-const stockPriceQuery = (ticker: string, window: DataWindowOpt, authToken: string) => {
+const stockPriceQuery = (symbol: string, window: DataWindowOpt, authToken: string) => {
   return queryOptions({
-    queryKey: ["stock", ticker, "prices", window],
+    queryKey: ["stock", symbol, "prices", window],
     queryFn: async ({ signal }) => {
-      return getStockPrices(ticker, window, authToken, signal);
+      return getStockPrices(symbol, window, authToken, signal);
     },
     staleTime: Infinity,
   });
 };
 
 const stockFeatureQuery = (
-  ticker: string,
+  symbol: string,
   window: DataWindowOpt,
   featureGroup: FeatureGroupOpt,
   authToken: string,
 ) => {
   return queryOptions({
-    queryKey: ["stock", ticker, "features", window, featureGroup],
+    queryKey: ["stock", symbol, "features", window, featureGroup],
     queryFn: ({ signal }) =>
-      getStockFeatures(ticker, window, featureGroup, authToken, signal),
+      getStockFeatures(symbol, window, featureGroup, authToken, signal),
     staleTime: Infinity,
   });
 };

@@ -51,7 +51,7 @@ const updateIndicators = (
     );
     if (x && y) {
       // update circle visibility and position
-      const xPos = (x(feature.tradeDate) ?? 0) + x.bandwidth() / 2;
+      const xPos = (x(feature.date) ?? 0) + x.bandwidth() / 2;
       const yPos = y(feature[featureName]) ?? 0;
       const opacity = yPos <= y.range()[0] && yPos >= y.range()[1] ? 1 : 0;
       updateCirclePos(getCircleID(pmIDPrefix, featureName), duration, xPos, yPos);

@@ -3,7 +3,7 @@ import { DATA_URL, type DataServiceError } from "@/apis/shared";
 
 const StockInfoSchema = z
   .object({
-    ts_code: z.string(),
+    symbol: z.string(),
     company_name: z.string(),
     sector: z.string(),
     sub_industry: z.string(),
@@ -11,7 +11,7 @@ const StockInfoSchema = z
     founded: z.string(),
   })
   .transform((input) => ({
-    ticker: input.ts_code,
+    symbol: input.symbol,
     companyName: input.company_name,
     subIndustry: input.sub_industry,
     sector: input.sector,
@@ -19,8 +19,8 @@ const StockInfoSchema = z
     founded: input.founded,
   }));
 
-const getStockInfo = async (ticker: string, authToken: string, signal?: AbortSignal) => {
-  const url = new URL(`data/stock/info/${ticker}`, DATA_URL);
+const getStockInfo = async (symbol: string, authToken: string, signal?: AbortSignal) => {
+  const url = new URL(`data/stock/info/${symbol}`, DATA_URL);
   const response = await fetch(url, {
     method: "GET",
     headers: {
@@ -32,7 +32,7 @@ const getStockInfo = async (ticker: string, authToken: string, signal?: AbortSig
     const errorData = (await response.json()) as DataServiceError;
     const errorMessage =
       errorData.error.message ||
-      `Failed to get ${ticker} stock info from server. Status ${response.status}`;
+      `Failed to get ${symbol} stock info from server. Status ${response.status}`;
     throw new Error(errorMessage);
   }
   const responseData = await response.json();

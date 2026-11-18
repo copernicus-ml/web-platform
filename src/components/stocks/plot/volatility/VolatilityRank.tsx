@@ -38,11 +38,8 @@ export default function VolatilityRank({
         <g id={getCirclesGroupID(volatilityRankFeature)}>
           {features.map((feature) => (
             <circle
-              key={getCircleID(
-                volatilityIDPrefix,
-                volatilityRankFeature + feature.tradeDate,
-              )}
-              cx={(x(feature.tradeDate) ?? 0) + x.bandwidth() / 2}
+              key={getCircleID(volatilityIDPrefix, volatilityRankFeature + feature.date)}
+              cx={(x(feature.date) ?? 0) + x.bandwidth() / 2}
               cy={y(feature[volatilityRankFeature])}
               r={3}
               strokeWidth={2}

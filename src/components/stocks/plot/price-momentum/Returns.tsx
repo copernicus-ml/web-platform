@@ -51,8 +51,8 @@ export default function Returns({
               const val = feature[featureName];
               return (
                 <rect
-                  key={`pm-${feature.tradeDate}-${featureName}`}
-                  x={x(feature.tradeDate)}
+                  key={`pm-${feature.date}-${featureName}`}
+                  x={x(feature.date)}
                   y={val >= 0 ? y(val) : y(0)}
                   width={x.bandwidth()}
                   height={Math.abs(y(val) - y(0))}

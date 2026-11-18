@@ -42,7 +42,7 @@ describe("MarketRank", () => {
     const user = userEvent.setup();
     render(<MarketRank />);
     expect(screen.getByTestId("market-table")).toHaveTextContent(
-      "rank,ticker,subIndustry,pct1d,pct5d,pct10d,pct20d,pct60d",
+      "rank,symbol,subIndustry,pct1d,pct5d,pct10d,pct20d,pct60d",
     );
     await user.click(screen.getByRole("button", { name: "By Subindustries" }));
     expect(mocks.navigate).toHaveBeenCalledWith({

@@ -3,27 +3,27 @@ import { readLastSearch } from "@/lib/storage";
 import { createFileRoute, redirect } from "@tanstack/react-router";
 
 export const defaultStock: {
-  ticker: string;
+  symbol: string;
   window: DataWindowOpt;
   group: FeatureGroupOpt;
 } = {
-  ticker: "AAPL",
+  symbol: "AAPL",
   window: "60D",
   group: "pricemomentum",
 };
 
 export const Route = createFileRoute("/")({
   beforeLoad: () => {
-    let { ticker, window, group } = defaultStock;
+    let { symbol, window, group } = defaultStock;
     const lastVisited = readLastSearch();
     if (lastVisited !== undefined) {
-      ticker = lastVisited.ticker;
+      symbol = lastVisited.symbol;
       window = lastVisited.window;
       group = lastVisited.group;
     }
     throw redirect({
-      to: "/stocks/$ticker",
-      params: { ticker },
+      to: "/stocks/$symbol",
+      params: { symbol },
       search: { window, group },
     });
   },

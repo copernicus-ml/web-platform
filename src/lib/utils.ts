@@ -5,10 +5,10 @@ function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
 
-const parseDate = (tradeDate: string): Array<string> => {
-  const year = tradeDate.slice(0, 4);
-  const month = tradeDate.slice(4, 6);
-  const day = tradeDate.slice(-2);
+const parseDate = (date: string): Array<string> => {
+  const year = date.slice(0, 4);
+  const month = date.slice(4, 6);
+  const day = date.slice(-2);
   return [year, month, day];
 };
 

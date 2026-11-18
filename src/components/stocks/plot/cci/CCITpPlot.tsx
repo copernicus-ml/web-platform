@@ -57,7 +57,7 @@ export default function CCITpPlot({ features, chartType, x, y }: CCITpPlot) {
           <circle
             key={getCircleID(cciIDPrefix, featureName)}
             id={getCircleID(cciIDPrefix, featureName)}
-            cx={(x(lastFeature?.tradeDate) ?? 0) + x.bandwidth() / 2}
+            cx={(x(lastFeature?.date) ?? 0) + x.bandwidth() / 2}
             cy={y(lastFeature[featureName])}
             fill={colorPalette[i]}
             r={circleR}

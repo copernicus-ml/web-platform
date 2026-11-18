@@ -42,7 +42,7 @@ const updateIndicators = (
       feature[featureName].toFixed(2),
     );
     if (x && y) {
-      const xPos = (x(feature.tradeDate) ?? 0) + x.bandwidth() / 2;
+      const xPos = (x(feature.date) ?? 0) + x.bandwidth() / 2;
       const yPos = y(feature[featureName]) ?? 0;
       const circleOpacity = yPos <= y.range()[0] && yPos >= y.range()[1] ? 1 : 0;
       updateCircleOpacity(

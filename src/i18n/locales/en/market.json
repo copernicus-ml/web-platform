@@ -3,7 +3,7 @@
     "marketPerformance": "Market Performance"
   },
   "table": {
-    "ticker": "Ticker",
+    "symbol": "Ticker",
     "subIndustry": "Subindustry",
     "rank": "Rank",
     "pct1d": "1 Day",
