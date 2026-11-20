@@ -27,6 +27,4 @@
   --color-yellow: oklch(81.5% 0.115 49.1);
 
   --color-frame: var(--color-accent-300);
-
-  --linestyle: var("dashed");
 }
