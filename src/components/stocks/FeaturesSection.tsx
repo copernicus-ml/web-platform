@@ -33,19 +33,21 @@ export default function FeaturesSection({ ...props }: FeaturesSectionProps) {
   return (
     <Section {...props}>
       <Header>
-        {featureGroup === "dema" && <DEMAPeriodSelector />}
-        <Selections>
-          {FeatureSubplots[featureGroup].map((subPlotName) => (
-            <Button
-              key={`${featureGroup}-${subPlotName}`}
-              active={subPlotName === currSubplot}
-              className="min-w-28"
-              onClick={() => setCurrSubplot(subPlotName)}
-            >
-              {t(`subPlotName.${subPlotName}`)}
-            </Button>
-          ))}
-        </Selections>
+        <div className="flex gap-6">
+          {featureGroup === "dema" && <DEMAPeriodSelector />}
+          <Selections className="border-l">
+            {FeatureSubplots[featureGroup].map((subPlotName) => (
+              <Button
+                key={`${featureGroup}-${subPlotName}`}
+                active={subPlotName === currSubplot}
+                className="min-w-28"
+                onClick={() => setCurrSubplot(subPlotName)}
+              >
+                {t(`subPlotName.${subPlotName}`)}
+              </Button>
+            ))}
+          </Selections>
+        </div>
       </Header>
       <Content ref={plotContainerRef} className="flex-1">
         <StockFeaturePlot

@@ -6,7 +6,7 @@ import { stockRouteAPI } from "@/routes/stocks.$symbol";
 const styles = {
   container: clsx(
     "box-border w-full h-16 grid grid-cols-3 items-center overflow-hidden",
-    "divide-x divide-accent-300",
+    "divide-x divide-frame",
   ),
   columnBasic: clsx(
     "w-full h-full px-5 flex flex-col justify-center transition duration-100 text-sm",

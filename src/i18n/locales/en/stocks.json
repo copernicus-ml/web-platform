@@ -1,8 +1,6 @@
 {
   "ui": {
-    "pricetrend": "price trend",
-    "features": "features",
-    "featuregroups": "Feature Groups"
+    "basicfeatures": "Basic Features"
   },
   "stocks": {
     "60D": "60D",

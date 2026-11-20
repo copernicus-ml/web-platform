@@ -25,4 +25,6 @@
   --color-red: oklch(53.1% 0.188 10.9);
   --color-blue: oklch(79.3% 0.056 235.2);
   --color-yellow: oklch(81.5% 0.115 49.1);
+
+  --color-frame: var(--color-accent-300);
 }

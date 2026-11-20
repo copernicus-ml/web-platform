@@ -32,25 +32,30 @@ export default function FeatureGroupSidebar() {
       const scrollTop = element.scrollTop;
       const clientHeight = element.clientHeight;
       const isTop = scrollTop === 0;
-      const isBottom = scrollHeight === clientHeight + scrollTop;
-      if (isTop) overlay.setAttribute("data-pos", "top");
+      const isBottom = scrollHeight == clientHeight + scrollTop;
+      if (isTop && isBottom) overlay.setAttribute("data-pos", "none");
+      else if (isTop) overlay.setAttribute("data-pos", "top");
       else if (isBottom) overlay.setAttribute("data-pos", "bottom");
       else if (!isTop && !isBottom) overlay.setAttribute("data-pos", "between");
     };
     checkScroll();
     element.addEventListener("scroll", checkScroll);
-    return () => element.removeEventListener("scroll", checkScroll);
+    element.addEventListener("resize", checkScroll);
+    return () => {
+      element.removeEventListener("scroll", checkScroll);
+      element.removeEventListener("resize", checkScroll);
+    };
   }, []);
 
   return (
-    <div className="w-full h-full flex flex-col max-w-70 min-w-50">
-      <div className="h-10 flex justify-center items-center border-b border-accent-300">
-        <h2 className="text-sm">{t("ui.featuregroups")}</h2>
+    <div className="w-full h-full flex flex-col max-w-65">
+      <div className="h-10 flex justify-center items-center border-b border-frame border-dashed">
+        <h2 className="text-sm">{t("ui.basicfeatures")}</h2>
       </div>
       <div className="relative flex-1 overflow-hidden">
         <div
           ref={sidebarRef}
-          className="h-full overflow-y-auto scrollbar-none scroll-smooth divide-y divide-accent-300 last:rounded-b-md"
+          className="h-full overflow-y-auto scrollbar-none scroll-smooth divide-y divide-frame divide-dashed last:rounded-b-md"
         >
           {FeatureGroups.map((group) => (
             <FeatureGroupCard

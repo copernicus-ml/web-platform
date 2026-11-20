@@ -8,7 +8,7 @@ import { useTranslation } from "react-i18next";
 
 const styles = {
   content: clsx(
-    "origin-top flex flex-col gap-3 mt-1 rounded-md z-2 bg-background shadow-[0_2px_8px] border-accent-300 border shadow-accent-300 px-3 py-3 data-[state=open]:animate-[slideUp_200ms_ease-out]",
+    "origin-top flex flex-col gap-3 mt-1 rounded-md z-2 bg-background shadow-[0_2px_8px] border-frame border shadow-accent-300 px-3 py-3 data-[state=open]:animate-[slideUp_200ms_ease-out]",
   ),
 };
 
