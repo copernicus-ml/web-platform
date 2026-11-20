@@ -1,4 +1,3 @@
-import * as d3 from "d3";
 import type { OBVFeature } from "@/apis";
 import {
   getBarGroupID,
@@ -9,7 +8,6 @@ import {
   updateTextValue,
 } from "./d3-utils";
 import { digitToPercent } from "@/lib/utils";
-import { priceColors } from "@/lib/theme";
 
 const obvIDPrefix = "obv";
 const obvPressureFeatures = ["obv5", "obv20"] as const;
@@ -29,12 +27,6 @@ const updateIndicator = (feature: OBVFeature) => {
     );
   });
   obvMomentumFeatures.forEach((featureName) => {
-    const legend = d3.select(`#${getLegendID(obvIDPrefix, featureName)}`);
-    if (!legend.empty()) {
-      const positive = feature[featureName] >= 0;
-      legend.select("rect").attr("stroke", positive ? priceColors.up : priceColors.down);
-      legend.select("text").attr("fill", positive ? priceColors.up : priceColors.down);
-    }
     updateTextValue(
       getLegendValueID(obvIDPrefix, featureName),
       feature[featureName].toFixed(2),

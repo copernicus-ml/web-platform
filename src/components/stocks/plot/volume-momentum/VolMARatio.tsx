@@ -38,7 +38,7 @@ export default function VolMARatio({
         x2={x.range()[1]}
         y1={y(1.0)}
         y2={y(1.0)}
-        className="stroke-primary"
+        className="stroke-mark"
         strokeWidth={markStrokeWidth}
         strokeDasharray={markStrokeDasharray}
       />

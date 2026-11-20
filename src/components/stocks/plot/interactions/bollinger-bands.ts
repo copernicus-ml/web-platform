@@ -7,6 +7,7 @@ import {
   getLegendValueID,
   getLineID,
   toggleElement,
+  toggleLegend,
   updateCircleOpacity,
   updateCirclePos,
   updateTextValue,
@@ -27,8 +28,8 @@ const toggleBand = () => {
 
 const toggleBBFeature = (featureName: string) => {
   toggleElement(getLineID(bbIDPrefix, featureName));
-  toggleElement(getLegendID(bbIDPrefix, featureName), 0.3, 1.0);
-  toggleElement(getCirclesGroupID("bbMid"));
+  toggleLegend(getLegendID(bbIDPrefix, featureName));
+  toggleElement(getCirclesGroupID("bbMid"), 0.0, 0.0);
 };
 
 const updateIndicators = (

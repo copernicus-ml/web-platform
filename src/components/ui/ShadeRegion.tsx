@@ -38,15 +38,6 @@ export default function ShadeRegion({
             fill={upperColor}
             opacity={opacity ? opacity : shadeOpacity}
           />
-          <line
-            x1={xStart}
-            x2={xEnd}
-            y1={y(upper)}
-            y2={y(upper)}
-            strokeWidth={markStrokeWidth}
-            strokeDasharray={markStrokeDasharray}
-            stroke={upperColor}
-          />
         </g>
       )}
       {y.domain()[0] <= lower && (
@@ -59,15 +50,6 @@ export default function ShadeRegion({
             fill={lowerColor}
             opacity={opacity ? opacity : shadeOpacity}
           />
-          <line
-            x1={xStart}
-            x2={xEnd}
-            y1={y(lower)}
-            y2={y(lower)}
-            strokeWidth={markStrokeWidth}
-            strokeDasharray={markStrokeDasharray}
-            stroke={lowerColor}
-          />
         </g>
       )}
       {center !== undefined && (
@@ -78,7 +60,7 @@ export default function ShadeRegion({
           y2={y(center)}
           strokeWidth={markStrokeWidth}
           strokeDasharray={markStrokeDasharray}
-          className="stroke-primary"
+          className="stroke-mark"
         />
       )}
     </>

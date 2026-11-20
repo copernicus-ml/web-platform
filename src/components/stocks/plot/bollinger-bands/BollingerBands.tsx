@@ -1,25 +1,18 @@
 import * as d3 from "d3";
 import type { BollingerBandsFeature } from "@/apis";
-import { colorPalette } from "@/lib/theme";
+import { colorPalette, svgConfig } from "@/lib/theme";
 import type { PriceChartType } from "@/components/stocks/shared";
-import Legend from "@/components/ui/Legend";
 import {
   bandFeatures,
   bbIDPrefix,
   getBBGroupID,
-  toggleBand,
-  toggleBBFeature,
 } from "@stocks/plot/interactions/bollinger-bands";
-import { legendConfig } from "@/lib/theme";
 import {
   getCircleID,
   getCirclesGroupID,
-  getLegendID,
-  getLegendValueID,
   getLineID,
   getPaths,
 } from "@stocks/plot/interactions/d3-utils";
-import { useTranslation } from "react-i18next";
 
 type BollingerBandsProps = {
   features: BollingerBandsFeature[];
@@ -34,9 +27,6 @@ export default function BollingerBands({
   x,
   y,
 }: BollingerBandsProps) {
-  const { t } = useTranslation("stocks");
-  const { featureWidthWidest, featureGap } = legendConfig;
-
   const area = d3
     .area<BollingerBandsFeature>()
     .x((feature) => (x(feature.date) ?? 0) + x.bandwidth() / 2)
@@ -56,9 +46,9 @@ export default function BollingerBands({
             key={getLineID(bbIDPrefix, featureName)}
             d={paths[featureName]}
             stroke={colorPalette[2]}
-            strokeWidth={1.2}
+            strokeWidth={svgConfig.strokeWidth}
             fill="none"
-            strokeDasharray={"12 3"}
+            strokeDasharray={svgConfig.strokeDasharray}
           />
         ))}
       </g>
@@ -67,30 +57,8 @@ export default function BollingerBands({
           id={getLineID(bbIDPrefix, "bbMid")}
           d={paths["bbMid"]}
           stroke={colorPalette[0]}
-          strokeWidth={1.5}
+          strokeWidth={svgConfig.strokeWidth}
           fill="none"
-        />
-      </g>
-      <Legend
-        legendId={getLegendID(bbIDPrefix, "band")}
-        valueId={getLegendValueID(bbIDPrefix, "band")}
-        value={`L ${lastFeature["bbLower"].toFixed(2)} U ${lastFeature["bbUpper"].toFixed(2)}`}
-        index={0}
-        label={t("featureName.bb")}
-        size="widest"
-        color={colorPalette[2]}
-        onMouseDown={toggleBand}
-      />
-      {/* BB Mid */}
-      <g transform={`translate(${featureWidthWidest + featureGap} 0)`}>
-        <Legend
-          legendId={getLegendID(bbIDPrefix, "bbMid")}
-          valueId={getLegendValueID(bbIDPrefix, "bbMid")}
-          value={lastFeature["bbMid"].toFixed(2)}
-          index={0}
-          label={t("featureName.mid")}
-          color={colorPalette[0]}
-          onMouseDown={() => toggleBBFeature("bbMid")}
         />
       </g>
       <g id={getCirclesGroupID("bbMid")} opacity={0}>
@@ -99,9 +67,9 @@ export default function BollingerBands({
             id={getCircleID(bbIDPrefix, "bbMid")}
             cx={(x(lastFeature.date) ?? 0) + x.bandwidth() / 2}
             cy={y(lastFeature["bbMid"])}
-            r={5}
+            r={svgConfig.circleR}
             fill={colorPalette[0]}
-            strokeWidth={2}
+            strokeWidth={svgConfig.circleStroke}
             className="stroke-background"
           />
         )}

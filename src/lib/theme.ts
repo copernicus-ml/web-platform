@@ -10,6 +10,8 @@ const colorPalette = [
   "var(--color-red)",
 ];
 
+const markColor = "var(--color-mark)";
+
 const animationConfig = {
   duration: 50,
 };
@@ -28,24 +30,25 @@ const legendConfig = {
 };
 
 const plotSizeConfig = {
-  marginTop: 35,
+  marginTop: 5,
   marginRight: 5,
   marginBottom: 50,
   marginLeft: 45,
 };
 
 const svgConfig = {
-  strokeWidth: 1.5,
+  strokeWidth: 1.3,
   opacity: 0.7,
   strokeDasharray: "10 4",
-  markStrokeWidth: 1.5,
+  markStrokeWidth: 1.3,
   markStrokeDasharray: "6 4",
   shadeOpacity: 0.15,
-  circleR: 5,
+  circleR: 4,
   circleStroke: 2,
 };
 
 export {
+  markColor,
   priceColors,
   legendConfig,
   animationConfig,

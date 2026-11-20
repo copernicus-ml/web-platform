@@ -8,7 +8,7 @@ export default function DEMAPeriodSelector() {
   const [demaPeriod, setDemaPeriod] = useAtom(demaPeriodAtom);
   const { t } = useTranslation("stocks");
   return (
-    <Selections>
+    <Selections className="border-l border-r">
       {DEMAPeriods.map((period) => (
         <Button
           key={`dema-period-${period}`}

@@ -1,6 +1,6 @@
 import * as d3 from "d3";
 import type { StockPrice } from "@/apis";
-import { priceColors, legendConfig } from "@/lib/theme";
+import { priceColors, legendConfig, svgConfig } from "@/lib/theme";
 import { priceElementIds } from "@stocks/plot/interactions/price-trend";
 import DateLine from "@/components/ui/DateLine";
 import type { PriceChartType } from "@/components/stocks/shared";
@@ -36,8 +36,8 @@ export default function StockDataIndicators({
             id={priceElementIds.indicatorPoint}
             cx={0}
             cy={lastPrice ? y(lastPrice["close"]) : 0}
-            r={5}
-            strokeWidth={2}
+            r={svgConfig.circleR}
+            strokeWidth={svgConfig.circleStroke}
             fill={isUp ? priceColors.up : priceColors.down}
             opacity={chartType === "line" ? 1 : 0}
             className="stroke-background"

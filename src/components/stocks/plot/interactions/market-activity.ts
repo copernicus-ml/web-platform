@@ -6,6 +6,7 @@ import {
   getLegendValueID,
   getLineID,
   toggleElement,
+  toggleLegend,
   updateTextValue,
 } from "@stocks/plot/interactions/d3-utils";
 
@@ -21,7 +22,7 @@ const amplitudeFeatures = ["amplitude", "amplitudeMa5", "amplitudeMa20"] as cons
 const marketIDPrefix = "market-activity";
 const toggleFeature = (featureName: string) => {
   toggleElement(getLineID(marketIDPrefix, featureName));
-  toggleElement(getLegendID(marketIDPrefix, featureName), 0.3, 1.0);
+  toggleLegend(getLegendID(marketIDPrefix, featureName));
   toggleElement(getBarGroupID(marketIDPrefix, featureName));
   toggleElement(getCirclesGroupID(featureName));
 };

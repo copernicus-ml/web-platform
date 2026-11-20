@@ -7,6 +7,7 @@ import {
   getLegendValueID,
   getLineID,
   toggleElement,
+  toggleLegend,
   updateCircleOpacity,
   updateCirclePos,
   updateTextValue,
@@ -53,8 +54,8 @@ const toggleDEMAFeature = (featureName: string) => {
   toggleElement(getLineID(demaIDPrefix, featureName));
   toggleElement(getCrossLinesID(demaIDPrefix, `${featureName}-price`));
   toggleElement(getCrossLinesID(demaIDPrefix, `${featureName}-feature`));
-  toggleElement(getLegendID(demaIDPrefix, featureName), 0.3, 1.0);
-  toggleElement(getCircleID(demaIDPrefix, featureName));
+  toggleLegend(getLegendID(demaIDPrefix, featureName));
+  toggleElement(getCircleID(demaIDPrefix, featureName), 0.0, 0.0);
 };
 
 const updateIndicators = (

@@ -9,6 +9,7 @@ import {
   getLegendValueID,
   getLineID,
   toggleElement,
+  toggleLegend,
   updateCircleOpacity,
   updateCirclePos,
   updateLegendColor,
@@ -31,8 +32,8 @@ const toggleFeature = (featureName: string) => {
   } else {
     toggleElement(getLineID(pmIDPrefix, featureName));
   }
-  toggleElement(getLegendID(pmIDPrefix, featureName), 0.3, 1.0);
-  toggleElement(getCircleID(pmIDPrefix, featureName));
+  toggleLegend(getLegendID(pmIDPrefix, featureName));
+  toggleElement(getCircleID(pmIDPrefix, featureName), 0.0, 0.0);
   toggleElement(getBarGroupID(pmIDPrefix, featureName));
 };
 

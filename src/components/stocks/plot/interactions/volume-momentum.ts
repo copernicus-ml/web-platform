@@ -1,4 +1,3 @@
-import * as d3 from "d3";
 import type { StockPrice, VolumeMomentumFeature } from "@/apis";
 import {
   getBarGroupID,
@@ -9,7 +8,6 @@ import {
   updateTextValue,
 } from "./d3-utils";
 import { digitToPercent } from "@/lib/utils";
-import { animationConfig, priceColors } from "@/lib/theme";
 
 const volBiasFeatures = ["vol5Bias", "vol10Bias", "vol20Bias", "vol60Bias"] as const;
 const volChangesFeatures = [
@@ -28,17 +26,8 @@ const toggleVolumeFeature = (featureName: string) => {
   toggleElement(getLineID(vmIDPrefix, featureName));
 };
 
-const updateIndicator = (StockPrice: StockPrice, feature: VolumeMomentumFeature) => {
-  const { duration } = animationConfig;
-  const { close, open } = StockPrice;
+const updateIndicator = (feature: VolumeMomentumFeature) => {
   const currFeature = feature;
-  const volumeLegend = d3
-    .select(`#${getLegendID(vmIDPrefix, "volume")}`)
-    .transition()
-    .duration(duration);
-  const volumeColor = close >= open ? priceColors.up : priceColors.down;
-  volumeLegend.select("rect").attr("stroke", volumeColor);
-  volumeLegend.select("text").attr("fill", volumeColor);
   [...volBiasFeatures, ...volChangesFeatures].forEach((featureName) => {
     updateTextValue(
       getLegendValueID(vmIDPrefix, featureName),
@@ -54,7 +43,6 @@ const updateIndicator = (StockPrice: StockPrice, feature: VolumeMomentumFeature)
 };
 
 const updateVolumeIndicators = ({
-  prices,
   features,
   xIdx,
 }: {
@@ -62,17 +50,16 @@ const updateVolumeIndicators = ({
   features: VolumeMomentumFeature[];
   xIdx: number;
 }) => {
-  updateIndicator(prices[xIdx], features[xIdx]);
+  updateIndicator(features[xIdx]);
 };
 
 const resetVolumeIndicators = ({
-  prices,
   features,
 }: {
   prices: StockPrice[];
   features: VolumeMomentumFeature[];
 }) => {
-  updateIndicator(prices.at(-1)!, features.at(-1)!);
+  updateIndicator(features.at(-1)!);
 };
 
 export {

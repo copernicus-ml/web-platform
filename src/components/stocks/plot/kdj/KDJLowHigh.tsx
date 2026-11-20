@@ -1,21 +1,13 @@
 import * as d3 from "d3";
-import { useTranslation } from "react-i18next";
 import type { KDJFeature } from "@/apis";
-import {
-  kdjIDPrefix,
-  kdjLowHighFeatures,
-  toggleKDJElement,
-} from "@stocks/plot/interactions/kdj";
+import { kdjIDPrefix, kdjLowHighFeatures } from "@stocks/plot/interactions/kdj";
 import {
   getCircleID,
   getCirclesGroupID,
-  getLegendID,
-  getLegendValueID,
   getLineID,
   getPaths,
 } from "@stocks/plot/interactions/d3-utils";
 import { colorPalette, svgConfig } from "@/lib/theme";
-import Legend from "@/components/ui/Legend";
 import type { PriceChartType } from "@/components/stocks/shared";
 
 type KDJLowHighProps = {
@@ -26,7 +18,6 @@ type KDJLowHighProps = {
 };
 
 export default function KDJLowHigh({ features, chartType, x, y }: KDJLowHighProps) {
-  const { t } = useTranslation("stocks");
   const { strokeWidth, strokeDasharray, circleR, circleStroke } = svgConfig;
   const paths = getPaths<"kdj">(features, kdjLowHighFeatures, x, y);
   const lastFeature = features.at(-1)!;
@@ -41,16 +32,6 @@ export default function KDJLowHigh({ features, chartType, x, y }: KDJLowHighProp
             stroke={colorPalette[i]}
             strokeWidth={strokeWidth}
             strokeDasharray={strokeDasharray}
-          />
-          <Legend
-            legendId={getLegendID(kdjIDPrefix, featureName)}
-            valueId={getLegendValueID(kdjIDPrefix, featureName)}
-            color={colorPalette[i]}
-            index={i}
-            label={t(`featureName.${featureName}`)}
-            value={features.at(-1)![featureName].toFixed(2)}
-            size="wider"
-            onMouseDown={() => toggleKDJElement(featureName)}
           />
         </g>
       ))}

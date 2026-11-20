@@ -43,6 +43,22 @@ const updateLegendColor = (id: string, color: string) => {
   legend.select("text").attr("fill", color);
 };
 
+const toggleLegend = (
+  id: string,
+  hiddenOpacity: number = 0.3,
+  visibleOpacity: number = 1.0,
+) => {
+  const element = d3.select(`#${id}`);
+  if (element.empty()) return;
+  const currState = element.attr("data-on") ?? "on";
+  if (currState === "on") {
+    element.style("opacity", Math.max(0.0, hiddenOpacity));
+  } else {
+    element.style("opacity", Math.min(1.0, visibleOpacity));
+  }
+  element.attr("data-on", currState === "on" ? "off" : "on");
+};
+
 const toggleElement = (
   id: string,
   hiddenOpacity: number = 0,
@@ -116,6 +132,7 @@ export {
   updateTextValue,
   updateLegendColor,
   toggleElement,
+  toggleLegend,
   getFeatureValues,
   getLineID,
   getCrossLinesID,
