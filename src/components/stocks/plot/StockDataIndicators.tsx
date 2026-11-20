@@ -112,28 +112,30 @@ export default function StockDataIndicators({
       )}
       <g
         id={priceElementIds.valuesCurrGroup}
-        transform={`translate(${width - marginRight}, ${y(prices.at(-1)?.close || 0)})`}
+        transform={`translate(0, ${y(prices.at(-1)?.close || 0)})`}
       >
-        <rect
-          id={priceElementIds.valuesCurrRect}
-          x={4}
-          y={-10}
-          width={48}
-          height={20}
-          rx={legendConfig.rectCorner}
-          fill={isUp ? priceColors.up : priceColors.down}
-        />
-        <text
-          id={priceElementIds.valuesCurrVal}
-          x={28}
-          y={0}
-          dy={"0.33em"}
-          textAnchor="middle"
-          fontSize={12}
-          className="fill-background"
-        >
-          {prices.at(-1)?.close}
-        </text>
+        <g transform={`translate(-15, 0)`}>
+          <rect
+            id={priceElementIds.valuesCurrRect}
+            x={4}
+            y={-10}
+            width={48}
+            height={20}
+            rx={legendConfig.rectCorner}
+            fill={isUp ? priceColors.up : priceColors.down}
+          />
+          <text
+            id={priceElementIds.valuesCurrVal}
+            x={28}
+            y={0}
+            dy={"0.33em"}
+            textAnchor="middle"
+            fontSize={12}
+            className="fill-background"
+          >
+            {prices.at(-1)?.close}
+          </text>
+        </g>
       </g>
     </g>
   );

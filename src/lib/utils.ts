@@ -6,9 +6,10 @@ function cn(...inputs: ClassValue[]) {
 }
 
 const parseDate = (date: string): Array<string> => {
-  const year = date.slice(0, 4);
-  const month = date.slice(4, 6);
-  const day = date.slice(-2);
+  const [year, month, day] = date.split("-");
+  // const year = date.slice(0, 4);
+  // const month = date.slice(4, 6);
+  // const day = date.slice(-2);
   return [year, month, day];
 };
 

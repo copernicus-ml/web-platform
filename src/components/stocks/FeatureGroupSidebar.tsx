@@ -43,7 +43,7 @@ export default function FeatureGroupSidebar() {
   }, []);
 
   return (
-    <div className="w-full h-full bg-background rounded-md border-accent-300 border flex flex-col">
+    <div className="w-full h-full flex flex-col max-w-70 min-w-50">
       <div className="h-10 flex justify-center items-center border-b border-accent-300">
         <h2 className="text-sm">{t("ui.featuregroups")}</h2>
       </div>

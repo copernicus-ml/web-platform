@@ -27,11 +27,7 @@ export default function ActivityScores({
 
   return (
     <>
-      <YAxis
-        y={y}
-        plotWidth={width - marginLeft - marginRight}
-        labelXOffset={marginRight}
-      />
+      <YAxis y={y} width={width} />
       {Object.entries(paths).map(([featureName, value], i) => (
         <path
           key={getLineID(marketIDPrefix, featureName)}

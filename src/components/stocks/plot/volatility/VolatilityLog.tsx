@@ -24,7 +24,7 @@ export default function VolatilityLog({
 }: SubplotProps<"volatility">) {
   const { t } = useTranslation("stocks");
   const { strokeWidth } = svgConfig;
-  const { marginLeft, marginRight, marginBottom, marginTop } = plotSizeConfig;
+  const { marginBottom, marginTop } = plotSizeConfig;
   const values = features.map((feature) => feature[volatilityLogFeature]);
   const y = getYScale(values, height - marginBottom, marginTop);
   const paths = getPaths<"volatility">(features, [volatilityLogFeature], x, y);
@@ -32,11 +32,7 @@ export default function VolatilityLog({
 
   return (
     <>
-      <YAxis
-        y={y}
-        plotWidth={width - marginLeft - marginRight}
-        labelXOffset={marginRight}
-      />
+      <YAxis y={y} width={width} />
       {Object.entries(paths).map(([featureName, value], i) => (
         <g key={getLineID(volatilityIDPrefix, featureName)}>
           <path

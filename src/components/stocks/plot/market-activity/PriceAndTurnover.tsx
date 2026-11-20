@@ -20,11 +20,7 @@ export default function PriceAndTurnover({
   const y = d3.scaleLinear([-0.05, 1.05], [height - marginBottom, marginTop]);
   return (
     <>
-      <YAxis
-        y={y}
-        plotWidth={width - marginLeft - marginRight}
-        labelXOffset={marginRight}
-      />
+      <YAxis y={y} width={width} />
       {/* typical range indicator */}
       <g opacity={0.4}>
         <line

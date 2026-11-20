@@ -21,7 +21,7 @@ import { useTranslation } from "react-i18next";
 export default function RSIPlot({ features, x, width, height }: SubplotProps<"rsi">) {
   const { t } = useTranslation("stocks");
   const { strokeWidth } = svgConfig;
-  const { marginTop, marginBottom, marginLeft, marginRight } = plotSizeConfig;
+  const { marginTop, marginBottom } = plotSizeConfig;
 
   const values = getFeatureValues<"rsi">(features, rsiFeatures);
   const y = getYScale(values, height - marginBottom, marginTop);
@@ -29,11 +29,7 @@ export default function RSIPlot({ features, x, width, height }: SubplotProps<"rs
   const lastFeature = features.at(-1);
   return (
     <>
-      <YAxis
-        y={y}
-        plotWidth={width - marginLeft - marginRight}
-        labelXOffset={marginRight}
-      />
+      <YAxis y={y} width={width} />
       <ShadeRegion
         x={x}
         y={y}

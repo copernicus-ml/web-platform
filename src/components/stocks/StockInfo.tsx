@@ -5,13 +5,12 @@ import { stockRouteAPI } from "@/routes/stocks.$symbol";
 
 const styles = {
   container: clsx(
-    "box-border w-full h-16 grid grid-cols-3 items-center border border-accent-300 rounded-md overflow-hidden bg-background",
+    "box-border w-full h-16 grid grid-cols-3 items-center overflow-hidden",
     "divide-x divide-accent-300",
   ),
   columnBasic: clsx(
     "w-full h-full px-5 flex flex-col justify-center transition duration-100 text-sm",
   ),
-  columnDownloadSeparator: clsx("border-r h-full border-accent-300"),
 };
 
 export default function StockInfo() {

@@ -1,9 +1,8 @@
-import { svgConfig } from "@/lib/theme";
+import { plotSizeConfig, svgConfig } from "@/lib/theme";
 
 type YAxisProps = {
   y: d3.ScaleLinear<number, number>;
-  plotWidth: number;
-  labelXOffset?: number;
+  width: number;
   labelPrefix?: string;
   labelPostfix?: string;
   labelFormatter?: (value: number) => string;
@@ -11,8 +10,7 @@ type YAxisProps = {
 
 export default function YAxis({
   y,
-  plotWidth,
-  labelXOffset,
+  width,
   labelPrefix,
   labelPostfix,
   labelFormatter,
@@ -23,18 +21,18 @@ export default function YAxis({
       {y.ticks(6).map((tick) => (
         <g key={`stock-${tick}`}>
           <line
-            x1={0}
-            x2={plotWidth}
+            x1={plotSizeConfig.marginLeft}
+            x2={width - plotSizeConfig.marginRight}
             y1={y(tick)}
             y2={y(tick)}
             strokeDasharray={markStrokeDasharray}
             className="stroke-accent-300"
           />
           <text
-            x={plotWidth + (labelXOffset ?? 0)}
+            x={8}
             y={y(tick)}
             dy={"0.33em"}
-            textAnchor="end"
+            textAnchor="start"
             className="fill-accent-500"
           >
             {labelPrefix && labelPrefix}

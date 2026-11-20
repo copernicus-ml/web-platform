@@ -25,7 +25,7 @@ export default function BBPosition({
 }: SubplotProps<"bollingerbands">) {
   const { t } = useTranslation("stocks");
   const { strokeWidth } = svgConfig;
-  const { marginLeft, marginRight, marginTop, marginBottom } = plotSizeConfig;
+  const { marginTop, marginBottom } = plotSizeConfig;
   const values = features.map((feature) => feature[positionFeature]);
   const y = getYScale(values, height - marginBottom, marginTop);
   const path = getPaths<"bollingerbands">(features, [positionFeature], x, y)[
@@ -34,12 +34,7 @@ export default function BBPosition({
   if (!path) return <></>;
   return (
     <>
-      <YAxis
-        y={y}
-        plotWidth={width - marginLeft - marginRight}
-        labelXOffset={marginRight}
-        labelFormatter={(value) => value.toFixed(1)}
-      />
+      <YAxis y={y} width={width} labelFormatter={(value) => value.toFixed(1)} />
       {/* Bollinger Band boundaries */}
       <ShadeRegion
         x={x}

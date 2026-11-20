@@ -184,12 +184,7 @@ export default function StockDataPlot({
       className="overflow-visible cursor-crosshair"
     >
       {/* y axis marks */}
-      <YAxis
-        y={y}
-        plotWidth={width - marginLeft - marginRight}
-        labelXOffset={marginRight}
-        labelPrefix="$"
-      />
+      <YAxis width={width} y={y} labelPrefix="$" />
       {/* x axis marks */}
       <XAxis labels={xLabels} x={x} xPos={0} yPos={height - marginBottom} />
       {/* price trend */}

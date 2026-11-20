@@ -28,10 +28,10 @@ const legendConfig = {
 };
 
 const plotSizeConfig = {
-  marginTop: 30,
-  marginRight: 35,
-  marginBottom: 40,
-  marginLeft: 0,
+  marginTop: 35,
+  marginRight: 5,
+  marginBottom: 50,
+  marginLeft: 45,
 };
 
 const svgConfig = {

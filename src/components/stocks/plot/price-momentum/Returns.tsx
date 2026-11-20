@@ -20,7 +20,7 @@ export default function Returns({
   width,
   height,
 }: SubplotProps<"pricemomentum">) {
-  const { marginTop, marginBottom, marginLeft, marginRight } = plotSizeConfig;
+  const { marginTop, marginBottom } = plotSizeConfig;
 
   const values = getFeatureValues<"pricemomentum">(features, returnFeatures);
   const y = getYScale(values, height - marginBottom, marginTop);
@@ -36,8 +36,7 @@ export default function Returns({
     <g>
       <YAxis
         y={y}
-        plotWidth={width - marginLeft - marginRight}
-        labelXOffset={marginRight}
+        width={width}
         labelPostfix="%"
         labelFormatter={(value: number) => (value * 100).toFixed(1)}
       />

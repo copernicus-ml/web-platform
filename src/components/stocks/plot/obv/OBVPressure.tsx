@@ -21,7 +21,7 @@ import { useTranslation } from "react-i18next";
 
 export default function OBVPressure({ features, width, height, x }: SubplotProps<"obv">) {
   const { t } = useTranslation("stocks");
-  const { marginTop, marginBottom, marginLeft, marginRight } = plotSizeConfig;
+  const { marginTop, marginBottom } = plotSizeConfig;
   const { strokeWidth, shadeOpacity } = svgConfig;
   const values = getFeatureValues<"obv">(features, obvPressureFeatures);
   const y = getYScale(values, height - marginBottom, marginTop);
@@ -32,8 +32,7 @@ export default function OBVPressure({ features, width, height, x }: SubplotProps
     <>
       <YAxis
         y={y}
-        plotWidth={width - marginLeft - marginRight}
-        labelXOffset={marginRight}
+        width={width}
         labelFormatter={(value: number) => digitToPercent(value, 0)}
       />
       <ShadeRegion

@@ -20,18 +20,14 @@ import ShadeRegion from "@/components/ui/ShadeRegion";
 
 export default function CCICorePlot({ features, x, width, height }: SubplotProps<"cci">) {
   const { t } = useTranslation("stocks");
-  const { marginBottom, marginTop, marginLeft, marginRight } = plotSizeConfig;
+  const { marginBottom, marginTop } = plotSizeConfig;
   const { strokeWidth } = svgConfig;
   const values = getFeatureValues<"cci">(features, cciCoreFeatures);
   const y = getYScale(values, height - marginBottom, marginTop);
   const paths = getPaths<"cci">(features, cciCoreFeatures, x, y);
   return (
     <>
-      <YAxis
-        y={y}
-        plotWidth={width - marginLeft - marginRight}
-        labelXOffset={marginRight}
-      />
+      <YAxis y={y} width={width} />
       <ShadeRegion
         upper={100}
         lower={-100}

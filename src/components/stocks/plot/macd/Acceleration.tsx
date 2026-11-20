@@ -24,18 +24,14 @@ export default function Acceleration({
   x,
 }: SubplotProps<"macd">) {
   const { t } = useTranslation("stocks");
-  const { marginLeft, marginRight, marginTop, marginBottom } = plotSizeConfig;
+  const { marginTop, marginBottom } = plotSizeConfig;
   const values = getFeatureValues<"macd">(features, [...accelerationFeatures, "hist"]);
   const y = getYScale(values, height - marginBottom, marginTop);
   const paths = getPaths<"macd">(features, accelerationFeatures, x, y);
 
   return (
     <>
-      <YAxis
-        y={y}
-        plotWidth={width - marginLeft - marginRight}
-        labelXOffset={marginRight}
-      />
+      <YAxis y={y} width={width} />
       <CrossoverSignals features={features} x={x} y={y} currPlot="feature" />
       <g id={getBarGroupID(macdIDPrefix, "hist")}>
         {features.map((feature) => (

@@ -23,17 +23,13 @@ export default function VolatilityRank({
   x,
 }: SubplotProps<"volatility">) {
   const { t } = useTranslation("stocks");
-  const { marginLeft, marginRight, marginBottom, marginTop } = plotSizeConfig;
+  const { marginBottom, marginTop } = plotSizeConfig;
   const values = features.map((feature) => feature[volatilityRankFeature]);
   const y = getYScale(values, height - marginBottom, marginTop);
   const lastFeature = features.at(-1)!;
   return (
     <>
-      <YAxis
-        y={y}
-        plotWidth={width - marginLeft - marginRight}
-        labelXOffset={marginRight}
-      />
+      <YAxis y={y} width={width} />
       <g>
         <g id={getCirclesGroupID(volatilityRankFeature)}>
           {features.map((feature) => (

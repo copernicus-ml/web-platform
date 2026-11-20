@@ -50,8 +50,6 @@ const updateHoverValueTag = (
   stock: StockPrice[],
   xIdx: number,
   y: d3.ScaleLinear<number, number>,
-  width: number,
-  marginRight: number,
 ) => {
   const currClose = stock.at(xIdx)!["close"];
   const beginClose = stock.at(0)!["close"];
@@ -60,7 +58,7 @@ const updateHoverValueTag = (
     .duration(50)
     .ease(d3.easeLinear)
     .select(`#${priceElementIds.valuesCurrGroup}`)
-    .attr("transform", `translate(${width - marginRight} ${y(currClose)})`);
+    .attr("transform", `translate(0 ${y(currClose)})`);
   currPriceGroup
     .select("rect")
     .attr("fill", currClose >= beginClose ? priceColors.up : priceColors.down);
@@ -92,8 +90,6 @@ const updateVolumeLegend = (StockPrice: StockPrice) => {
 const updatePriceTrendIndicators = ({
   prices,
   xIdx,
-  width,
-  marginRight,
   x,
   y,
 }: {
@@ -120,14 +116,12 @@ const updatePriceTrendIndicators = ({
   updateCirclePos(priceElementIds.indicatorPoint, duration, 0, yPos);
   updateDateLine(true, date, xPos);
   updateDisplayValues(prices[xIdx], computePriceChange(prices.at(0)!.close, close));
-  updateHoverValueTag(prices, xIdx, y, width, marginRight);
+  updateHoverValueTag(prices, xIdx, y);
   updateVolumeLegend(prices[xIdx]);
 };
 
 const resetPriceTrendIndicators = ({
   prices,
-  width,
-  marginRight,
   y,
 }: {
   prices: StockPrice[];
@@ -143,7 +137,7 @@ const resetPriceTrendIndicators = ({
     close > prices[0].close ? priceColors.up : priceColors.down,
   );
   updateDateLine(false);
-  updateHoverValueTag(prices, -1, y, width, marginRight);
+  updateHoverValueTag(prices, -1, y);
   updateDisplayValues(lastestStock, computePriceChange(prices.at(0)!.close, close));
   updateVolumeLegend(lastestStock);
 };

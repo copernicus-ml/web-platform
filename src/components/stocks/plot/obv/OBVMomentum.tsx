@@ -18,17 +18,13 @@ import { useTranslation } from "react-i18next";
 
 export default function OBVMomentum({ features, width, height, x }: SubplotProps<"obv">) {
   const { t } = useTranslation("stocks");
-  const { marginTop, marginRight, marginBottom, marginLeft } = plotSizeConfig;
+  const { marginTop, marginBottom } = plotSizeConfig;
   const values = getFeatureValues<"obv">(features, obvMomentumFeatures);
   const y = getYScale(values, height - marginBottom, marginTop);
   const lastFeature = features.at(-1)!;
   return (
     <>
-      <YAxis
-        y={y}
-        plotWidth={width - marginLeft - marginRight}
-        labelXOffset={marginRight}
-      />
+      <YAxis y={y} width={width} />
       {obvMomentumFeatures.map((featureName, i) => (
         <g key={getBarGroupID(obvIDPrefix, featureName)}>
           <g id={getBarGroupID(obvIDPrefix, featureName)}>
