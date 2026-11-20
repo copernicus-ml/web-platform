@@ -45,7 +45,7 @@ function RootLayout() {
       <Header />
       <div
         className={cn(
-          "w-full h-full flex-1 max-w-(--max-width) transition-opacity duration-100 border-l border-r border-dashed border-accent-300",
+          "w-full h-full flex-1 max-w-(--max-width) transition-opacity duration-100 border-l border-r border-dashed border-frame",
           isLoading ? "opacity-50" : "opacity-100",
         )}
       >

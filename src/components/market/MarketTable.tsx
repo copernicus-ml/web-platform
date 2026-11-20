@@ -81,11 +81,11 @@ export default function MarketTable({
             <th
               key={`thead-${header}`}
               className={cn(
-                "font-base text-sm h-full leading-9 border-b border-accent-300 first:flex-1",
+                "font-base text-sm h-full leading-9 border-b border-frame border-dashed first:flex-1",
                 header === "subIndustry" ? "flex-5" : "flex-2",
-                header === sortOptions.field && "bg-accent-300",
+                header === sortOptions.field && "bg-accent-200",
                 sortableFieldsSet.has(header) &&
-                  "hover:cursor-pointer hover:bg-accent-300",
+                  "hover:cursor-pointer hover:bg-accent-200",
               )}
               onClick={() => updateSortOptions(header)}
             >
@@ -110,7 +110,7 @@ export default function MarketTable({
             key={`tbody-row-${i}`}
             className={cn(
               "flex justify-between",
-              "border-b last:border-none border-dashed border-accent-300 divide-x divide-accent-300 hover:bg-accent-100",
+              "border-b last:border-none border-dashed border-frame divide-x divide-frame hover:bg-accent-100",
             )}
           >
             {Object.entries(item).map(([key, value], j) => (

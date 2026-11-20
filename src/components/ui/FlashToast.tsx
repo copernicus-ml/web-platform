@@ -44,7 +44,7 @@ function ToastList() {
       key={toast.id}
       toast={toast}
       swipeDirection="up"
-      className={cn(toastStyles.Toast, "border rounded-md shadow-xl border-accent-300")}
+      className={cn(toastStyles.Toast, "border rounded-md shadow-xl border-frame")}
     >
       <Toast.Content className={toastStyles.Content}>
         <div

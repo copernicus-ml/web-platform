@@ -21,7 +21,7 @@ export default function Header() {
   const location = useLocation();
   const path = location.pathname;
   return (
-    <div className="w-full flex items-center justify-center h-11 border-b border-accent-300 border-dashed">
+    <div className="w-full flex items-center justify-center h-11 border-b border-frame border-dashed">
       <div className="max-w-(--max-width) flex justify-between w-full h-full px-5 gap-10">
         <div className="h-full flex items-center gap-2">
           <img src="/favicon.svg" className="py-1 w-7 min-w-7" />

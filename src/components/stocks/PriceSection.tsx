@@ -1,5 +1,6 @@
 import { useSetAtom } from "jotai";
 import { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 import { dataWindowParam, type DataWindowOpt } from "@/apis";
 import { plotConfigAtom } from "@/atoms/plot";
 import { usePlotSize } from "@/hooks/usePlotSize";
@@ -9,7 +10,7 @@ import CandleIcon from "@/components/icons/CandleIcon";
 import LineIcon from "@/components/icons/LineIcon";
 import { getRouteApi } from "@tanstack/react-router";
 import { priceChartTypes, type PriceChartType } from "@/components/stocks/shared";
-import { useTranslation } from "react-i18next";
+import PriceValues from "@/components/stocks/PriceValues";
 
 type PriceChartProps = {} & React.ComponentPropsWithoutRef<"div">;
 
@@ -37,31 +38,34 @@ export default function PriceChart({ ...props }: PriceChartProps) {
 
   return (
     <Section {...props}>
-      <Header>
-        <Selections>
-          {priceChartTypes.map((currType) => (
-            <Button
-              key={`selector-button-${currType}`}
-              active={chartType === currType}
-              onClick={() => setChartType(currType)}
-            >
-              {currType === "line" ? <LineIcon /> : <CandleIcon />}
-            </Button>
-          ))}
-        </Selections>
-        {/* Data window selector */}
-        <Selections>
-          {Object.entries(dataWindowParam).map(([key]) => (
-            <Button
-              key={`selector-button-${key}`}
-              active={window === key}
-              className={"w-11"}
-              onClick={() => updateDataWindow(key as DataWindowOpt)}
-            >
-              {t(`stocks.${key}`)}
-            </Button>
-          ))}
-        </Selections>
+      <Header className="justify-between">
+        <PriceValues />
+        <div className="flex gap-7">
+          <Selections className="border-l border-r">
+            {priceChartTypes.map((currType) => (
+              <Button
+                key={`selector-button-${currType}`}
+                active={chartType === currType}
+                onClick={() => setChartType(currType)}
+              >
+                {currType === "line" ? <LineIcon /> : <CandleIcon />}
+              </Button>
+            ))}
+          </Selections>
+          {/* Data window selector */}
+          <Selections className="border-l">
+            {Object.entries(dataWindowParam).map(([key]) => (
+              <Button
+                key={`selector-button-${key}`}
+                active={window === key}
+                className={"w-11"}
+                onClick={() => updateDataWindow(key as DataWindowOpt)}
+              >
+                {t(`stocks.${key}`)}
+              </Button>
+            ))}
+          </Selections>
+        </div>
       </Header>
       <Content ref={plotContainerRef} className="flex-1">
         <StockDataPlot

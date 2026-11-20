@@ -13,29 +13,26 @@ export default function FeatureGroupCard({
   onClick,
   active = false,
 }: FeatureGroupCardProps) {
-  const { t, i18n } = useTranslation("stocks");
-  const currLang = i18n.resolvedLanguage;
+  const { t } = useTranslation("stocks");
   return (
     <div
       className={cn(
-        "hover:cursor-pointer hover:bg-accent-200 px-4 transition-all duration-100 flex flex-col gap-1 min-h-28 h-28",
-        "last:rounded-b-sm",
-        currLang === "zh-Hans" && "min-h-26 h-26",
-        active && "min-h-46 h-46 bg-accent-200",
-        active && currLang === "zh-Hans" && "min-h-36 h-36",
+        "hover:cursor-pointer hover:bg-accent-200 px-4 transition-all duration-100 flex flex-col gap-1",
+        "py-4",
+        active && "bg-accent-200",
       )}
       onClick={onClick}
     >
       <h2
         className={cn(
-          "h-11 flex items-end overflow-clip transition-all duration-100",
+          "flex items-end overflow-clip transition-all duration-100 text-[15px]",
           active && "font-bold",
         )}
       >
         {t(`featureGroupName.${featureGroup}`)}
       </h2>
-      <div className="relative flex-1 leading-tight text-sm opacity-40 overflow-clip">
-        <p className="absolute top-0">
+      <div className="flex-1 leading-tight text-sm opacity-40 overflow-clip">
+        <p>
           {active
             ? t(`featureGroupDescription.${featureGroup}`)
             : t(`featureGroupBrief.${featureGroup}`)}

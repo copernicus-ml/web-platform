@@ -25,14 +25,7 @@ export default function CandleStick({ prices, x, y }: CandleStickProps) {
               y2={y(price.low)}
               stroke={color}
             />
-            <rect
-              x={xCoord}
-              y={top}
-              width={x.bandwidth()}
-              height={height}
-              fill={color}
-              rx={2}
-            />
+            <rect x={xCoord} y={top} width={x.bandwidth()} height={height} fill={color} />
           </g>
         );
       })}

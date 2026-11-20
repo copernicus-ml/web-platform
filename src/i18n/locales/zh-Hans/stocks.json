@@ -1,8 +1,6 @@
 {
   "ui": {
-    "pricetrend": "价格趋势",
-    "features": "指标",
-    "featuregroups": "指标分类"
+    "basicfeatures": "基本指标"
   },
   "stocks": {
     "60D": "60日",

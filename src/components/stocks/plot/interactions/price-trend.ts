@@ -107,8 +107,8 @@ const updatePriceTrendIndicators = ({
   const { duration } = animationConfig;
   indicatorGroup.attr("opacity", 1);
   const { date, close } = prices[xIdx];
-  d3.select(`#${priceElementIds.valuesPctRect}`).attr(
-    "fill",
+  d3.select(`#${priceElementIds.valuesPctRect}`).style(
+    "background",
     close >= prices[0].close ? priceColors.up : priceColors.down,
   );
   const xPos = (x(date) ?? 0) + x.bandwidth() / 2;
@@ -132,9 +132,9 @@ const resetPriceTrendIndicators = ({
   const lastestStock = prices.at(-1);
   if (!lastestStock) return;
   const { close } = lastestStock;
-  d3.select(`#${priceElementIds.valuesPctRect}`).attr(
-    "fill",
-    close > prices[0].close ? priceColors.up : priceColors.down,
+  d3.select(`#${priceElementIds.valuesPctRect}`).style(
+    "background",
+    close >= prices[0].close ? priceColors.up : priceColors.down,
   );
   updateDateLine(false);
   updateHoverValueTag(prices, -1, y);

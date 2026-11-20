@@ -1,7 +1,6 @@
 import * as d3 from "d3";
 import type { StockPrice } from "@/apis";
-import { plotSizeConfig, priceColors, legendConfig } from "@/lib/theme";
-import { parseVolume, computePriceChange } from "@/lib/utils";
+import { priceColors, legendConfig } from "@/lib/theme";
 import { priceElementIds } from "@stocks/plot/interactions/price-trend";
 import DateLine from "@/components/ui/DateLine";
 import type { PriceChartType } from "@/components/stocks/shared";
@@ -14,19 +13,12 @@ type StockDataIndicatorsProps = {
   y: d3.ScaleLinear<number, number>;
 };
 
-const visConfig = {
-  width: 68,
-  pctWidth: 116,
-};
-
 export default function StockDataIndicators({
   prices,
   chartType,
-  width,
   height,
   y,
 }: StockDataIndicatorsProps) {
-  const { marginRight } = plotSizeConfig;
   const isUp = (prices.at(0)?.close ?? 0) <= (prices.at(-1)?.close ?? 0);
   const lastPrice = prices.at(-1);
   return (
@@ -52,64 +44,6 @@ export default function StockDataIndicators({
           />
         )}
       </g>
-      {/* values */}
-      {prices.at(-1) && (
-        <g>
-          <rect
-            id={priceElementIds.valuesPctRect}
-            x={width - visConfig.pctWidth}
-            y={legendConfig.top}
-            width={visConfig.pctWidth}
-            height={22}
-            rx={legendConfig.rectCorner}
-            fill={isUp ? priceColors.up : priceColors.down}
-          />
-          <text
-            x={width - visConfig.pctWidth / 2}
-            y={20}
-            textAnchor="middle"
-            fontSize={13.5}
-            fontWeight={600}
-            className="fill-background"
-          >
-            <tspan>Pct.</tspan>
-            <tspan dx={6} id={priceElementIds.valuesPctChange}>
-              {computePriceChange(prices.at(0)?.close, prices.at(-1)?.close)}
-            </tspan>
-          </text>
-          <g
-            transform={`translate(${width - marginRight - visConfig.pctWidth - visConfig.width / 2} 0)`}
-          >
-            <text
-              y={legendConfig.top + legendConfig.lineHeight}
-              textAnchor="start"
-              fontSize={legendConfig.fontSize}
-              className="[&>tspan:nth-child(odd)]:fill-accent-500 [&>tspan:nth-child(even)]:fill-primary"
-            >
-              <tspan>O</tspan>
-              <tspan dx={4} id={priceElementIds.valuesOpen}>
-                {prices.at(-1)!.open.toFixed(2)}
-              </tspan>
-              <tspan x={-visConfig.width}>C</tspan>
-              <tspan dx={4} id={priceElementIds.valuesClose}>
-                {prices.at(-1)!.close.toFixed(2)}
-              </tspan>
-              <tspan x={-visConfig.width * 2}>H</tspan>
-              <tspan dx={4} id={priceElementIds.valuesHigh}>
-                {prices.at(-1)!.high.toFixed(2)}
-              </tspan>
-              <tspan x={-visConfig.width * 3}>L</tspan>
-              <tspan dx={4} id={priceElementIds.valuesLow}>
-                {prices.at(-1)!.low.toFixed(2)}
-              </tspan>
-              <tspan x={-visConfig.width * 4}>V</tspan>
-              <tspan dx={4} id={priceElementIds.valuesVol}>
-                {parseVolume(prices.at(-1)!.volume)}
-              </tspan>
-            </text>
-          </g>
-        </g>
-      )}
       <g
         id={priceElementIds.valuesCurrGroup}
         transform={`translate(0, ${y(prices.at(-1)?.close || 0)})`}
