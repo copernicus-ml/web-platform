@@ -33,7 +33,7 @@ export default function FeaturesSection({ ...props }: FeaturesSectionProps) {
   return (
     <Section {...props}>
       <Header>
-        <div className="flex gap-6">
+        <div className="flex gap-7">
           {featureGroup === "dema" && <DEMAPeriodSelector />}
           <Selections className="border-l">
             {FeatureSubplots[featureGroup].map((subPlotName) => (

@@ -3,14 +3,15 @@ import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { dataWindowParam, type DataWindowOpt } from "@/apis";
 import { plotConfigAtom } from "@/atoms/plot";
+import { getRouteApi } from "@tanstack/react-router";
 import { usePlotSize } from "@/hooks/usePlotSize";
 import { Section, Content, Header, Selections, Button } from "@/components/ui/Section";
-import StockDataPlot from "@stocks/plot/StockDataPlot";
 import CandleIcon from "@/components/icons/CandleIcon";
 import LineIcon from "@/components/icons/LineIcon";
-import { getRouteApi } from "@tanstack/react-router";
-import { priceChartTypes, type PriceChartType } from "@/components/stocks/shared";
-import PriceValues from "@/components/stocks/PriceValues";
+import PriceValues from "@stocks/PriceValues";
+import { priceChartTypes, type PriceChartType } from "@stocks/shared";
+import StockDataPlot from "@stocks/plot/StockDataPlot";
+import StockDataLegend from "./plot/StockDataLegends";
 
 type PriceChartProps = {} & React.ComponentPropsWithoutRef<"div">;
 
@@ -67,12 +68,19 @@ export default function PriceChart({ ...props }: PriceChartProps) {
           </Selections>
         </div>
       </Header>
-      <Content ref={plotContainerRef} className="flex-1">
-        <StockDataPlot
-          chartType={chartType}
-          width={plotSize.width}
-          height={plotSize.height}
-        />
+      <Content className="flex-1">
+        <div className="h-full flex flex-col">
+          <div className="flex-1" ref={plotContainerRef}>
+            <StockDataPlot
+              chartType={chartType}
+              width={plotSize.width}
+              height={plotSize.height}
+            />
+          </div>
+          <div>
+            <StockDataLegend />
+          </div>
+        </div>
       </Content>
     </Section>
   );

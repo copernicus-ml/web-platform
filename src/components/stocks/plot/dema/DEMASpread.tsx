@@ -50,7 +50,7 @@ export default function DEMASpread({ features, width, height, x }: SubplotProps<
         y2={y(0)}
         strokeWidth={markStrokeWidth}
         strokeDasharray={markStrokeDasharray}
-        className="stroke-primary"
+        className="stroke-mark"
       />
       <path
         id={getLineID(demaIDPrefix, spreadFeatureName)}

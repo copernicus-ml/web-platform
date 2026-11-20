@@ -1,4 +1,4 @@
-import { plotSizeConfig, svgConfig } from "@/lib/theme";
+import { plotSizeConfig } from "@/lib/theme";
 
 type YAxisProps = {
   y: d3.ScaleLinear<number, number>;
@@ -15,7 +15,6 @@ export default function YAxis({
   labelPostfix,
   labelFormatter,
 }: YAxisProps) {
-  const { markStrokeDasharray } = svgConfig;
   return (
     <g fontSize={12} className="select-none">
       {y.ticks(6).map((tick) => (
@@ -25,8 +24,8 @@ export default function YAxis({
             x2={width - plotSizeConfig.marginRight}
             y1={y(tick)}
             y2={y(tick)}
-            strokeDasharray={markStrokeDasharray}
-            className="stroke-accent-300"
+            // strokeDasharray={markStrokeDasharray}
+            className="stroke-accent-200"
           />
           <text
             x={8}

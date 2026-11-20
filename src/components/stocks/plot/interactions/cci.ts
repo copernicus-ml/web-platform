@@ -5,6 +5,7 @@ import {
   getLegendValueID,
   getLineID,
   toggleElement,
+  toggleLegend,
   updateCircleOpacity,
   updateCirclePos,
   updateTextValue,
@@ -16,9 +17,9 @@ const cciTpFeatures = ["tp", "tpSma"] as const;
 const cciCoreFeatures = ["cci", "cciMa5"] as const;
 
 const toggleCCIElement = (featureName: string) => {
-  toggleElement(getLegendID(cciIDPrefix, featureName), 0.3, 1.0);
+  toggleLegend(getLegendID(cciIDPrefix, featureName));
   toggleElement(getLineID(cciIDPrefix, featureName));
-  toggleElement(getCircleID(cciIDPrefix, featureName));
+  toggleElement(getCircleID(cciIDPrefix, featureName), 0.0, 0.0);
 };
 
 const updateIndicators = (

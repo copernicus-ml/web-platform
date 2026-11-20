@@ -56,7 +56,7 @@ export default function ActivityScores({
           y2={y(0.8)}
           strokeWidth={1.4}
           strokeDasharray={"6 4"}
-          className="stroke-primary"
+          className="stroke-mark"
         />
       )}
     </>

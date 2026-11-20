@@ -8,6 +8,7 @@ import {
   getLegendValueID,
   getLineID,
   toggleElement,
+  toggleLegend,
   updateCircleOpacity,
   updateCirclePos,
   updateLegendColor,
@@ -21,11 +22,11 @@ const accelerationFeatures = ["diff", "dea"] as const;
 
 const macdIDPrefix = "macd";
 const toggleMACDFeature = (featureName: string) => {
+  toggleLegend(getLegendID(macdIDPrefix, featureName));
   toggleElement(getLineID(macdIDPrefix, featureName));
   toggleElement(getCrossLinesID(macdIDPrefix, `${featureName}-price`));
   toggleElement(getCrossLinesID(macdIDPrefix, `${featureName}-feature`));
-  toggleElement(getLegendID(macdIDPrefix, featureName), 0.3, 1.0);
-  toggleElement(getCircleID(macdIDPrefix, featureName));
+  toggleElement(getCircleID(macdIDPrefix, featureName), 0.0, 0.0);
   toggleElement(getBarGroupID(macdIDPrefix, featureName));
 };
 

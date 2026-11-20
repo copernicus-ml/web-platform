@@ -77,7 +77,7 @@ export default function BBWidth({
         y2={y(0.0)}
         strokeWidth={markStrokeWidth}
         strokeDasharray={markStrokeDasharray}
-        className="stroke-primary"
+        className="stroke-mark"
       />
       {/* Legend */}
       <Legend

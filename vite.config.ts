@@ -28,7 +28,7 @@ export default defineConfig({
   },
   resolve: {
     alias: {
-      "@stocks/plot": path.resolve(import.meta.dirname, "./src/components/stocks/plot"),
+      "@stocks": path.resolve(import.meta.dirname, "./src/components/stocks"),
       "@": path.resolve(import.meta.dirname, "./src"),
     },
   },

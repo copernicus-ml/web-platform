@@ -2,7 +2,12 @@ import * as d3 from "d3";
 import { parseVolume, computePriceChange, parseDate, getMonthName } from "@/lib/utils";
 import type { StockPrice } from "@/apis";
 import { animationConfig, priceColors } from "../../../../lib/theme";
-import { toggleElement, updateCirclePos, updateTextValue } from "./d3-utils";
+import {
+  toggleElement,
+  toggleLegend,
+  updateCirclePos,
+  updateTextValue,
+} from "./d3-utils";
 
 const priceElementIds = {
   indicatorGroup: "price-indicator-group",
@@ -144,7 +149,7 @@ const resetPriceTrendIndicators = ({
 
 const toggleVolumeGroup = () => {
   toggleElement(priceElementIds.volumeBarGroup);
-  toggleElement(priceElementIds.volumeLegend, 0.3, 1.0);
+  toggleLegend(priceElementIds.volumeLegend);
 };
 
 export {

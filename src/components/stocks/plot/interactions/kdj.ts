@@ -6,6 +6,7 @@ import {
   getLegendValueID,
   getLineID,
   toggleElement,
+  toggleLegend,
   updateCircleOpacity,
   updateCirclePos,
   updateTextValue,
@@ -17,9 +18,9 @@ const kdjCoreFeatures = ["kdjK", "kdjD", "kdjJ"] as const;
 const kdjIDPrefix = "kdj";
 
 const toggleKDJElement = (featureName: string) => {
-  toggleElement(getLegendID(kdjIDPrefix, featureName), 0.3, 1.0);
+  toggleLegend(getLegendID(kdjIDPrefix, featureName));
   toggleElement(getLineID(kdjIDPrefix, featureName));
-  toggleElement(getCircleID(kdjIDPrefix, featureName));
+  toggleElement(getCircleID(kdjIDPrefix, featureName), 0.0, 0.0);
 };
 
 const updateIndicators = (

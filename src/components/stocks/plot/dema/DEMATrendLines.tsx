@@ -8,7 +8,12 @@ import {
 } from "@stocks/plot/interactions/dema";
 import { useAtomValue } from "jotai";
 import { colorPalette, svgConfig } from "@/lib/theme";
-import { getLineID, getPaths } from "@stocks/plot/interactions/d3-utils";
+import {
+  getCircleID,
+  getCirclesGroupID,
+  getLineID,
+  getPaths,
+} from "@stocks/plot/interactions/d3-utils";
 
 type DEMATrendLinesProps = {
   features: DEMAFeature[];
@@ -19,7 +24,7 @@ type DEMATrendLinesProps = {
 
 export default function DEMATrendLines({
   features,
-  // chartType,
+  chartType,
   x,
   y,
 }: DEMATrendLinesProps) {
@@ -53,6 +58,20 @@ export default function DEMATrendLines({
             opacity={opacity}
           />
         ))}
+        {/* DEMA circles */}
+        <g id={getCirclesGroupID(demaIDPrefix)} opacity={chartType === "line" ? 1 : 0}>
+          {emaFeatureNames.map((featureName, i) => (
+            <circle
+              key={getCircleID(demaIDPrefix, featureName)}
+              id={getCircleID(demaIDPrefix, featureName)}
+              r={svgConfig.circleR}
+              fill={colorPalette[i]}
+              strokeWidth={svgConfig.circleStroke}
+              opacity={0}
+              className="stroke-background"
+            />
+          ))}
+        </g>
       </g>
     </>
   );

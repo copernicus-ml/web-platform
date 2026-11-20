@@ -1,15 +1,8 @@
 import * as d3 from "d3";
 import type { StockPrice } from "@/apis";
 import { colorPalette } from "@/lib/theme";
-import Legend from "@/components/ui/Legend";
-import {
-  getBarGroupID,
-  getLegendID,
-  getLegendValueID,
-  getYScale,
-} from "@stocks/plot/interactions/d3-utils";
-import { marketIDPrefix, toggleFeature } from "@stocks/plot/interactions/market-activity";
-import { useTranslation } from "react-i18next";
+import { getBarGroupID, getYScale } from "@stocks/plot/interactions/d3-utils";
+import { marketIDPrefix } from "@stocks/plot/interactions/market-activity";
 
 type TurnoverBarsProps = {
   prices: StockPrice[];
@@ -18,35 +11,23 @@ type TurnoverBarsProps = {
 };
 
 export default function TurnoverBars({ prices, x, y }: TurnoverBarsProps) {
-  const { t } = useTranslation("stocks");
   const values = prices.map((price) => price.turnover);
   const yRange = y.range();
   const [yEnd, yStart] = [yRange[0], yRange[0] + (yRange[1] - yRange[0]) / 2];
   const subY = getYScale(values, yEnd, yStart);
   return (
-    <>
-      <g id={getBarGroupID(marketIDPrefix, "turnover")}>
-        {prices.map((values) => (
-          <rect
-            key={`market-turnover-${values.date}`}
-            x={x(values.date)}
-            y={subY(values.turnover)}
-            width={x.bandwidth()}
-            height={subY.range()[0] - subY(values.turnover)}
-            fill={colorPalette[2]}
-            opacity={0.6}
-          />
-        ))}
-      </g>
-      <Legend
-        legendId={getLegendID(marketIDPrefix, "turnover")}
-        valueId={getLegendValueID(marketIDPrefix, "turnover")}
-        label={t("featureName.turnover")}
-        index={0}
-        value={prices.at(-1)?.turnover.toFixed(2) || "0.0"}
-        color={colorPalette[2]}
-        onMouseDown={() => toggleFeature("turnover")}
-      />
-    </>
+    <g id={getBarGroupID(marketIDPrefix, "turnover")}>
+      {prices.map((values) => (
+        <rect
+          key={`market-turnover-${values.date}`}
+          x={x(values.date)}
+          y={subY(values.turnover)}
+          width={x.bandwidth()}
+          height={subY.range()[0] - subY(values.turnover)}
+          fill={colorPalette[2]}
+          opacity={0.6}
+        />
+      ))}
+    </g>
   );
 }
