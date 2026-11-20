@@ -14,7 +14,7 @@ describe("utils", () => {
   });
 
   it("splits a trade date into year, month, and day", () => {
-    expect(parseDate("20261027")).toEqual(["2026", "10", "27"]);
+    expect(parseDate("2026-10-27")).toEqual(["2026", "10", "27"]);
   });
 
   it("formats thousands and millions as volume strings", () => {

@@ -7,7 +7,7 @@ import { cn } from "@/lib/utils";
 
 const styles = {
   content: clsx(
-    "origin-top flex flex-col gap-3 mt-1 h-96 rounded-md bg-background shadow-[0_2px_8px] border-accent-300 border shadow-accent-300 px-3 py-3 data-[state=open]:animate-[slideUp_200ms_ease-out] w-(--radix-popper-anchor-width)",
+    "origin-top flex flex-col gap-3 mt-1 h-96 bg-background shadow-[0_2px_8px] border-accent-300 border shadow-accent-300 px-3 py-3 data-[state=open]:animate-[slideUp_200ms_ease-out] w-(--radix-popper-anchor-width)",
   ),
 };
 
@@ -45,7 +45,7 @@ export default function StockSelector({
       <Trigger asChild>{children}</Trigger>
       <Portal>
         <Content side="bottom" align="center" className={styles.content}>
-          <div className="w-full flex items-center border gap-1 border-accent-300 rounded-sm px-2">
+          <div className="w-full flex items-center border gap-1 border-accent-300 px-2">
             <SearchIcon className="w-4 min-w-4 stroke-accent-500" />
             <input
               name={"stock search"}
@@ -61,7 +61,7 @@ export default function StockSelector({
                 <button
                   key={stock.join("-")}
                   className={cn(
-                    "flex items-center p-1 px-1.5  hover:cursor-pointer hover:bg-accent-200 w-full rounded-sm",
+                    "flex items-center p-1 px-1.5  hover:cursor-pointer hover:bg-accent-200 w-full",
                     currTicker === stock[0] ? "bg-accent-200 font-bold" : "",
                   )}
                   onClick={() => {

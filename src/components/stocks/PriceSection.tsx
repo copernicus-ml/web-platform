@@ -37,7 +37,7 @@ export default function PriceChart({ ...props }: PriceChartProps) {
 
   return (
     <Section {...props}>
-      <Header title={t("ui.pricetrend")}>
+      <Header>
         <Selections>
           {priceChartTypes.map((currType) => (
             <Button

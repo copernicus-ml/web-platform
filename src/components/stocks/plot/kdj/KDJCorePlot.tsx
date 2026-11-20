@@ -20,7 +20,7 @@ import ShadeRegion from "@/components/ui/ShadeRegion";
 
 export default function KDJCorePlot({ features, width, height, x }: SubplotProps<"kdj">) {
   const { t } = useTranslation("stocks");
-  const { marginTop, marginBottom, marginLeft, marginRight } = plotSizeConfig;
+  const { marginTop, marginBottom } = plotSizeConfig;
   const { strokeWidth } = svgConfig;
   const values = getFeatureValues<"kdj">(features, kdjCoreFeatures);
   const y = getYScale(values, height - marginBottom, marginTop);
@@ -29,11 +29,7 @@ export default function KDJCorePlot({ features, width, height, x }: SubplotProps
 
   return (
     <>
-      <YAxis
-        y={y}
-        plotWidth={width - marginLeft - marginRight}
-        labelXOffset={marginRight}
-      />
+      <YAxis y={y} width={width} />
       <ShadeRegion
         x={x}
         y={y}

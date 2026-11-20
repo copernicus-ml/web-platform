@@ -30,8 +30,7 @@ export default function UpDayRatio({
     <>
       <YAxis
         y={y}
-        plotWidth={width - marginLeft - marginRight}
-        labelXOffset={marginRight}
+        width={width}
         labelPostfix="%"
         labelFormatter={(value: number) => (value * 100).toFixed(1)}
       />

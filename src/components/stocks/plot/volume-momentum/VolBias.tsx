@@ -25,7 +25,7 @@ export default function VolBias({
   x,
 }: SubplotProps<"volumemomentum">) {
   const { t } = useTranslation("stocks");
-  const { marginLeft, marginRight, marginTop, marginBottom } = plotSizeConfig;
+  const { marginTop, marginBottom } = plotSizeConfig;
   const { strokeWidth, markStrokeDasharray, markStrokeWidth } = svgConfig;
   const values = getFeatureValues<"volumemomentum">(features, volBiasFeatures);
   const y = getYScale(values, height - marginBottom, marginTop);
@@ -39,8 +39,7 @@ export default function VolBias({
     <>
       <YAxis
         y={y}
-        plotWidth={width - marginLeft - marginRight}
-        labelXOffset={marginRight}
+        width={width}
         labelFormatter={(val: number) => digitToPercent(val, 0)}
       />
       {volBiasFeatures.map((featureName, i) => (

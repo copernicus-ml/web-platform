@@ -25,7 +25,7 @@ export default function VolChange({
   x,
 }: SubplotProps<"volumemomentum">) {
   const { t } = useTranslation("stocks");
-  const { marginLeft, marginRight, marginTop, marginBottom } = plotSizeConfig;
+  const { marginTop, marginBottom } = plotSizeConfig;
   const { strokeWidth, markStrokeWidth, markStrokeDasharray } = svgConfig;
   const values = getFeatureValues<"volumemomentum">(features, volChangesFeatures);
   const y = getYScale(values, height - marginBottom, marginTop);
@@ -38,9 +38,8 @@ export default function VolChange({
   return (
     <g>
       <YAxis
+        width={width}
         y={y}
-        plotWidth={width - marginLeft - marginRight}
-        labelXOffset={marginRight}
         labelFormatter={(value: number) => digitToPercent(value, 0)}
       />
       {volChangesFeatures.map((featureName, i) => (

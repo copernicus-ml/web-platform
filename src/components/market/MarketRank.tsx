@@ -42,7 +42,7 @@ export default function MarketRank() {
 
   return (
     <Section className="w-full h-full flex flex-col">
-      <Header title={t("ui.marketPerformance")}>
+      <Header>
         <Selections>
           {marketRankScopes.map((scope) => (
             <Button

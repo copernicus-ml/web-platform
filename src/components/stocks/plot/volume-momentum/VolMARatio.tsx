@@ -24,7 +24,7 @@ export default function VolMARatio({
   x,
 }: SubplotProps<"volumemomentum">) {
   const { t } = useTranslation("stocks");
-  const { marginBottom, marginTop, marginLeft, marginRight } = plotSizeConfig;
+  const { marginBottom, marginTop } = plotSizeConfig;
   const { strokeWidth, markStrokeDasharray, markStrokeWidth } = svgConfig;
   const values = getFeatureValues<"volumemomentum">(features, volMARatioFeatures);
   const y = getYScale(values, height - marginBottom, marginTop);
@@ -32,11 +32,7 @@ export default function VolMARatio({
   const lastFeature = features.at(-1);
   return (
     <>
-      <YAxis
-        y={y}
-        plotWidth={width - marginLeft - marginRight}
-        labelXOffset={marginRight}
-      />
+      <YAxis y={y} width={width} />
       <line
         x1={x.range()[0]}
         x2={x.range()[1]}

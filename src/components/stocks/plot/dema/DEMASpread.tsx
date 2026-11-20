@@ -38,8 +38,7 @@ export default function DEMASpread({ features, width, height, x }: SubplotProps<
     <>
       <YAxis
         y={y}
-        plotWidth={width - marginLeft - marginRight}
-        labelXOffset={marginRight}
+        width={width}
         labelFormatter={(value) => (value * 100).toFixed(2)}
         labelPostfix="%"
       />

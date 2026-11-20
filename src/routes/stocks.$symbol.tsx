@@ -64,15 +64,13 @@ export const stockRouteAPI = getRouteApi("/stocks/$symbol");
 
 function StocksDashboard() {
   return (
-    <div className="w-full h-full flex justify-center gap-2">
-      <div className="w-full flex-1 min-w-0 flex flex-col gap-2">
-        <StockInfo />
-        <div className="flex-1 flex flex-col gap-2">
+    <div className="w-full h-full flex flex-col justify-center divide-y divide-accent-300 divide-dashed">
+      <StockInfo />
+      <div className="flex-1 flex divide-x divide-accent-300 divide-dashed">
+        <div className="w-full flex-1 flex flex-col min-w-0 divide-y divide-accent-300 divide-dashed">
           <PriceSection className="flex flex-col flex-3" />
           <FeaturesSection className="flex flex-col flex-2" />
         </div>
-      </div>
-      <div className="min-w-70 w-70">
         <FeatureGroupSidebar />
       </div>
     </div>

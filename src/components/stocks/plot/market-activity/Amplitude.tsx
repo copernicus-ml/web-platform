@@ -23,7 +23,7 @@ export default function Amplitude({
   height,
 }: SubplotProps<"marketactivity">) {
   const { t } = useTranslation("stocks");
-  const { marginLeft, marginRight, marginTop, marginBottom } = plotSizeConfig;
+  const { marginTop, marginBottom } = plotSizeConfig;
   const values = getFeatureValues<"marketactivity">(features, amplitudeFeatures);
   const y = getYScale(values, height - marginBottom, marginTop);
   const pathFeatures = amplitudeFeatures.filter(
@@ -34,8 +34,7 @@ export default function Amplitude({
     <>
       <YAxis
         y={y}
-        plotWidth={width - marginLeft - marginRight}
-        labelXOffset={marginRight}
+        width={width}
         labelFormatter={(value) => (value * 100).toFixed(1)}
         labelPostfix="%"
       />

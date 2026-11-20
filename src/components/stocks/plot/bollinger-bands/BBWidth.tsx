@@ -52,12 +52,7 @@ export default function BBWidth({
   if (!area) return <></>;
   return (
     <>
-      <YAxis
-        y={y}
-        plotWidth={width - marginLeft - marginRight}
-        labelXOffset={marginRight}
-        labelFormatter={(value) => value.toFixed(1)}
-      />
+      <YAxis y={y} width={width} labelFormatter={(value) => value.toFixed(1)} />
       <g id={getLineID(bbIDPrefix, widthFeature)}>
         <path d={area} fill={colorPalette[2]} fillOpacity={0.3} />
         <path
