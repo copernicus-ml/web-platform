@@ -1,27 +1,16 @@
 import { useAtomValue } from "jotai";
 import { demaPeriodAtom } from "@/atoms/plot";
-import { digitToPercent } from "@/lib/utils";
 import {
   demaIDPrefix,
   getDEMAFeatureNamesByPeriod,
-  toggleDEMAFeature,
 } from "@stocks/plot/interactions/dema";
 import type { SubplotProps } from "@/components/stocks/shared";
 import DEMASignals from "@stocks/plot/dema/DEMASignals";
 import { colorPalette, plotSizeConfig, svgConfig } from "@/lib/theme";
 import YAxis from "@/components/ui/YAxis";
-import Legend from "@/components/ui/Legend";
-import {
-  getLegendID,
-  getLegendValueID,
-  getLineID,
-  getPaths,
-  getYScale,
-} from "@stocks/plot/interactions/d3-utils";
-import { useTranslation } from "react-i18next";
+import { getLineID, getPaths, getYScale } from "@stocks/plot/interactions/d3-utils";
 
 export default function DEMASpread({ features, width, height, x }: SubplotProps<"dema">) {
-  const { t } = useTranslation("stocks");
   const { marginLeft, marginRight, marginTop, marginBottom } = plotSizeConfig;
   const { strokeWidth, markStrokeWidth, markStrokeDasharray } = svgConfig;
   const demaPeriod = useAtomValue(demaPeriodAtom);
@@ -58,14 +47,6 @@ export default function DEMASpread({ features, width, height, x }: SubplotProps<
         fill="none"
         stroke={colorPalette[0]}
         strokeWidth={strokeWidth}
-      />
-      <Legend
-        legendId={getLegendID(demaIDPrefix, spreadFeatureName)}
-        valueId={getLegendValueID(demaIDPrefix, spreadFeatureName)}
-        index={0}
-        label={t(`featureName.spread`)}
-        value={digitToPercent(features.at(-1)![spreadFeatureName])}
-        onMouseDown={() => toggleDEMAFeature(spreadFeatureName)}
       />
     </>
   );

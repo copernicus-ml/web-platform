@@ -32,7 +32,7 @@ export default function FeatureGroupSidebar() {
       const scrollTop = element.scrollTop;
       const clientHeight = element.clientHeight;
       const isTop = scrollTop === 0;
-      const isBottom = scrollHeight == clientHeight + scrollTop;
+      const isBottom = clientHeight + scrollTop >= scrollHeight * 0.95;
       if (isTop && isBottom) overlay.setAttribute("data-pos", "none");
       else if (isTop) overlay.setAttribute("data-pos", "top");
       else if (isBottom) overlay.setAttribute("data-pos", "bottom");

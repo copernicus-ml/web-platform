@@ -1,32 +1,22 @@
 import YAxis from "@/components/ui/YAxis";
 import {
   getFeatureValues,
-  getLegendID,
-  getLegendValueID,
   getLineID,
   getPaths,
   getYScale,
 } from "@stocks/plot/interactions/d3-utils";
-import {
-  rsiFeatures,
-  rsiIDPrefix,
-  toggleRSIFeature,
-} from "@stocks/plot/interactions/rsi";
+import { rsiFeatures, rsiIDPrefix } from "@stocks/plot/interactions/rsi";
 import type { SubplotProps } from "@/components/stocks/shared";
 import { colorPalette, plotSizeConfig, priceColors, svgConfig } from "@/lib/theme";
-import Legend from "@/components/ui/Legend";
 import ShadeRegion from "@/components/ui/ShadeRegion";
-import { useTranslation } from "react-i18next";
 
 export default function RSIPlot({ features, x, width, height }: SubplotProps<"rsi">) {
-  const { t } = useTranslation("stocks");
   const { strokeWidth } = svgConfig;
   const { marginTop, marginBottom } = plotSizeConfig;
 
   const values = getFeatureValues<"rsi">(features, rsiFeatures);
   const y = getYScale(values, height - marginBottom, marginTop);
   const paths = getPaths<"rsi">(features, rsiFeatures, x, y);
-  const lastFeature = features.at(-1);
   return (
     <>
       <YAxis y={y} width={width} />
@@ -40,23 +30,14 @@ export default function RSIPlot({ features, x, width, height }: SubplotProps<"rs
         lowerColor={priceColors.up}
       />
       {rsiFeatures.map((featureName, i) => (
-        <g key={getLineID(rsiIDPrefix, featureName)}>
-          <path
-            id={getLineID(rsiIDPrefix, featureName)}
-            d={paths[featureName]}
-            fill="none"
-            stroke={colorPalette[i]}
-            strokeWidth={strokeWidth}
-          />
-          <Legend
-            legendId={getLegendID(rsiIDPrefix, featureName)}
-            valueId={getLegendValueID(rsiIDPrefix, featureName)}
-            index={i}
-            label={t(`featureName.${featureName.match(/\d+/)}D`)}
-            value={lastFeature![featureName].toFixed(2)}
-            onMouseDown={() => toggleRSIFeature(featureName)}
-          />
-        </g>
+        <path
+          key={getLineID(rsiIDPrefix, featureName)}
+          id={getLineID(rsiIDPrefix, featureName)}
+          d={paths[featureName]}
+          fill="none"
+          stroke={colorPalette[i]}
+          strokeWidth={strokeWidth}
+        />
       ))}
     </>
   );

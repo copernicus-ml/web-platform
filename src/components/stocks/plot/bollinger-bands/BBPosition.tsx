@@ -1,20 +1,8 @@
-import {
-  bbIDPrefix,
-  positionFeature,
-  toggleBBFeature,
-} from "@stocks/plot/interactions/bollinger-bands";
+import { bbIDPrefix, positionFeature } from "@stocks/plot/interactions/bollinger-bands";
 import type { SubplotProps } from "@/components/stocks/shared";
 import { colorPalette, plotSizeConfig, priceColors, svgConfig } from "@/lib/theme";
 import YAxis from "@/components/ui/YAxis";
-import Legend from "@/components/ui/Legend";
-import { useTranslation } from "react-i18next";
-import {
-  getLegendID,
-  getLegendValueID,
-  getLineID,
-  getPaths,
-  getYScale,
-} from "@stocks/plot/interactions/d3-utils";
+import { getLineID, getPaths, getYScale } from "@stocks/plot/interactions/d3-utils";
 import ShadeRegion from "@/components/ui/ShadeRegion";
 
 export default function BBPosition({
@@ -23,7 +11,6 @@ export default function BBPosition({
   height,
   x,
 }: SubplotProps<"bollingerbands">) {
-  const { t } = useTranslation("stocks");
   const { strokeWidth } = svgConfig;
   const { marginTop, marginBottom } = plotSizeConfig;
   const values = features.map((feature) => feature[positionFeature]);
@@ -52,16 +39,6 @@ export default function BBPosition({
         fill="none"
         strokeWidth={strokeWidth}
         stroke={colorPalette[2]}
-      />
-      {/* Legend */}
-      <Legend
-        legendId={getLegendID(bbIDPrefix, positionFeature)}
-        valueId={getLegendValueID(bbIDPrefix, positionFeature)}
-        index={0}
-        value={features.at(-1)![positionFeature].toFixed(2)}
-        label={t(`featureName.${positionFeature}`)}
-        color={colorPalette[2]}
-        onMouseDown={() => toggleBBFeature(positionFeature)}
       />
     </>
   );

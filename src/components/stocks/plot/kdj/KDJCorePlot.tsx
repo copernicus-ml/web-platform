@@ -1,31 +1,21 @@
 import YAxis from "@/components/ui/YAxis";
 import {
   getFeatureValues,
-  getLegendID,
-  getLegendValueID,
   getLineID,
   getPaths,
   getYScale,
 } from "@stocks/plot/interactions/d3-utils";
-import {
-  kdjCoreFeatures,
-  kdjIDPrefix,
-  toggleKDJElement,
-} from "@stocks/plot/interactions/kdj";
+import { kdjCoreFeatures, kdjIDPrefix } from "@stocks/plot/interactions/kdj";
 import type { SubplotProps } from "@/components/stocks/shared";
 import { colorPalette, plotSizeConfig, priceColors, svgConfig } from "@/lib/theme";
-import Legend from "@/components/ui/Legend";
-import { useTranslation } from "react-i18next";
 import ShadeRegion from "@/components/ui/ShadeRegion";
 
 export default function KDJCorePlot({ features, width, height, x }: SubplotProps<"kdj">) {
-  const { t } = useTranslation("stocks");
   const { marginTop, marginBottom } = plotSizeConfig;
   const { strokeWidth } = svgConfig;
   const values = getFeatureValues<"kdj">(features, kdjCoreFeatures);
   const y = getYScale(values, height - marginBottom, marginTop);
   const paths = getPaths<"kdj">(features, kdjCoreFeatures, x, y);
-  const lastFeature = features.at(-1)!;
 
   return (
     <>
@@ -40,23 +30,14 @@ export default function KDJCorePlot({ features, width, height, x }: SubplotProps
         lowerColor={priceColors.up}
       />
       {kdjCoreFeatures.map((featureName, i) => (
-        <g key={getLineID(kdjIDPrefix, featureName)}>
-          <path
-            id={getLineID(kdjIDPrefix, featureName)}
-            d={paths[featureName]}
-            fill="none"
-            stroke={colorPalette[i]}
-            strokeWidth={strokeWidth}
-          />
-          <Legend
-            legendId={getLegendID(kdjIDPrefix, featureName)}
-            valueId={getLegendValueID(kdjIDPrefix, featureName)}
-            index={i}
-            label={t(`featureName.${featureName}`)}
-            onMouseDown={() => toggleKDJElement(featureName)}
-            value={lastFeature[featureName].toFixed(2)}
-          />
-        </g>
+        <path
+          key={getLineID(kdjIDPrefix, featureName)}
+          id={getLineID(kdjIDPrefix, featureName)}
+          d={paths[featureName]}
+          fill="none"
+          stroke={colorPalette[i]}
+          strokeWidth={strokeWidth}
+        />
       ))}
     </>
   );

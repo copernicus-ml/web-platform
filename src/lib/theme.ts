@@ -16,24 +16,12 @@ const animationConfig = {
   duration: 50,
 };
 
-const legendConfig = {
-  top: 4,
-  lineHeight: 16,
-  fontSize: 13,
-  rectCorner: 0,
-  featureWidth: 96,
-  featureWidthTighter: 50,
-  featureWidthWider: 126,
-  featureWidthWidest: 180,
-  featureHeight: 22,
-  featureGap: 10,
-};
-
 const plotSizeConfig = {
-  marginTop: 5,
-  marginRight: 5,
-  marginBottom: 50,
-  marginLeft: 45,
+  marginTop: 10,
+  marginRight: 0,
+  marginBottom: 45,
+  marginLeft: 40,
+  yLabelAnchor: 5,
 };
 
 const svgConfig = {
@@ -45,12 +33,12 @@ const svgConfig = {
   shadeOpacity: 0.15,
   circleR: 4,
   circleStroke: 2,
+  rectCorner: 0,
 };
 
 export {
   markColor,
   priceColors,
-  legendConfig,
   animationConfig,
   plotSizeConfig,
   svgConfig,

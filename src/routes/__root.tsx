@@ -45,11 +45,13 @@ function RootLayout() {
       <Header />
       <div
         className={cn(
-          "w-full h-full flex-1 max-w-(--max-width) transition-opacity duration-100 border-l border-r border-dashed border-frame",
+          "w-full h-full flex-1 max-w-(--max-width) transition-opacity duration-100 px-2",
           isLoading ? "opacity-50" : "opacity-100",
         )}
       >
-        <Outlet />
+        <div className="h-full border-x border-dashed border-frame">
+          <Outlet />
+        </div>
       </div>
     </div>
   );

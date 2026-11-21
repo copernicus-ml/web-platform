@@ -19,6 +19,7 @@ export default function CCILegends({ features }: CCILegendsProps) {
     <>
       {cciTpFeatures.map((featureName, i) => (
         <PlotLegend
+          key={getLegendID(cciIDPrefix, featureName)}
           legendId={getLegendID(cciIDPrefix, featureName)}
           valueId={getLegendValueID(cciIDPrefix, featureName)}
           color={colorPalette[i]}

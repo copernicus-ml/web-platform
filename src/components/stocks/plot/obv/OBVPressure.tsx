@@ -2,32 +2,21 @@ import YAxis from "@/components/ui/YAxis";
 import { digitToPercent } from "@/lib/utils";
 import {
   getFeatureValues,
-  getLegendID,
-  getLegendValueID,
   getLineID,
   getPaths,
   getYScale,
 } from "@stocks/plot/interactions/d3-utils";
-import {
-  obvIDPrefix,
-  obvPressureFeatures,
-  toggleOBVElements,
-} from "@stocks/plot/interactions/obv";
+import { obvIDPrefix, obvPressureFeatures } from "@stocks/plot/interactions/obv";
 import type { SubplotProps } from "@/components/stocks/shared";
 import { colorPalette, plotSizeConfig, priceColors, svgConfig } from "@/lib/theme";
-import Legend from "@/components/ui/Legend";
 import ShadeRegion from "@/components/ui/ShadeRegion";
-import { useTranslation } from "react-i18next";
 
 export default function OBVPressure({ features, width, height, x }: SubplotProps<"obv">) {
-  const { t } = useTranslation("stocks");
   const { marginTop, marginBottom } = plotSizeConfig;
   const { strokeWidth, shadeOpacity } = svgConfig;
   const values = getFeatureValues<"obv">(features, obvPressureFeatures);
   const y = getYScale(values, height - marginBottom, marginTop);
   const paths = getPaths<"obv">(features, obvPressureFeatures, x, y);
-  const labels = obvPressureFeatures.map((featureName) => `${featureName.match(/\d+/)}D`);
-  const lastFeature = features.at(-1)!;
   return (
     <>
       <YAxis
@@ -53,14 +42,6 @@ export default function OBVPressure({ features, width, height, x }: SubplotProps
             fill="none"
             stroke={colorPalette[i]}
             strokeWidth={strokeWidth}
-          />
-          <Legend
-            legendId={getLegendID(obvIDPrefix, featureName)}
-            valueId={getLegendValueID(obvIDPrefix, featureName)}
-            index={i}
-            label={t(`featureName.${labels[i]}`)}
-            value={digitToPercent(lastFeature[featureName], 2)}
-            onMouseDown={() => toggleOBVElements(featureName)}
           />
         </g>
       ))}

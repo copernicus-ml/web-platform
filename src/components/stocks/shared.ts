@@ -1,14 +1,16 @@
 import type { FeatureByGroup, FeatureGroupOpt } from "@/apis";
 
-const priceChartTypes = ["candle", "line"] as const;
-type PriceChartType = (typeof priceChartTypes)[number];
+export const priceChartTypes = ["candle", "line"] as const;
+export type PriceChartType = (typeof priceChartTypes)[number];
 
-type SubplotProps<G extends FeatureGroupOpt> = {
+export type SubplotProps<G extends FeatureGroupOpt> = {
   features: FeatureByGroup[G][];
   width: number;
   height: number;
   x: d3.ScaleBand<string>;
 };
 
-export type { SubplotProps, PriceChartType };
-export { priceChartTypes };
+export type FeatureLegendProps<G extends FeatureGroupOpt> = {
+  features: FeatureByGroup[G][];
+  subplotName?: string;
+};

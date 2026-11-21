@@ -11,14 +11,13 @@ import {
   toggleLegend,
   updateCircleOpacity,
   updateCirclePos,
-  updateLegendColor,
   updateTextValue,
 } from "@stocks/plot/interactions/d3-utils";
-import { animationConfig, priceColors } from "@/lib/theme";
+import { animationConfig } from "@/lib/theme";
 
 const crossSignalFeatures = ["gold", "dead"] as const;
 const emaFeatures = ["emaFast", "emaSlow"] as const;
-const accelerationFeatures = ["diff", "dea"] as const;
+const accelerationFeatures = ["diff", "dea", "hist"] as const;
 
 const macdIDPrefix = "macd";
 const toggleMACDFeature = (featureName: string) => {
@@ -62,11 +61,6 @@ const updateIndicators = (
       feature[featureName].toFixed(3),
     );
   });
-  const histValue = feature["hist"];
-  updateTextValue(getLegendValueID(macdIDPrefix, "hist"), histValue.toFixed(3));
-  // update legend color
-  const legendColor = histValue >= 0 ? priceColors.up : priceColors.down;
-  updateLegendColor(getLegendID(macdIDPrefix, "hist"), legendColor);
 };
 
 const updateMACDIndicators = ({

@@ -5,6 +5,7 @@ import {
   getLegendValueID,
   getLineID,
   toggleElement,
+  toggleLegend,
   updateTextValue,
 } from "./d3-utils";
 import { digitToPercent } from "@/lib/utils";
@@ -22,7 +23,7 @@ const vmIDPrefix = "volume-momentum";
 
 const toggleVolumeFeature = (featureName: string) => {
   toggleElement(getBarGroupID(vmIDPrefix, featureName));
-  toggleElement(getLegendID(vmIDPrefix, featureName), 0.3, 1.0);
+  toggleLegend(getLegendID(vmIDPrefix, featureName));
   toggleElement(getLineID(vmIDPrefix, featureName));
 };
 

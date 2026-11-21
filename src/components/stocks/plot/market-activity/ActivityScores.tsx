@@ -1,12 +1,9 @@
-import { useTranslation } from "react-i18next";
 import {
   activityScoreFeatures,
   marketIDPrefix,
-  toggleFeature,
 } from "@stocks/plot/interactions/market-activity";
 import { colorPalette, plotSizeConfig } from "@/lib/theme";
 import YAxis from "@/components/ui/YAxis";
-import MarketFeatureIndicators from "@stocks/plot/market-activity/MarketFeatureIndicators";
 import type { SubplotProps } from "@/components/stocks/shared";
 import { getLineID, getPaths, getYScale } from "@stocks/plot/interactions/d3-utils";
 
@@ -16,7 +13,6 @@ export default function ActivityScores({
   width,
   height,
 }: SubplotProps<"marketactivity">) {
-  const { t } = useTranslation("stocks");
   const { marginLeft, marginRight, marginTop, marginBottom } = plotSizeConfig;
   const values = features.reduce((acc, feature) => {
     activityScoreFeatures.forEach((featureName) => acc.push(feature[featureName]));
@@ -38,15 +34,6 @@ export default function ActivityScores({
           stroke={colorPalette[i]}
         />
       ))}
-      <MarketFeatureIndicators
-        featureNames={activityScoreFeatures}
-        features={features}
-        labels={activityScoreFeatures.map((featureName) =>
-          t(`featureName.${featureName}`),
-        )}
-        wide={true}
-        toggleFn={toggleFeature}
-      />
       {/* 0.8 indicator */}
       {y.domain()[1] >= 0.8 && (
         <line

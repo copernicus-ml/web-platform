@@ -1,11 +1,8 @@
 import * as d3 from "d3";
 import { colorPalette, plotSizeConfig, svgConfig } from "@/lib/theme";
-import { useTranslation } from "react-i18next";
 import YAxis from "@/components/ui/YAxis";
 import { priceAndTurnoverFeatures } from "@stocks/plot/interactions/market-activity";
-import MarketFeatureIndicators from "@stocks/plot/market-activity/MarketFeatureIndicators";
 import type { SubplotProps } from "@/components/stocks/shared";
-import { toggleFeature } from "@stocks/plot/interactions/market-activity";
 import { getCirclesGroupID } from "@stocks/plot/interactions/d3-utils";
 
 export default function PriceAndTurnover({
@@ -16,7 +13,6 @@ export default function PriceAndTurnover({
 }: SubplotProps<"marketactivity">) {
   const { shadeOpacity } = svgConfig;
   const { marginLeft, marginRight, marginTop, marginBottom } = plotSizeConfig;
-  const { t } = useTranslation("stocks");
   const y = d3.scaleLinear([-0.05, 1.05], [height - marginBottom, marginTop]);
   return (
     <>
@@ -67,15 +63,6 @@ export default function PriceAndTurnover({
           ))}
         </g>
       ))}
-      <MarketFeatureIndicators
-        featureNames={priceAndTurnoverFeatures}
-        features={features}
-        labels={priceAndTurnoverFeatures.map((featureName) =>
-          t(`featureName.${featureName}`),
-        )}
-        wide={true}
-        toggleFn={toggleFeature}
-      />
     </>
   );
 }

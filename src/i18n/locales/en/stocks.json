@@ -84,6 +84,26 @@
     "cci": "CCI"
   },
   "featureName": {
+    "ma5Bias": "5D Bias",
+    "ma20Bias": "20D Bias",
+    "ma60Bias": "60D Bias",
+    "return5d": "5D Return",
+    "return20d": "20D Return",
+    "return60d": "60D Return",
+    "upRatio5d": "5D Up Ratio",
+    "upRatio20d": "20D Up Ratio",
+
+    "vol5Bias": "5D Bias",
+    "vol10Bias": "10D Bias",
+    "vol20Bias": "20D Bias",
+    "vol60Bias": "60D Bias",
+    "vol5Change": "5D Change",
+    "vol10Change": "10D Change",
+    "vol20Change": "20D Change",
+    "vol60Change": "60D Change",
+
+    "obv5": "5D",
+    "obv20": "20D",
 
     "volume": "Volume",
     "turnover": "Turnover",

@@ -1,21 +1,16 @@
 import YAxis from "@/components/ui/YAxis";
-import { useTranslation } from "react-i18next";
 import {
   getFeatureValues,
-  getLegendID,
-  getLegendValueID,
   getLineID,
   getPaths,
   getYScale,
 } from "@stocks/plot/interactions/d3-utils";
 import {
-  toggleVolumeFeature,
   vmIDPrefix,
   volMARatioFeatures,
 } from "@stocks/plot/interactions/volume-momentum";
 import type { SubplotProps } from "@/components/stocks/shared";
 import { colorPalette, plotSizeConfig, svgConfig } from "@/lib/theme";
-import Legend from "@/components/ui/Legend";
 
 export default function VolMARatio({
   features,
@@ -23,13 +18,11 @@ export default function VolMARatio({
   height,
   x,
 }: SubplotProps<"volumemomentum">) {
-  const { t } = useTranslation("stocks");
   const { marginBottom, marginTop } = plotSizeConfig;
   const { strokeWidth, markStrokeDasharray, markStrokeWidth } = svgConfig;
   const values = getFeatureValues<"volumemomentum">(features, volMARatioFeatures);
   const y = getYScale(values, height - marginBottom, marginTop);
   const paths = getPaths<"volumemomentum">(features, volMARatioFeatures, x, y);
-  const lastFeature = features.at(-1);
   return (
     <>
       <YAxis y={y} width={width} />
@@ -50,15 +43,6 @@ export default function VolMARatio({
             fill="none"
             stroke={colorPalette[i]}
             strokeWidth={strokeWidth}
-          />
-          <Legend
-            legendId={getLegendID(vmIDPrefix, featureName)}
-            valueId={getLegendValueID(vmIDPrefix, featureName)}
-            index={i}
-            label={t(`featureName.${featureName}`)}
-            value={lastFeature![featureName].toFixed(2)}
-            onMouseDown={() => toggleVolumeFeature(featureName)}
-            size="wider"
           />
         </g>
       ))}
