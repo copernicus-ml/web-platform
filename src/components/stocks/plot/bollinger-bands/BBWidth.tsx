@@ -1,20 +1,10 @@
 import * as d3 from "d3";
 import { colorPalette, plotSizeConfig, svgConfig } from "@/lib/theme";
 import type { SubplotProps } from "@/components/stocks/shared";
-import {
-  bbIDPrefix,
-  toggleBBFeature,
-  widthFeature,
-} from "@stocks/plot/interactions/bollinger-bands";
+import { bbIDPrefix, widthFeature } from "@stocks/plot/interactions/bollinger-bands";
 import type { BollingerBandsFeature } from "@/apis";
 import YAxis from "@/components/ui/YAxis";
-import Legend from "@/components/ui/Legend";
-import { useTranslation } from "react-i18next";
-import {
-  getLegendID,
-  getLegendValueID,
-  getLineID,
-} from "@stocks/plot/interactions/d3-utils";
+import { getLineID } from "@stocks/plot/interactions/d3-utils";
 
 export default function BBWidth({
   features,
@@ -22,7 +12,6 @@ export default function BBWidth({
   height,
   x,
 }: SubplotProps<"bollingerbands">) {
-  const { t } = useTranslation("stocks");
   let yMax = 0;
   const { marginLeft, marginRight, marginTop, marginBottom } = plotSizeConfig;
   const { strokeDasharray, strokeWidth, markStrokeDasharray, markStrokeWidth } =
@@ -78,16 +67,6 @@ export default function BBWidth({
         strokeWidth={markStrokeWidth}
         strokeDasharray={markStrokeDasharray}
         className="stroke-mark"
-      />
-      {/* Legend */}
-      <Legend
-        legendId={getLegendID(bbIDPrefix, widthFeature)}
-        valueId={getLegendValueID(bbIDPrefix, widthFeature)}
-        index={0}
-        value={features.at(-1)![widthFeature].toFixed(2)}
-        label={t(`featureName.${widthFeature}`)}
-        color={colorPalette[2]}
-        onMouseDown={() => toggleBBFeature(widthFeature)}
       />
     </>
   );

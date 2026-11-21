@@ -6,6 +6,7 @@ import { useTranslation } from "react-i18next";
 import DEMAPeriodSelector from "@stocks/plot/dema/DEMAWindowSelector";
 import { stockRouteAPI } from "@/routes/stocks.$symbol";
 import { useEffect, useState } from "react";
+import StockFeatureLegends from "@stocks/plot/StockFeatureLegends";
 
 type FeaturesSectionProps = {} & React.ComponentPropsWithoutRef<"div">;
 
@@ -49,13 +50,23 @@ export default function FeaturesSection({ ...props }: FeaturesSectionProps) {
           </Selections>
         </div>
       </Header>
-      <Content ref={plotContainerRef} className="flex-1">
-        <StockFeaturePlot
-          featureGroup={featureGroup}
-          featureSubPlot={currSubplot}
-          width={plotSize.width}
-          height={plotSize.height}
-        />
+      <Content className="flex-1">
+        <div className="h-full flex flex-col">
+          <div className="flex-1" ref={plotContainerRef}>
+            <StockFeaturePlot
+              featureGroup={featureGroup}
+              featureSubPlot={currSubplot}
+              width={plotSize.width}
+              height={plotSize.height}
+            />
+          </div>
+          <div>
+            <StockFeatureLegends
+              featureGroup={featureGroup}
+              featureSubPlot={currSubplot}
+            />
+          </div>
+        </div>
       </Content>
     </Section>
   );

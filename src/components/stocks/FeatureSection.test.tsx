@@ -8,11 +8,13 @@ import userEvent from "@testing-library/user-event";
 const mocks = vi.hoisted(() => ({
   usePlotSize: vi.fn(),
   useSearch: vi.fn(),
+  useLoaderData: vi.fn(),
 }));
 
 vi.mock("@/routes/stocks.$symbol", () => ({
   stockRouteAPI: {
     useSearch: mocks.useSearch,
+    useLoaderData: mocks.useLoaderData,
   },
 }));
 
@@ -37,6 +39,21 @@ vi.mock("@stocks/plot/StockFeaturePlot", () => ({
       <p>subplotName: {featureSubPlot}</p>
       <p>width: {width}</p>
       <p>height: {height}</p>
+    </div>
+  ),
+}));
+
+vi.mock("@stocks/plot/StockFeatureLegends", () => ({
+  default: ({
+    featureGroup,
+    featureSubPlot,
+  }: {
+    featureGroup: FeatureGroupOpt;
+    featureSubPlot: string;
+  }) => (
+    <div>
+      <p>legendGroupName: {featureGroup}</p>
+      <p>legendSubplotName: {featureSubPlot}</p>
     </div>
   ),
 }));

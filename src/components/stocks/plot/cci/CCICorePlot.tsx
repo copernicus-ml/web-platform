@@ -1,25 +1,16 @@
 import YAxis from "@/components/ui/YAxis";
-import {
-  cciCoreFeatures,
-  cciIDPrefix,
-  toggleCCIElement,
-} from "@stocks/plot/interactions/cci";
+import { cciCoreFeatures, cciIDPrefix } from "@stocks/plot/interactions/cci";
 import {
   getFeatureValues,
-  getLegendID,
-  getLegendValueID,
   getLineID,
   getPaths,
   getYScale,
 } from "@stocks/plot/interactions/d3-utils";
 import type { SubplotProps } from "@/components/stocks/shared";
 import { colorPalette, plotSizeConfig, priceColors, svgConfig } from "@/lib/theme";
-import Legend from "@/components/ui/Legend";
-import { useTranslation } from "react-i18next";
 import ShadeRegion from "@/components/ui/ShadeRegion";
 
 export default function CCICorePlot({ features, x, width, height }: SubplotProps<"cci">) {
-  const { t } = useTranslation("stocks");
   const { marginBottom, marginTop } = plotSizeConfig;
   const { strokeWidth } = svgConfig;
   const values = getFeatureValues<"cci">(features, cciCoreFeatures);
@@ -38,24 +29,14 @@ export default function CCICorePlot({ features, x, width, height }: SubplotProps
         center={0}
       />
       {cciCoreFeatures.map((featureName, i) => (
-        <g key={getLineID(cciIDPrefix, featureName)}>
-          <path
-            id={getLineID(cciIDPrefix, featureName)}
-            d={paths[featureName]}
-            fill="none"
-            stroke={colorPalette[i]}
-            strokeWidth={strokeWidth}
-          />
-          <Legend
-            legendId={getLegendID(cciIDPrefix, featureName)}
-            valueId={getLegendValueID(cciIDPrefix, featureName)}
-            color={colorPalette[i]}
-            index={i}
-            label={t(`featureName.${featureName}`)}
-            value={features.at(-1)![featureName].toFixed(2)}
-            onMouseDown={() => toggleCCIElement(featureName)}
-          />
-        </g>
+        <path
+          key={getLineID(cciIDPrefix, featureName)}
+          id={getLineID(cciIDPrefix, featureName)}
+          d={paths[featureName]}
+          fill="none"
+          stroke={colorPalette[i]}
+          strokeWidth={strokeWidth}
+        />
       ))}
     </>
   );

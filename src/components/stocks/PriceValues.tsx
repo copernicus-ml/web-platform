@@ -1,6 +1,6 @@
 import { cn, computePriceChange, parseVolume } from "@/lib/utils";
 import { stockRouteAPI } from "@/routes/stocks.$symbol";
-import { priceElementIds } from "./plot/interactions/price-trend";
+import { priceElementIds } from "@stocks/plot/interactions/price-trend";
 import type { StockPrice } from "@/apis";
 
 const valueItems: { label: string; id: string; fieldName: keyof StockPrice }[] = [

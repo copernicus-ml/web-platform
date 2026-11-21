@@ -1,12 +1,9 @@
-import { useTranslation } from "react-i18next";
 import {
   amplitudeFeatures,
   marketIDPrefix,
 } from "@stocks/plot/interactions/market-activity";
 import { colorPalette, plotSizeConfig, svgConfig } from "@/lib/theme";
 import type { SubplotProps } from "@/components/stocks/shared";
-import MarketFeatureIndicators from "@stocks/plot/market-activity/MarketFeatureIndicators";
-import { toggleFeature } from "@stocks/plot/interactions/market-activity";
 import YAxis from "@/components/ui/YAxis";
 import {
   getBarGroupID,
@@ -22,7 +19,6 @@ export default function Amplitude({
   width,
   height,
 }: SubplotProps<"marketactivity">) {
-  const { t } = useTranslation("stocks");
   const { marginTop, marginBottom } = plotSizeConfig;
   const values = getFeatureValues<"marketactivity">(features, amplitudeFeatures);
   const y = getYScale(values, height - marginBottom, marginTop);
@@ -61,14 +57,6 @@ export default function Amplitude({
           stroke={colorPalette[i + 1]}
         />
       ))}
-      <MarketFeatureIndicators
-        featureNames={amplitudeFeatures}
-        features={features}
-        labels={amplitudeFeatures.map((featureName) => t(`featureName.${featureName}`))}
-        wide={true}
-        toggleFn={toggleFeature}
-        valueFormatFn={(value) => `${(value * 100).toFixed(2)}%`}
-      />
     </>
   );
 }

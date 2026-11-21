@@ -1,12 +1,6 @@
-import {
-  toggleFeature,
-  upDayRatioFeatures,
-  pmIDPrefix,
-} from "@stocks/plot/interactions/price-momentum";
+import { upDayRatioFeatures, pmIDPrefix } from "@stocks/plot/interactions/price-momentum";
 import YAxis from "@/components/ui/YAxis";
-import { colorPalette, plotSizeConfig } from "@/lib/theme";
-import FeatureIndicators from "./FeatureIndicators";
-import { digitToPercent } from "@/lib/utils";
+import { colorPalette, plotSizeConfig, svgConfig } from "@/lib/theme";
 import type { SubplotProps } from "@/components/stocks/shared";
 import { getLineID, getPaths, getYScale } from "@stocks/plot/interactions/d3-utils";
 
@@ -40,8 +34,8 @@ export default function UpDayRatio({
         y1={y(0.5)}
         y2={y(0.5)}
         className="stroke-mark"
-        strokeWidth={1.4}
-        strokeDasharray={"6 4"}
+        strokeWidth={svgConfig.strokeWidth}
+        strokeDasharray={svgConfig.strokeDasharray}
       />
       {Object.entries(paths).map(([featureName, value], i) => (
         <path
@@ -53,13 +47,6 @@ export default function UpDayRatio({
           stroke={colorPalette[i]}
         />
       ))}
-      <FeatureIndicators
-        featureNames={upDayRatioFeatures}
-        features={features}
-        valueFormatFn={digitToPercent}
-        labels={legendLabels}
-        toggleFn={toggleFeature}
-      />
     </>
   );
 }

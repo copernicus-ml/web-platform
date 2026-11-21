@@ -4,6 +4,7 @@ import {
   getLegendValueID,
   getLineID,
   toggleElement,
+  toggleLegend,
   updateTextValue,
 } from "./d3-utils";
 
@@ -12,7 +13,7 @@ const rsiFeatures = ["rsi6", "rsi14"] as const;
 
 const toggleRSIFeature = (featureName: string) => {
   toggleElement(getLineID(rsiIDPrefix, featureName));
-  toggleElement(getLegendID(rsiIDPrefix, featureName), 0.3, 1.0);
+  toggleLegend(getLegendID(rsiIDPrefix, featureName), 0.3, 1.0);
 };
 
 const updateIndicator = (feature: RSIFeature) => {

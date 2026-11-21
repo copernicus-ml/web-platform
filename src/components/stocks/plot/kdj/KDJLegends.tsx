@@ -19,6 +19,7 @@ export default function KDJLegends({ features }: KDJLegendsProps) {
     <>
       {kdjLowHighFeatures.map((featureName, i) => (
         <PlotLegend
+          key={getLegendID(kdjIDPrefix, featureName)}
           legendId={getLegendID(kdjIDPrefix, featureName)}
           valueId={getLegendValueID(kdjIDPrefix, featureName)}
           color={colorPalette[i]}

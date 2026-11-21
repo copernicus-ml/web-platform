@@ -2,21 +2,16 @@ import YAxis from "@/components/ui/YAxis";
 import { digitToPercent } from "@/lib/utils";
 import {
   getFeatureValues,
-  getLegendID,
-  getLegendValueID,
   getLineID,
   getPaths,
   getYScale,
 } from "@stocks/plot/interactions/d3-utils";
 import {
-  toggleVolumeFeature,
   vmIDPrefix,
   volChangesFeatures,
 } from "@stocks/plot/interactions/volume-momentum";
 import type { SubplotProps } from "@/components/stocks/shared";
 import { colorPalette, plotSizeConfig, svgConfig } from "@/lib/theme";
-import Legend from "@/components/ui/Legend";
-import { useTranslation } from "react-i18next";
 
 export default function VolChange({
   features,
@@ -24,16 +19,11 @@ export default function VolChange({
   height,
   x,
 }: SubplotProps<"volumemomentum">) {
-  const { t } = useTranslation("stocks");
   const { marginTop, marginBottom } = plotSizeConfig;
   const { strokeWidth, markStrokeWidth, markStrokeDasharray } = svgConfig;
   const values = getFeatureValues<"volumemomentum">(features, volChangesFeatures);
   const y = getYScale(values, height - marginBottom, marginTop);
   const paths = getPaths<"volumemomentum">(features, volChangesFeatures, x, y);
-  const legendLabels = volChangesFeatures.map(
-    (featureName) => `${featureName.match(/\d+/)}D`,
-  );
-  const lastFeature = features.at(-1);
 
   return (
     <g>
@@ -50,14 +40,6 @@ export default function VolChange({
             fill="none"
             stroke={colorPalette[i]}
             strokeWidth={strokeWidth}
-          />
-          <Legend
-            legendId={getLegendID(vmIDPrefix, featureName)}
-            valueId={getLegendValueID(vmIDPrefix, featureName)}
-            index={i}
-            label={t(`featureName.${legendLabels[i]}`)}
-            value={digitToPercent(lastFeature![featureName])}
-            onMouseDown={() => toggleVolumeFeature(featureName)}
           />
         </g>
       ))}

@@ -1,20 +1,15 @@
-import Legend from "@/components/ui/Legend";
 import YAxis from "@/components/ui/YAxis";
 import {
   getCircleID,
   getCirclesGroupID,
-  getLegendID,
-  getLegendValueID,
   getYScale,
 } from "@stocks/plot/interactions/d3-utils";
 import {
-  toggleVolatilityFeature,
   volatilityIDPrefix,
   volatilityRankFeature,
 } from "@stocks/plot/interactions/volatility";
 import type { SubplotProps } from "@/components/stocks/shared";
 import { colorPalette, plotSizeConfig } from "@/lib/theme";
-import { useTranslation } from "react-i18next";
 
 export default function VolatilityRank({
   features,
@@ -22,11 +17,9 @@ export default function VolatilityRank({
   height,
   x,
 }: SubplotProps<"volatility">) {
-  const { t } = useTranslation("stocks");
   const { marginBottom, marginTop } = plotSizeConfig;
   const values = features.map((feature) => feature[volatilityRankFeature]);
   const y = getYScale(values, height - marginBottom, marginTop);
-  const lastFeature = features.at(-1)!;
   return (
     <>
       <YAxis y={y} width={width} />
@@ -44,14 +37,6 @@ export default function VolatilityRank({
             />
           ))}
         </g>
-        <Legend
-          legendId={getLegendID(volatilityIDPrefix, volatilityRankFeature)}
-          valueId={getLegendValueID(volatilityIDPrefix, volatilityRankFeature)}
-          index={0}
-          label={t(`featureName.${volatilityRankFeature}`)}
-          value={lastFeature[volatilityRankFeature].toFixed(2)}
-          onMouseDown={() => toggleVolatilityFeature(volatilityRankFeature)}
-        />
       </g>
     </>
   );

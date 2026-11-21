@@ -1,12 +1,6 @@
-import { digitToPercent } from "@/lib/utils";
-import {
-  pmIDPrefix,
-  returnFeatures,
-  toggleFeature,
-} from "@stocks/plot/interactions/price-momentum";
+import { pmIDPrefix, returnFeatures } from "@stocks/plot/interactions/price-momentum";
 import { plotSizeConfig, priceColors } from "@/lib/theme";
 import YAxis from "@/components/ui/YAxis";
-import FeatureIndicators from "@stocks/plot/price-momentum/FeatureIndicators";
 import type { SubplotProps } from "@/components/stocks/shared";
 import {
   getBarGroupID,
@@ -24,12 +18,6 @@ export default function Returns({
 
   const values = getFeatureValues<"pricemomentum">(features, returnFeatures);
   const y = getYScale(values, height - marginBottom, marginTop);
-  const legendLabels = returnFeatures.map(
-    (featureName) => `${featureName.match(/\d+/)}D`,
-  );
-  const initialColors = returnFeatures.map((featureName) =>
-    features.at(-1)![featureName] >= 0 ? priceColors.up : priceColors.down,
-  );
   const opacities = [1.0, 0.6, 0.4];
 
   return (
@@ -63,15 +51,6 @@ export default function Returns({
           </g>
         );
       })}
-      <FeatureIndicators
-        featureNames={returnFeatures}
-        features={features}
-        valueFormatFn={digitToPercent}
-        labels={legendLabels}
-        colors={initialColors}
-        opacities={opacities}
-        toggleFn={toggleFeature}
-      />
     </g>
   );
 }

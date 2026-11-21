@@ -1,6 +1,6 @@
 import * as d3 from "d3";
 import type { StockPrice } from "@/apis";
-import { priceColors, legendConfig, svgConfig } from "@/lib/theme";
+import { priceColors, svgConfig } from "@/lib/theme";
 import { priceElementIds } from "@stocks/plot/interactions/price-trend";
 import DateLine from "@/components/ui/DateLine";
 import type { PriceChartType } from "@/components/stocks/shared";
@@ -51,16 +51,16 @@ export default function StockDataIndicators({
         <g transform={`translate(-15, 0)`}>
           <rect
             id={priceElementIds.valuesCurrRect}
-            x={4}
+            x={2}
             y={-10}
             width={48}
             height={20}
-            rx={legendConfig.rectCorner}
+            rx={svgConfig.rectCorner}
             fill={isUp ? priceColors.up : priceColors.down}
           />
           <text
             id={priceElementIds.valuesCurrVal}
-            x={28}
+            x={26}
             y={0}
             dy={"0.33em"}
             textAnchor="middle"

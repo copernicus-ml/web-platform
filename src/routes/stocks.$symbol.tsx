@@ -67,7 +67,8 @@ function StocksDashboard() {
     <div className="w-full h-full flex flex-col justify-center divide-y divide-frame divide-dashed">
       <StockInfo />
       <div className="flex-1 flex divide-x divide-frame divide-dashed">
-        <div className="w-full flex-1 flex flex-col min-w-0 divide-y divide-frame divide-dashed">
+        {/* <div>Hello</div> */}
+        <div className="w-full flex-1 flex flex-col min-w-0 divide-y divide-frame divide-dashed pb-2">
           <PriceSection className="flex flex-col flex-3" />
           <FeaturesSection className="flex flex-col flex-2" />
         </div>

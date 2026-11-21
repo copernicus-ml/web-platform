@@ -1,14 +1,8 @@
 import { colorPalette, plotSizeConfig, priceColors } from "@/lib/theme";
-import { useTranslation } from "react-i18next";
-import {
-  accelerationFeatures,
-  macdIDPrefix,
-  toggleMACDFeature,
-} from "@stocks/plot/interactions/macd";
+import { accelerationFeatures, macdIDPrefix } from "@stocks/plot/interactions/macd";
 import YAxis from "@/components/ui/YAxis";
 import type { SubplotProps } from "@/components/stocks/shared";
 import CrossoverSignals from "./CrossoverSignals";
-import MACDFeatureIndicators from "./MACDFeatureIndicators";
 import {
   getBarGroupID,
   getFeatureValues,
@@ -23,11 +17,15 @@ export default function Acceleration({
   height,
   x,
 }: SubplotProps<"macd">) {
-  const { t } = useTranslation("stocks");
   const { marginTop, marginBottom } = plotSizeConfig;
-  const values = getFeatureValues<"macd">(features, [...accelerationFeatures, "hist"]);
+  const values = getFeatureValues<"macd">(features, accelerationFeatures);
   const y = getYScale(values, height - marginBottom, marginTop);
-  const paths = getPaths<"macd">(features, accelerationFeatures, x, y);
+  const paths = getPaths<"macd">(
+    features,
+    accelerationFeatures.filter((featureName) => featureName != "hist"),
+    x,
+    y,
+  );
 
   return (
     <>
@@ -56,19 +54,6 @@ export default function Acceleration({
           strokeWidth={1.5}
         />
       ))}
-      <MACDFeatureIndicators
-        features={features}
-        featureNames={[...accelerationFeatures, "hist"]}
-        labels={[...accelerationFeatures, "hist"].map((featureName) =>
-          t(`featureName.${featureName}`),
-        )}
-        colors={[
-          colorPalette[0],
-          colorPalette[1],
-          features.at(-1)!.hist >= 0 ? priceColors.up : priceColors.down,
-        ]}
-        toggleFn={toggleMACDFeature}
-      />
     </>
   );
 }

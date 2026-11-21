@@ -1,4 +1,4 @@
-import { plotSizeConfig, legendConfig } from "@/lib/theme";
+import { plotSizeConfig, svgConfig } from "@/lib/theme";
 
 type DateLineProps = {
   height: number;
@@ -31,7 +31,7 @@ export default function DateLine({ height, dateGroupId, dayId, monthId }: DateLi
           y={2}
           width={36}
           height={36}
-          rx={legendConfig.rectCorner}
+          rx={svgConfig.rectCorner}
           className="fill-primary"
           opacity={0.9}
         />

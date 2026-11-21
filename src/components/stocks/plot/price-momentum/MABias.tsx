@@ -1,9 +1,5 @@
 import YAxis from "@/components/ui/YAxis";
-import {
-  maBiasFeatures,
-  pmIDPrefix,
-  toggleFeature,
-} from "@stocks/plot/interactions/price-momentum";
+import { maBiasFeatures, pmIDPrefix } from "@stocks/plot/interactions/price-momentum";
 import {
   getFeatureValues,
   getLineID,
@@ -11,8 +7,6 @@ import {
   getYScale,
 } from "@stocks/plot/interactions/d3-utils";
 import { colorPalette, plotSizeConfig, svgConfig } from "@/lib/theme";
-import FeatureIndicators from "@stocks/plot/price-momentum/FeatureIndicators";
-import { digitToPercent } from "@/lib/utils";
 import type { SubplotProps } from "@/components/stocks/shared";
 
 export default function MABias({
@@ -62,13 +56,13 @@ export default function MABias({
         strokeWidth={markStrokeWidth}
         strokeDasharray={markStrokeDasharray}
       />
-      <FeatureIndicators
+      {/* <FeatureIndicators
         featureNames={maBiasFeatures}
         features={features}
         valueFormatFn={digitToPercent}
         labels={legendLabels}
         toggleFn={toggleFeature}
-      />
+      /> */}
     </>
   );
 }

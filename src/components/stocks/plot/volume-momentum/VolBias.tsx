@@ -1,22 +1,14 @@
-import {
-  toggleVolumeFeature,
-  vmIDPrefix,
-  volBiasFeatures,
-} from "@stocks/plot/interactions/volume-momentum";
+import { vmIDPrefix, volBiasFeatures } from "@stocks/plot/interactions/volume-momentum";
 import type { SubplotProps } from "@/components/stocks/shared";
 import { colorPalette, plotSizeConfig, svgConfig } from "@/lib/theme";
 import YAxis from "@/components/ui/YAxis";
 import {
   getFeatureValues,
-  getLegendID,
-  getLegendValueID,
   getLineID,
   getPaths,
   getYScale,
 } from "@stocks/plot/interactions/d3-utils";
-import Legend from "@/components/ui/Legend";
 import { digitToPercent } from "@/lib/utils";
-import { useTranslation } from "react-i18next";
 
 export default function VolBias({
   features,
@@ -24,16 +16,11 @@ export default function VolBias({
   height,
   x,
 }: SubplotProps<"volumemomentum">) {
-  const { t } = useTranslation("stocks");
   const { marginTop, marginBottom } = plotSizeConfig;
   const { strokeWidth, markStrokeDasharray, markStrokeWidth } = svgConfig;
   const values = getFeatureValues<"volumemomentum">(features, volBiasFeatures);
   const y = getYScale(values, height - marginBottom, marginTop);
   const paths = getPaths<"volumemomentum">(features, volBiasFeatures, x, y);
-  const legendLabels = volBiasFeatures.map(
-    (featureName) => `${featureName.match(/\d+/)}D`,
-  );
-  const lastFeature = features.at(-1);
 
   return (
     <>
@@ -43,23 +30,14 @@ export default function VolBias({
         labelFormatter={(val: number) => digitToPercent(val, 0)}
       />
       {volBiasFeatures.map((featureName, i) => (
-        <g key={getLineID(vmIDPrefix, featureName)}>
-          <path
-            id={getLineID(vmIDPrefix, featureName)}
-            d={paths[featureName]}
-            fill="none"
-            stroke={colorPalette[i]}
-            strokeWidth={strokeWidth}
-          />
-          <Legend
-            legendId={getLegendID(vmIDPrefix, featureName)}
-            valueId={getLegendValueID(vmIDPrefix, featureName)}
-            index={i}
-            label={t(`featureName.${legendLabels[i]}`)}
-            value={digitToPercent(lastFeature![featureName])}
-            onMouseDown={() => toggleVolumeFeature(featureName)}
-          />
-        </g>
+        <path
+          key={getLineID(vmIDPrefix, featureName)}
+          id={getLineID(vmIDPrefix, featureName)}
+          d={paths[featureName]}
+          fill="none"
+          stroke={colorPalette[i]}
+          strokeWidth={strokeWidth}
+        />
       ))}
       <line
         x1={x.range()[0]}

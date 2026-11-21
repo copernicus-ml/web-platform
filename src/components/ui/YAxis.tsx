@@ -24,11 +24,10 @@ export default function YAxis({
             x2={width - plotSizeConfig.marginRight}
             y1={y(tick)}
             y2={y(tick)}
-            // strokeDasharray={markStrokeDasharray}
             className="stroke-accent-200"
           />
           <text
-            x={8}
+            x={plotSizeConfig.yLabelAnchor}
             y={y(tick)}
             dy={"0.33em"}
             textAnchor="start"
