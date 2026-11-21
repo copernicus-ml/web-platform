@@ -5,6 +5,7 @@ import {
   getLegendValueID,
   getLineID,
   toggleElement,
+  toggleLegend,
   updateTextValue,
 } from "./d3-utils";
 import { digitToPercent } from "@/lib/utils";
@@ -14,7 +15,7 @@ const obvPressureFeatures = ["obv5", "obv20"] as const;
 const obvMomentumFeatures = ["obvAccel520"] as const;
 
 const toggleOBVElements = (featureName: string) => {
-  toggleElement(getLegendID(obvIDPrefix, featureName), 0.3, 1.0);
+  toggleLegend(getLegendID(obvIDPrefix, featureName), 0.3, 1.0);
   toggleElement(getLineID(obvIDPrefix, featureName));
   toggleElement(getBarGroupID(obvIDPrefix, featureName));
 };
