@@ -42,9 +42,7 @@ export default function StockPicker() {
           value={keyword}
           onChange={updateKeyword}
           onFocus={() => setExpand(true)}
-          onBlur={(e) => {
-            if (e.relatedTarget === null) setExpand(false);
-          }}
+          onBlur={() => setExpand(false)}
           className="py-1 px-2 focus-visible:outline-0 text-sm flex-1"
           autoComplete="off"
           placeholder="Symbol or company name"
@@ -66,7 +64,8 @@ export default function StockPicker() {
                 "w-full flex text-left py-1 hover:cursor-pointer hover:bg-accent-100 px-2.5 items-center",
                 item[0].toLowerCase() === currSymbol.toLowerCase() && "bg-accent-200",
               )}
-              onClick={() => {
+              onMouseDown={(e) => {
+                e.stopPropagation();
                 selectStock(item[0]);
                 setExpand(false);
               }}
