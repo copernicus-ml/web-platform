@@ -1,6 +1,5 @@
 import clsx from "clsx";
 import { cn } from "@/lib/utils";
-import StockSelector from "@/components/stocks/StockSelector";
 import { stockRouteAPI } from "@/routes/stocks.$symbol";
 
 const styles = {
@@ -20,17 +19,10 @@ export default function StockInfo() {
       <div className={styles.container}>
         {data && (
           <>
-            <StockSelector>
-              <div
-                className={cn(
-                  styles.columnBasic,
-                  "cursor-pointer hover:bg-accent-200 col-span-1",
-                )}
-              >
-                <h2 className="font-semibold text-lg">{data.symbol}</h2>
-                <p>{data.companyName}</p>
-              </div>
-            </StockSelector>
+            <div className={cn(styles.columnBasic, "col-span-1")}>
+              <h2 className="font-semibold text-lg">{data.symbol}</h2>
+              <p>{data.companyName}</p>
+            </div>
             <div className={cn(styles.columnBasic, "col-span-1")}>
               <p>{data.sector}</p>
               <p>{data.subIndustry}</p>

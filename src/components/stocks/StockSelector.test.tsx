@@ -1,7 +1,7 @@
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { beforeEach, describe, expect, it, vi } from "vitest";
-import StockSelector from "./StockSelector";
+import StockPicker from "./StockPicker";
 
 const mocks = vi.hoisted(() => ({
   navigate: vi.fn(),
@@ -24,7 +24,7 @@ const stockList = [
   ["NVDA", "NVIDIA Corporation"],
 ];
 
-describe("StockSelector", () => {
+describe("StockPicker", () => {
   beforeEach(() => {
     vi.clearAllMocks();
     mocks.useNavigate.mockReturnValue(mocks.navigate);
@@ -34,12 +34,7 @@ describe("StockSelector", () => {
 
   it("filters stocks by the entered symbol prefix", async () => {
     const user = userEvent.setup();
-    render(
-      <StockSelector>
-        <button>Select stock</button>
-      </StockSelector>,
-    );
-    await user.click(screen.getByRole("button", { name: "Select stock" }));
+    render(<StockPicker />);
     await user.type(screen.getByRole("textbox"), "ms");
     expect(
       screen.getByRole("button", { name: /MSFT Microsoft Corporation/ }),
@@ -49,14 +44,23 @@ describe("StockSelector", () => {
     ).not.toBeInTheDocument();
   });
 
+  it("hide picker on textbox blur", async () => {
+    const user = userEvent.setup();
+    render(<StockPicker />);
+    await user.click(screen.getByRole("textbox"));
+    expect(
+      screen.getByRole("button", { name: /NVDA NVIDIA Corporation/ }),
+    ).toBeInTheDocument();
+    await user.click(document.body);
+    expect(
+      screen.queryByRole("button", { name: /NVDA NVIDIA Corporation/ }),
+    ).not.toBeInTheDocument();
+  });
+
   it("navigates to the selected stock while preserving the search state", async () => {
     const user = userEvent.setup();
-    render(
-      <StockSelector>
-        <button>Select stock</button>
-      </StockSelector>,
-    );
-    await user.click(screen.getByRole("button", { name: "Select stock" }));
+    render(<StockPicker />);
+    await user.click(screen.getByRole("textbox"));
     await user.click(screen.getByRole("button", { name: /MSFT Microsoft Corporation/ }));
     expect(mocks.navigate).toHaveBeenCalledWith({
       to: ".",
