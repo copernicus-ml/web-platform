@@ -8,7 +8,7 @@ export default function StockPicker() {
   const [expand, setExpand] = useState<boolean>(false);
 
   const updateKeyword = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setKeyword(event.target.value.trim());
+    setKeyword(event.target.value.trimStart());
   };
 
   const stockList = stockRouteAPI.useLoaderData({
