@@ -1,7 +1,4 @@
 {
-  "ui": {
-    "marketPerformance": "Market Performance"
-  },
   "table": {
     "symbol": "Ticker",
     "subIndustry": "Subindustry",

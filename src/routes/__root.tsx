@@ -24,7 +24,7 @@ const publicPaths = new Set([
 ]);
 
 export const Route = createRootRouteWithContext<AppRouterContext>()({
-  beforeLoad: ({ context, location }) => {
+  beforeLoad: async ({ context, location }) => {
     if (!context.auth.isSignedIn && !publicPaths.has(location.pathname)) {
       throw redirect({
         to: "/signin",

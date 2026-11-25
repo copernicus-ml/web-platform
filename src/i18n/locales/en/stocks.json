@@ -1,6 +1,9 @@
 {
   "ui": {
-    "basicfeatures": "Basic Features"
+    "basicfeatures": "Basic Features",
+    "searchPlaceholder": "Symbol or company name",
+    "noResult": "Unable to find any results",
+    "trending": "Trending"
   },
   "stocks": {
     "60D": "60D",
@@ -157,11 +160,7 @@
    "cci": "CCI",
    "cciMa5": "CCI MA",
 
-   "5D": "5D",
    "6D": "6D",
-   "10D": "10D",
-   "14D": "14D",
-   "20D": "20D",
-   "60D": "60D"
+   "14D": "14D"
   }
 }

@@ -1,7 +1,4 @@
 {
-  "ui": {
-    "marketPerformance": "市场表现"
-  },
   "table": {
     "symbol": "代码",
     "subIndustry": "子行业",

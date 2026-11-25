@@ -1,5 +1,5 @@
 import z from "zod";
-import { DATA_URL, type DataServiceError } from "@/apis/shared";
+import { DATA_URL, processResponse } from "@/apis/shared";
 
 const StockInfoSchema = z
   .object({
@@ -18,6 +18,7 @@ const StockInfoSchema = z
     headquarters: input.headquarters,
     founded: input.founded,
   }));
+type StockInfo = z.infer<typeof StockInfoSchema>;
 
 const getStockInfo = async (symbol: string, authToken: string, signal?: AbortSignal) => {
   const url = new URL(`data/stock/info/${symbol}`, DATA_URL);
@@ -28,19 +29,7 @@ const getStockInfo = async (symbol: string, authToken: string, signal?: AbortSig
     },
     signal,
   });
-  if (!response.ok) {
-    const errorData = (await response.json()) as DataServiceError;
-    const errorMessage =
-      errorData.error.message ||
-      `Failed to get ${symbol} stock info from server. Status ${response.status}`;
-    throw new Error(errorMessage);
-  }
-  const responseData = await response.json();
-  const parsedResult = StockInfoSchema.safeParse(responseData.data);
-  if (parsedResult.success) {
-    return parsedResult.data;
-  }
-  throw new Error(parsedResult.error.message);
+  return processResponse<StockInfo>(response, StockInfoSchema);
 };
 
 export { getStockInfo };

@@ -113,35 +113,38 @@ export default function MarketTable({
               "border-b last:border-none border-dashed border-frame divide-x divide-frame hover:bg-accent-100",
             )}
           >
-            {Object.entries(item).map(([key, value], j) => (
-              <td
-                key={`row-${i}-${key}`}
-                className={cn(
-                  "py-2",
-                  "first:flex-1",
-                  widerColumns.includes(key) ? "flex-5" : "flex-2",
-                  isNumber(value) && "text-center",
-                  key === "symbol" &&
-                    "hover:cursor-pointer hover:bg-accent-300 hover:font-bold hover:underline",
-                )}
-                onClick={() => navigateToStock(key, value)}
-              >
-                <div
+            {headers.map((key, j) => {
+              const value = item[key as keyof typeof item];
+              return (
+                <td
+                  key={`row-${i}-${key}`}
                   className={cn(
-                    "h-full w-full items-center flex",
-                    isNumber(value) || j == 0 ? "justify-center gap-1" : "pl-3",
+                    "py-2",
+                    "first:flex-1",
+                    widerColumns.includes(key) ? "flex-5" : "flex-2",
+                    isNumber(value) && "text-center",
+                    key === "symbol" &&
+                      "hover:cursor-pointer hover:bg-accent-300 hover:font-bold hover:underline",
                   )}
+                  onClick={() => navigateToStock(key, value)}
                 >
-                  {isNumber(value) && (
-                    <Triangle
-                      className={cn("w-3 stroke-none z-0", value < 0 && "rotate-180")}
-                      fill={value >= 0 ? priceColors.up : priceColors.down}
-                    />
-                  )}
-                  <p>{isNumber(value) ? digitToPercent(value) : value}</p>
-                </div>
-              </td>
-            ))}
+                  <div
+                    className={cn(
+                      "h-full w-full items-center flex",
+                      isNumber(value) || j == 0 ? "justify-center gap-1" : "pl-3",
+                    )}
+                  >
+                    {isNumber(value) && (
+                      <Triangle
+                        className={cn("w-3 stroke-none z-0", value < 0 && "rotate-180")}
+                        fill={value >= 0 ? priceColors.up : priceColors.down}
+                      />
+                    )}
+                    <p>{isNumber(value) ? digitToPercent(value) : value}</p>
+                  </div>
+                </td>
+              );
+            })}
           </TRow>
         ))}
       </TBody>

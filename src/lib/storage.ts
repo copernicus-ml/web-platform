@@ -31,7 +31,7 @@ const addSearchHistory = (
     localStorage.setItem(localStorageKey, JSON.stringify({ records: [newRecord] }));
     return;
   }
-  let currRecords = storage.records as SearchRecord[];
+  let currRecords = (storage.records || []) as SearchRecord[];
   currRecords = currRecords.filter((record) => record.symbol !== symbol);
   currRecords.push(newRecord);
   if (currRecords.length > maxRecords) {

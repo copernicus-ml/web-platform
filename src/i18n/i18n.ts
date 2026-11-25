@@ -36,7 +36,7 @@ i18n
   .init({
     lng: appLanguage,
     fallbackLng: "en",
-    ns: ["stock"],
+    ns: ["stocks"],
     interpolation: { escapeValue: false },
   })
   .then(() => updateDocumentLanguage(i18n.resolvedLanguage ?? i18n.language));

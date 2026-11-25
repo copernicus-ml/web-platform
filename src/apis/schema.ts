@@ -1,9 +1,9 @@
 import { z } from "zod";
 
-const dataWindows = ["60D", "90D", "180D", "1Y", "3Y"] as const;
-type DataWindowOpt = (typeof dataWindows)[number];
+export const dataWindows = ["60D", "90D", "180D", "1Y", "3Y"] as const;
+export type DataWindowOpt = (typeof dataWindows)[number];
 
-const FeatureGroups = [
+export const FeatureGroups = [
   "pricemomentum",
   "macd",
   "dema",
@@ -16,9 +16,9 @@ const FeatureGroups = [
   "kdj",
   "cci",
 ] as const;
-type FeatureGroupOpt = (typeof FeatureGroups)[number];
+export type FeatureGroupOpt = (typeof FeatureGroups)[number];
 
-const featureGroupParam: Record<FeatureGroupOpt, string> = {
+export const featureGroupParam: Record<FeatureGroupOpt, string> = {
   pricemomentum: "pricemomentum",
   volumemomentum: "volumemomentum",
   volatility: "volatility",
@@ -32,7 +32,7 @@ const featureGroupParam: Record<FeatureGroupOpt, string> = {
   cci: "cci",
 };
 
-const FeatureSubplots: Record<FeatureGroupOpt, string[]> = {
+export const FeatureSubplots: Record<FeatureGroupOpt, string[]> = {
   pricemomentum: ["maBias", "return", "upDayRatio"] as const,
   volumemomentum: ["volumeBias", "volumeChanges", "volumeMARatio"] as const,
   volatility: ["logVolatility", "volatilityRank"] as const,
@@ -46,7 +46,7 @@ const FeatureSubplots: Record<FeatureGroupOpt, string[]> = {
   cci: ["cci"] as const,
 };
 
-const dataWindowParam: Record<DataWindowOpt, string> = {
+export const dataWindowParam: Record<DataWindowOpt, string> = {
   "60D": "60days",
   "90D": "90days",
   "180D": "180days",
@@ -54,7 +54,7 @@ const dataWindowParam: Record<DataWindowOpt, string> = {
   "3Y": "3years",
 };
 
-const StockPriceSchema = z.object({
+export const StockPriceSchema = z.object({
   symbol: z.string(),
   date: z.string(),
   open: z.float32(),
@@ -65,7 +65,7 @@ const StockPriceSchema = z.object({
   turnover: z.float32(),
 });
 
-const PriceMomentumFeaturesSchema = z
+export const PriceMomentumFeaturesSchema = z
   .object({
     date: z.string(),
     ma_5: z.float32(),
@@ -95,7 +95,7 @@ const PriceMomentumFeaturesSchema = z
     upRatio20d: input.up_ratio_20d,
   }));
 
-const VolumeMomentumFeatureSchema = z
+export const VolumeMomentumFeatureSchema = z
   .object({
     date: z.string(),
     vol_ma_5_bias: z.float32(),
@@ -125,7 +125,7 @@ const VolumeMomentumFeatureSchema = z
     volMARatio2060: input.vol_ma_20_60_ratio,
   }));
 
-const VolatilitySchema = z
+export const VolatilitySchema = z
   .object({
     date: z.string(),
     volatility_log: z.float32(),
@@ -137,7 +137,7 @@ const VolatilitySchema = z
     volatilityRank: input.volatility_rank,
   }));
 
-const OBVFeatureSchema = z
+export const OBVFeatureSchema = z
   .object({
     date: z.string(),
     obv_strength_5: z.float32(),
@@ -151,7 +151,7 @@ const OBVFeatureSchema = z
     obvAccel520: input.obv_strength_accel_5_20,
   }));
 
-const MarketActivityFeaturesSchema = z
+export const MarketActivityFeaturesSchema = z
   .object({
     date: z.string(),
     amplitude: z.float32(),
@@ -175,7 +175,7 @@ const MarketActivityFeaturesSchema = z
     turnoverQuantile: input.turnover_quantile_60,
   }));
 
-const MACDFeatureSchema = z
+export const MACDFeatureSchema = z
   .object({
     date: z.string(),
     macd_ema_slow: z.float32(),
@@ -197,7 +197,7 @@ const MACDFeatureSchema = z
     dead: input.macd_dead,
   }));
 
-const BollingerBandsFeaturesSchema = z
+export const BollingerBandsFeaturesSchema = z
   .object({
     date: z.string(),
     bb_upper: z.float32(),
@@ -215,9 +215,9 @@ const BollingerBandsFeaturesSchema = z
     bbPos: input.bb_position,
   }));
 
-const DEMAPeriods = ["5_10", "10_20", "20_60"] as const;
-type DEMAPeriodOpt = (typeof DEMAPeriods)[number];
-const DEMAFeaturesSchema = z
+export const DEMAPeriods = ["5_10", "10_20", "20_60"] as const;
+export type DEMAPeriodOpt = (typeof DEMAPeriods)[number];
+export const DEMAFeaturesSchema = z
   .object({
     date: z.string(),
     dema_5_10_fast: z.float32(),
@@ -241,7 +241,7 @@ const DEMAFeaturesSchema = z
     ...input,
   }));
 
-const RSISchema = z
+export const RSISchema = z
   .object({
     date: z.string(),
     rsi_6: z.float32(),
@@ -253,7 +253,7 @@ const RSISchema = z
     rsi14: input.rsi_14,
   }));
 
-const KDJSchema = z
+export const KDJSchema = z
   .object({
     date: z.string(),
     kdj_low_9: z.float32(),
@@ -271,7 +271,7 @@ const KDJSchema = z
     kdjJ: input.kdj_j,
   }));
 
-const CCISchema = z
+export const CCISchema = z
   .object({
     date: z.string(),
     tp: z.float32(),
@@ -287,7 +287,7 @@ const CCISchema = z
     cciMa5: input.cci_ma_5,
   }));
 
-const FeatureSchemas = {
+export const FeatureSchemas = {
   pricemomentum: PriceMomentumFeaturesSchema,
   volumemomentum: VolumeMomentumFeatureSchema,
   volatility: VolatilitySchema,
@@ -301,60 +301,22 @@ const FeatureSchemas = {
   cci: CCISchema,
 } satisfies Record<FeatureGroupOpt, z.ZodType>;
 
-const StockPctChangeSchema = z
-  .object({
-    symbol: z.string(),
-    sub_industry: z.string(),
-    pct_change_1d: z.float32(),
-    pct_change_5d: z.float32(),
-    pct_change_10d: z.float32(),
-    pct_change_20d: z.float32(),
-    pct_change_60d: z.float32(),
-  })
-  .transform((input) => ({
-    symbol: input.symbol,
-    subIndustry: input.sub_industry,
-    pct1d: input.pct_change_1d,
-    pct5d: input.pct_change_5d,
-    pct10d: input.pct_change_10d,
-    pct20d: input.pct_change_20d,
-    pct60d: input.pct_change_60d,
-  }));
+export const sortableFields = ["pct1d", "pct5d", "pct10d", "pct20d", "pct60d"] as const;
+export type SortableField = (typeof sortableFields)[number];
 
-const IndustryPctChangeSchema = z
-  .object({
-    sub_industry: z.string(),
-    pct_change_1d: z.float32(),
-    pct_change_5d: z.float32(),
-    pct_change_10d: z.float32(),
-    pct_change_20d: z.float32(),
-    pct_change_60d: z.float32(),
-  })
-  .transform((input) => ({
-    subIndustry: input.sub_industry,
-    pct1d: input.pct_change_1d,
-    pct5d: input.pct_change_5d,
-    pct10d: input.pct_change_10d,
-    pct20d: input.pct_change_20d,
-    pct60d: input.pct_change_60d,
-  }));
-
-const sortableFields = ["pct1d", "pct5d", "pct10d", "pct20d", "pct60d"] as const;
-type SortableField = (typeof sortableFields)[number];
-
-type StockPrice = z.infer<typeof StockPriceSchema>;
-type PriceMomentumFeature = z.infer<typeof PriceMomentumFeaturesSchema>;
-type VolumeMomentumFeature = z.infer<typeof VolumeMomentumFeatureSchema>;
-type VolatilityFeature = z.infer<typeof VolatilitySchema>;
-type OBVFeature = z.infer<typeof OBVFeatureSchema>;
-type MarketActivityFeature = z.infer<typeof MarketActivityFeaturesSchema>;
-type MACDFeature = z.infer<typeof MACDFeatureSchema>;
-type BollingerBandsFeature = z.infer<typeof BollingerBandsFeaturesSchema>;
-type DEMAFeature = z.infer<typeof DEMAFeaturesSchema>;
-type RSIFeature = z.infer<typeof RSISchema>;
-type KDJFeature = z.infer<typeof KDJSchema>;
-type CCIFeature = z.infer<typeof CCISchema>;
-type FeatureByGroup = {
+export type StockPrice = z.infer<typeof StockPriceSchema>;
+export type PriceMomentumFeature = z.infer<typeof PriceMomentumFeaturesSchema>;
+export type VolumeMomentumFeature = z.infer<typeof VolumeMomentumFeatureSchema>;
+export type VolatilityFeature = z.infer<typeof VolatilitySchema>;
+export type OBVFeature = z.infer<typeof OBVFeatureSchema>;
+export type MarketActivityFeature = z.infer<typeof MarketActivityFeaturesSchema>;
+export type MACDFeature = z.infer<typeof MACDFeatureSchema>;
+export type BollingerBandsFeature = z.infer<typeof BollingerBandsFeaturesSchema>;
+export type DEMAFeature = z.infer<typeof DEMAFeaturesSchema>;
+export type RSIFeature = z.infer<typeof RSISchema>;
+export type KDJFeature = z.infer<typeof KDJSchema>;
+export type CCIFeature = z.infer<typeof CCISchema>;
+export type FeatureByGroup = {
   pricemomentum: PriceMomentumFeature;
   volumemomentum: VolumeMomentumFeature;
   volatility: VolatilityFeature;
@@ -366,50 +328,4 @@ type FeatureByGroup = {
   rsi: RSIFeature;
   kdj: KDJFeature;
   cci: CCIFeature;
-};
-type StockPctChange = z.infer<typeof StockPctChangeSchema>;
-type IndustryPctChange = z.infer<typeof IndustryPctChangeSchema>;
-
-export {
-  dataWindows,
-  dataWindowParam,
-  featureGroupParam,
-  FeatureGroups,
-  StockPriceSchema,
-  MarketActivityFeaturesSchema,
-  PriceMomentumFeaturesSchema,
-  VolumeMomentumFeatureSchema,
-  VolatilitySchema,
-  OBVFeatureSchema,
-  BollingerBandsFeaturesSchema,
-  DEMAFeaturesSchema,
-  KDJSchema,
-  CCISchema,
-  FeatureSchemas,
-  StockPctChangeSchema,
-  IndustryPctChangeSchema,
-  DEMAPeriods,
-  FeatureSubplots,
-  sortableFields,
-};
-export type {
-  DataWindowOpt,
-  DEMAPeriodOpt,
-  DEMAFeature,
-  StockPrice,
-  FeatureGroupOpt,
-  FeatureByGroup,
-  RSIFeature,
-  MACDFeature,
-  KDJFeature,
-  PriceMomentumFeature,
-  VolumeMomentumFeature,
-  VolatilityFeature,
-  OBVFeature,
-  CCIFeature,
-  MarketActivityFeature,
-  BollingerBandsFeature,
-  StockPctChange,
-  IndustryPctChange,
-  SortableField,
 };

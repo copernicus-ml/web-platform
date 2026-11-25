@@ -48,7 +48,7 @@ export default function FeatureGroupSidebar() {
   }, []);
 
   return (
-    <div className="w-full h-full flex flex-col max-w-65">
+    <div className="w-full h-full flex flex-col max-w-62">
       <div className="h-10 flex justify-center items-center border-b border-frame border-dashed">
         <h2 className="text-sm">{t("ui.basicfeatures")}</h2>
       </div>
