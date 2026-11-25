@@ -1,9 +1,13 @@
 import z from "zod";
-import { DATA_URL, type DataServiceError } from "@/apis/shared";
+import { DATA_URL, processResponse } from "@/apis/shared";
 
 const StockListSchema = z.array(z.array(z.string()));
+type StockList = z.infer<typeof StockListSchema>;
+// unverified
+// const StocksPctChangesMapSchema = z.map(z.string(), z.float32());
+// type StocksPctChangesMap = z.infer<typeof StocksPctChangesMapSchema>;
 
-const getStockList = async (authToken: string, signal?: AbortSignal) => {
+export const getStockList = async (authToken: string, signal?: AbortSignal) => {
   const url = new URL(`data/stock/list`, DATA_URL);
   const response = await fetch(url, {
     method: "GET",
@@ -12,19 +16,22 @@ const getStockList = async (authToken: string, signal?: AbortSignal) => {
     },
     signal,
   });
-  if (!response.ok) {
-    const errorData = (await response.json()) as DataServiceError;
-    const errorMessage =
-      errorData.error.message ||
-      `Failed to get stock list from server. Status ${response.status}`;
-    throw new Error(errorMessage);
-  }
-  const responseData = await response.json();
-  const parsedResult = StockListSchema.safeParse(responseData.data);
-  if (parsedResult.success) {
-    return parsedResult.data;
-  }
-  throw new Error(parsedResult.error.message);
+  return processResponse<StockList>(response, StockListSchema);
 };
 
-export { getStockList };
+// export const getStocksPctChanges = async (
+//   symbols: string[],
+//   authToken: string,
+//   signal?: AbortSignal,
+// ) => {
+//   const queryString = symbols.join(",");
+//   const url = new URL(`stocks/changes?symbols=${queryString}`, DATA_URL);
+//   const response = await fetch(url, {
+//     method: "GET",
+//     headers: {
+//       Authorization: `Bearer ${authToken}`,
+//     },
+//     signal,
+//   });
+//   return processResponse<StocksPctChangesMap>(response, StocksPctChangesMapSchema);
+// };

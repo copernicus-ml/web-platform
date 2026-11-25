@@ -18,6 +18,10 @@ vi.mock("@/routes/stocks.$symbol", () => ({
   },
 }));
 
+vi.mock("@stocks/StockTrending", () => ({
+  default: () => <></>,
+}));
+
 const stockList = [
   ["AAPL", "Apple Inc."],
   ["MSFT", "Microsoft Corporation"],

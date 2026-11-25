@@ -1,6 +1,9 @@
 {
   "ui": {
-    "basicfeatures": "基本指标"
+    "basicfeatures": "基本指标",
+    "searchPlaceholder": "股票代码或公司名称",
+    "noResult": "未找到结果",
+    "trending": "热门股票"
   },
   "stocks": {
     "60D": "60日",
@@ -74,6 +77,27 @@
     "cci": "CCI"
   },
   "featureName": {
+    "ma5Bias": "5日均线偏离",
+    "ma20Bias": "20日均线偏离",
+    "ma60Bias": "60日均线偏离",
+    "return5d": "5日收益率",
+    "return20d": "20日收益率",
+    "return60d": "60日收益率",
+    "upRatio5d": "5日内上涨日占比",
+    "upRatio20d": "20日内上涨日占比",
+
+    "vol5Bias": "5日成交量偏离",
+    "vol10Bias": "10日成交量偏离",
+    "vol20Bias": "20日成交量偏离",
+    "vol60Bias": "60日成交量偏离",
+    "vol5Change": "5日成交量变化",
+    "vol10Change": "10日成交量变化",
+    "vol20Change": "20日成交量变化",
+    "vol60Change": "60日成交量变化",
+
+    "obv5": "5日",
+    "obv20": "20日",
+
     "volume": "成交量",
     "turnover": "换手率",
 
@@ -119,11 +143,7 @@
     "cci": "CCI",
     "cciMa5": "CCI MA",
 
-    "5D": "5日",
     "6D": "6日",
-    "10D": "10日",
-    "14D": "14日",
-    "20D": "20日",
-    "60D": "60日"
+    "14D": "14日"
   }
 }

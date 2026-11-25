@@ -1,4 +1,4 @@
-import { DATA_URL, type DataServiceError } from "@/apis/shared";
+import { DATA_URL, processResponse } from "@/apis/shared";
 import type { FeatureGroupOpt, DataWindowOpt } from "./schema";
 import { z } from "zod";
 import {
@@ -9,6 +9,7 @@ import {
 } from "./schema";
 
 const StockPriceResponseSchema = z.array(StockPriceSchema);
+type StockPriceResponse = z.infer<typeof StockPriceResponseSchema>;
 const getStockFeaturesResponseSchema = <G extends FeatureGroupOpt>(group: G) => {
   return z.array(FeatureSchemas[group]);
 };
@@ -27,19 +28,7 @@ const getStockPrices = async (
     },
     signal,
   });
-  if (!response.ok) {
-    const errorData = (await response.json()) as DataServiceError;
-    const errorMessage =
-      errorData.error.message ||
-      `failed to get stock data for ${symbol}. Status: ${response.status}`;
-    throw new Error(errorMessage);
-  }
-  const responseData = await response.json();
-  const parsedResult = StockPriceResponseSchema.safeParse(responseData.data);
-  if (parsedResult.success) {
-    return parsedResult.data;
-  }
-  throw new Error(parsedResult.error.message);
+  return processResponse<StockPriceResponse>(response, StockPriceResponseSchema);
 };
 
 const getStockFeatures = async (
@@ -60,20 +49,9 @@ const getStockFeatures = async (
     },
     signal,
   });
-  if (!response.ok) {
-    const errorData = (await response.json()) as DataServiceError;
-    const errorMessage =
-      errorData.error.message ||
-      `failed to get stock data for ${symbol}. Status: ${response.status}`;
-    throw new Error(errorMessage);
-  }
-  const responseData = await response.json();
   const StockFeaturesResponseSchema = getStockFeaturesResponseSchema(featureGroup);
-  const parsedResult = StockFeaturesResponseSchema.safeParse(responseData.data);
-  if (parsedResult.success) {
-    return parsedResult.data;
-  }
-  throw new Error(parsedResult.error.message);
+  type StockFeaturesResponse = z.infer<typeof StockFeaturesResponseSchema>;
+  return processResponse<StockFeaturesResponse>(response, StockFeaturesResponseSchema);
 };
 
 export { getStockPrices, getStockFeatures };
