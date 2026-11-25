@@ -9,6 +9,8 @@ const StockInfoSchema = z
     sub_industry: z.string(),
     headquarters: z.string(),
     founded: z.string(),
+    price: z.float32(),
+    pct_change: z.float32(),
   })
   .transform((input) => ({
     symbol: input.symbol,
@@ -17,6 +19,8 @@ const StockInfoSchema = z
     sector: input.sector,
     headquarters: input.headquarters,
     founded: input.founded,
+    price: input.price,
+    pctChange: input.pct_change,
   }));
 type StockInfo = z.infer<typeof StockInfoSchema>;
 

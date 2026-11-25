@@ -23,6 +23,8 @@ const stockInfo = {
   subIndustry: "Consumer Electronics",
   founded: "1976",
   headquarters: "CA",
+  pctChange: 0.04,
+  price: 120,
 };
 
 describe("StockInfo", () => {
@@ -32,12 +34,13 @@ describe("StockInfo", () => {
 
   it("renders stock information from the route API", () => {
     render(<StockInfo />);
-    expect(screen.getByRole("heading", { name: "AAPL" })).toBeInTheDocument();
-    expect(screen.getByText("Apple Inc.")).toBeInTheDocument();
+    expect(screen.getByRole("heading", { name: "Apple Inc." })).toBeInTheDocument();
+    expect(screen.getByText("AAPL")).toBeInTheDocument();
     expect(screen.getByText("Technology")).toBeInTheDocument();
     expect(screen.getByText("Consumer Electronics")).toBeInTheDocument();
-    expect(screen.getByText("founded in 1976")).toBeInTheDocument();
     expect(screen.getByText("CA")).toBeInTheDocument();
+    expect(screen.getByText("$120")).toBeInTheDocument();
+    expect(screen.getByText("4.00%")).toBeInTheDocument();
   });
 
   it("renders no stock details when the route API has no info", () => {
