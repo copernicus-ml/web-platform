@@ -6,7 +6,6 @@ import { ClerkProvider, useAuth } from "@clerk/react";
 import "@/i18n/i18n";
 import "./index.css";
 import FlashToast from "./components/ui/FlashToast.tsx";
-import { QueryClientProvider } from "@tanstack/react-query";
 
 function AppRouter() {
   const { isLoaded, isSignedIn, getToken } = useAuth();
@@ -30,12 +29,10 @@ function AppRouter() {
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
-    <QueryClientProvider client={queryClient}>
-      <ClerkProvider>
-        <FlashToast>
-          <AppRouter />
-        </FlashToast>
-      </ClerkProvider>
-    </QueryClientProvider>
+    <ClerkProvider>
+      <FlashToast>
+        <AppRouter />
+      </FlashToast>
+    </ClerkProvider>
   </StrictMode>,
 );
